@@ -14,13 +14,17 @@
       --nav-height: 56px;
     }
 
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; min-height: 100%; }
 
     body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
       font-family: 'Sora', sans-serif;
       color: var(--text-dark);
       background: var(--white);
       overflow-x: hidden;
+      padding-top: calc(var(--nav-height) + 4px);
     }
 
     /* ── NAVBAR ── */
@@ -103,7 +107,7 @@
 
     /* ── HERO SLIDER ── */
     .hero {
-      margin-top: calc(var(--nav-height) + 4px);
+      margin-top: 0;
       position: relative;
       height: calc(100vh - var(--nav-height) - 4px);
       overflow: hidden;
@@ -166,6 +170,8 @@
       text-decoration: none;
       cursor: pointer;
       border: none;
+      margin: 5px;
+    
       transition: transform 0.15s, box-shadow 0.15s;
     }
 
@@ -709,14 +715,17 @@
 
     .autoaval-hero {
       position: relative;
-      height: 480px;
+      min-height: calc(100vh - 220px);
       overflow: hidden;
     }
 
     .autoaval-hero img {
+      position: absolute;
+      inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: center;
       filter: brightness(0.45);
     }
 
@@ -726,6 +735,7 @@
       display: flex;
       align-items: center;
       padding: 60px;
+      min-height: 100%;
     }
 
     .autoaval-hero-text {
@@ -736,7 +746,8 @@
       font-size: 1.05rem;
       line-height: 1.75;
       color: rgba(255,255,255,0.9);
-      margin-bottom: 32px;
+      margin-bottom: 100px;
+      padding-top: 30%;
     }
 
     .autoaval-cta-card {
@@ -783,6 +794,27 @@
       border-radius: 50%;
       background: var(--blue);
       display: block;
+    }
+
+    #autoaval-quiz {
+      position: fixed;
+      top: calc(var(--nav-height) + 4px);
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1000;
+      overflow-y: auto;
+      background: var(--gray-100);
+      padding: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #autoaval-quiz > div {
+      width: 100%;
+      max-width: 700px;
+      margin: 0 auto;
     }
 
     /* ── VIDEOTECA ── */
@@ -1012,6 +1044,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      margin-top: auto;
     }
 
     footer p { font-size: 0.85rem; opacity: 0.7; }
@@ -1026,7 +1059,10 @@
 
     /* ── PAGE SECTIONS ── */
     .page-section { display: none; }
-    .page-section.active { display: block; }
+    .page-section.active {
+      display: block;
+      flex: 1;
+    }
 
     /* ── MOBILE MENU ── */
     .hamburger {
