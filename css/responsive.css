@@ -1,0 +1,43 @@
+@media (max-width: 900px) {
+  .hamburger { display: flex; }
+  .nav-links {
+    display: none;
+    position: fixed;
+    top: var(--nav-height);
+    left: 0;
+    right: 0;
+    background: white;
+    flex-direction: column;
+    padding: 20px;
+    gap: 0;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  }
+
+  .nav-links.open { display: flex; }
+  .nav-links li { border-bottom: 1px solid #f1f5f9; }
+  .nav-links a { display: block; padding: 14px 8px; font-size: 14px; border-bottom: none; }
+  .container { padding: 0 24px; }
+  .sobre-grid { grid-template-columns: 1fr; }
+  .passos-grid { grid-template-columns: 1fr 1fr; }
+  .videos-grid { grid-template-columns: 1fr 1fr; }
+  .primeiro-passo-layout { grid-template-columns: 1fr; }
+  .reunioes-layout { grid-template-columns: 1fr; }
+  nav { padding: 0 20px; }
+  footer { flex-direction: column; gap: 20px; text-align: center; }
+  .footer-crisis { text-align: center; }
+  .slide-content { padding: 0 32px; }
+  .autoaval-cta-card {
+    position: relative;
+    right: auto;
+    top: auto;
+    transform: none;
+    margin-top: 24px;
+  }
+  .autoaval-hero-content { flex-direction: column; padding: 32px; }
+}
+
+@media (max-width: 600px) {
+  .passos-grid { grid-template-columns: 1fr; }
+  .videos-grid { grid-template-columns: 1fr; }
+  .reunioes-tabs { overflow-x: auto; }
+}

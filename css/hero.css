@@ -1,0 +1,91 @@
+.hero {
+  margin-top: 0;
+  position: relative;
+  height: calc(100vh - var(--nav-height) - 4px);
+  overflow: hidden;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.7s ease;
+  display: flex;
+  align-items: center;
+}
+
+.slide.active { opacity: 1; }
+
+.slide-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+}
+
+.slide-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(0,0,0,0.55) 40%, transparent 80%);
+}
+
+.slide-content {
+  position: relative;
+  z-index: 2;
+  padding: 0 80px;
+  max-width: 660px;
+}
+
+.slide-content h1 {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1.15;
+  margin-bottom: 20px;
+}
+
+.slide-content p {
+  font-size: 1rem;
+  color: var(--yellow);
+  line-height: 1.65;
+  font-weight: 500;
+  margin-bottom: 36px;
+}
+
+.slide-btns {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: fit-content;
+}
+
+.slider-dots {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  gap: 10px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.4);
+  cursor: pointer;
+  transition: background 0.3s;
+  border: none;
+}
+
+.dot.active { background: var(--white); }
+
+.slide-1 .slide-bg { background-image: url('images/Home Page.png'); background-size: cover; background-position: center; }
+
+.slide-bg-reunioes { background-image: url('images/Home Page-7.png'); }
+
+.slide-bg-autoaval { background-image: url('images/Home Page-6.png'); }
+
+.slide-bg-videoteca { background-image: url('images/Home Page-8.png'); }
