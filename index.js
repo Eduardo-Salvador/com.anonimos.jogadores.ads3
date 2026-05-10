@@ -191,12 +191,12 @@ function responder(r) {
 
 /* ── VIDEOS ── */
 const videosData = [
-  { titulo: '#015 Vício em Jogos e Saúde Pública', thumb: 'images/image 22.png', canal: 'JA Brasil', views: '2.3K' },
-  { titulo: 'Como funcionam as apostas online? Entenda os riscos', thumb: 'images/Desktop - 5.png', canal: 'JA Brasil', views: '1.8K' },
-  { titulo: 'Os Doze Passos: O caminho para a recuperação', thumb: 'images/Os doze passos-2.png', canal: 'JA Brasil', views: '3.1K' },
-  { titulo: 'Depoimento: Como parei de jogar', thumb: 'images/Home Page-7.png', canal: 'JA Brasil', views: '4.7K' },
-  { titulo: 'Família e jogo compulsivo: como ajudar', thumb: 'images/Home Page-8.png', canal: 'JA Brasil', views: '2.0K' },
-  { titulo: 'Autoavaliação: Você é um jogador compulsivo?', thumb: 'images/Home Page-6.png', canal: 'JA Brasil', views: '5.5K' },
+  { titulo: '#015 Vício em Jogos e Saúde Pública', thumb: 'images-videoteca/Video1.jpg', canal: 'JA Brasil', views: '2.3K' },
+  { titulo: 'Como funcionam as apostas online? Entenda os riscos', thumb: 'images-videoteca/Video2.jpeg', canal: 'JA Brasil', views: '1.8K' },
+  { titulo: 'Os Doze Passos: O caminho para a recuperação', thumb: 'images-videoteca/Video3.jpg', canal: 'JA Brasil', views: '3.1K' },
+  { titulo: 'Depoimento: Como parei de jogar', thumb: 'images-videoteca/Video4.jpg', canal: 'JA Brasil', views: '4.7K' },
+  { titulo: 'Família e jogo compulsivo: como ajudar', thumb: 'images-videoteca/Video5.jpeg', canal: 'JA Brasil', views: '2.0K' },
+  { titulo: 'Autoavaliação: Você é um jogador compulsivo?', thumb: 'images-videoteca/Video6.jpg', canal: 'JA Brasil', views: '5.5K' },
 ];
 
 function renderVideos() {
