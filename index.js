@@ -168,10 +168,10 @@ function renderQuiz() {
           <div style="font-size:3rem;margin-bottom:16px;">${sim >= 7 ? '🔴' : sim >= 4 ? '🟡' : '🟢'}</div>
           <p style="font-size:1.1rem;line-height:1.75;color:#475569;margin-bottom:24px;">
             ${sim >= 7
-        ? 'Você respondeu SIM a ' + sim + ' perguntas. Isso pode indicar que o jogo está causando problemas sérios. Recomendamos fortemente buscar apoio.'
+        ? 'Você respondeu SIM a ' + sim + ' perguntas. A maioria dos jogadores compulsivos repondeu SIM a pelo menos 7 dessas perguntas.'
         : sim >= 4
-          ? 'Você respondeu SIM a ' + sim + ' perguntas. Há sinais de que o jogo pode estar afetando sua vida. Vale a pena conversar com alguém.'
-          : 'Você respondeu SIM a apenas ' + sim + ' pergunta(s). Seu comportamento parece equilibrado, mas fique atento.'}
+          ? 'Você respondeu SIM a ' + sim + ' perguntas. A maioria dos jogadores compulsivos repondeu SIM a pelo menos 7 dessas perguntas.'
+          : 'Você respondeu SIM a apenas ' + sim + ' pergunta(s). A maioria dos jogadores compulsivos repondeu SIM a pelo menos 7 dessas perguntas.'}
           </p>
           <a class="btn btn-blue" href="#" onclick="showPage('quem-somos')" style="margin-right:12px;">Primeiro passo</a>
           <a class="btn btn-yellow" href="#" onclick="showPage('reunioes')">Encontrar um grupo</a>
