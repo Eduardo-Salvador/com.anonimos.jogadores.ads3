@@ -611,7 +611,7 @@
 
 .videos-section {
   background: var(--gray-100);
-  padding: 80px 60px;
+  padding: 50px 60px 80px;
 }
 
 .videos-header {
@@ -621,7 +621,11 @@
   margin-bottom: 40px;
 }
 
-.videos-header h2 { font-size: 1.8rem; font-weight: 800; }
+.videos-header h2 { 
+  font-size: 2.4rem; 
+  font-weight: 800; 
+  color: var(--cor-padrao-ja);
+}
 
 .videos-grid {
   display: grid;
@@ -632,7 +636,7 @@
 .video-card {
   border-radius: 12px;
   overflow: hidden;
-  background: #1e293b;
+  background: #1a0a09;
   box-shadow: 0 4px 16px rgba(0,0,0,0.12);
   cursor: pointer;
   transition: transform 0.2s, box-shadow 0.2s;
@@ -836,7 +840,7 @@
 .chatbot-quick:hover { background: #e6b800; }
 
 footer {
-  background: var(--blue-dark);
+  background: var(--cor-padrao-ja);
   color: white;
   padding: 40px 60px;
   display: flex;
