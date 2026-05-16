@@ -34,10 +34,12 @@
 
   <ul class="nav-links" id="navLinks">
     <li><a href="#" onclick="showPage('quem-somos')" data-page="quem-somos">QUEM SOMOS</a></li>
-    <li><a href="#" onclick="showPage('contato')" data-page="contato">CONTATO</a></li>
     <li><a href="#" onclick="showPage('reunioes')" data-page="reunioes">REUNIÕES</a></li>
-    <li><a href="#" onclick="showPage('autoaval')" data-page="autoaval">AUTOAVALIAÇÃO</a></li>
+    <li><a href="#" onclick="showPage('doze-passos-page')" data-page="doze-passos-page">OS 12 PASSOS</a></li>
+    <li><a href="#" onclick="showPage('autoaval')" data-page="autoaval">AS 20 PERGUNTAS</a></li>
+    <li><a href="#" onclick="showPage('contato')" data-page="contato">CONTATO</a></li>
     <li><a href="#" onclick="showPage('videoteca')" data-page="videoteca">VIDEOTECA</a></li>
+
   </ul>
 </nav>
 <div class="nav-accent"></div>
@@ -164,109 +166,174 @@
      QUEM SOMOS / PRIMEIRO PASSO
 ═══════════════════════════════════════════════════ -->
 <div id="page-quem-somos" class="page-section">
-  <div class="primeiro-passo-header">
-    <h2>PRIMEIRO PASSO</h2>
-    <p>Conte um pouco sobre você</p>
+  <div class="quem-logo-top">
+
+  <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="22" cy="22" r="20" stroke="#742C24" stroke-width="2.5"/>
+    <circle cx="22" cy="22" r="13" stroke="#742C24" stroke-width="2"/>
+    <circle cx="22" cy="22" r="6" fill="#D4A843"/>
+  </svg>
+
+  <div class="quem-logo-text">
+    <span class="logo-main">JOGADORES</span>
+    <span class="logo-highlight">ANÔNIMOS</span>
+    <span class="logo-sub">
+      APOIO AO JOGADOR COMPULSIVO DO ANONIMATO
+    </span>
   </div>
-  <div class="primeiro-passo-sub">
-    <p>Suas respostas são anônimas. Vamos entrar em contato para te conectar com um grupo.</p>
-  </div>
-  <div class="primeiro-passo-body">
-    <div class="primeiro-passo-layout">
-      <div class="grupos-sidebar">
-        <h3>Grupos</h3>
-        <ul>
-          <li>🇧🇷 Brasil</li>
-          <li>🇦🇴 Angola</li>
-          <li>🇲🇿 Moçambique</li>
-        </ul>
+
+</div>
+  <section class="historia-ja">
+    <div class="container">
+
+      <div class="historia-header">
+
+        <h1>A História de J.A.</h1>
+
+        <p>
+          Uma irmandade formada por pessoas que compartilham experiências,
+          esperança e apoio mútuo para superar o jogo compulsivo.
+        </p>
       </div>
-      <div class="form-card">
-        <div class="form-header">
-          <div class="etapa-label">Etapa <span id="etapaNum">1</span> de <span>3</span></div>
-          <svg width="40" height="40" viewBox="0 0 44 44" fill="none"><circle cx="22" cy="22" r="20" stroke="#1E3A8A" stroke-width="2"/><circle cx="22" cy="22" r="13" stroke="#1E3A8A" stroke-width="1.5"/><circle cx="22" cy="22" r="6" fill="#1E3A8A"/></svg>
-        </div>
-        <div class="progress-bar">
-          <div class="progress-step active" id="ps1"></div>
-          <div class="progress-step" id="ps2"></div>
-          <div class="progress-step" id="ps3"></div>
+
+      <div class="historia-grid">
+
+        <div class="historia-card">
+
+          <h2>Como surgiu</h2>
+
+          <p>
+            Jogadores Anônimos é uma irmandade composta de pessoas que compartilham suas experiências,
+            energia e esperança, com o objetivo de parar de jogar, manter-se abstinente e ajudar outros
+            jogadores compulsivos a fazerem o mesmo.
+          </p>
+
+          <p>
+            Ao longo da história, indescritíveis sofrimentos e humilhações marcaram a vida de milhares
+            de homens e mulheres devido à compulsão pelo jogo.
+          </p>
+
+          <p>
+            A Irmandade surgiu em janeiro de 1957, a partir do encontro casual entre dois homens que
+            enfrentavam graves consequências causadas pela obsessão pelo jogo. Ao começarem a se reunir
+            regularmente, perceberam que o apoio mútuo ajudava ambos a permanecerem sem jogar.
+          </p>
+
+          <p>
+            Eles concluíram que, para evitar recaídas, precisariam realizar profundas mudanças pessoais
+            e espirituais. Assim nasceram os princípios utilizados até hoje em Jogadores Anônimos.
+          </p>
+
         </div>
 
-        <!-- Etapa 1 -->
-        <div id="etapa1">
-          <div class="form-group">
-            <label>Como podemos te chamar? (apelido ou inicial)</label>
-            <input type="text" class="form-input" placeholder="Ex: Edu." id="fNome">
-          </div>
-          <div class="form-group">
-            <label>Idade</label>
-            <div class="age-options">
-              <div class="age-option" onclick="selectAge(this)">16-26</div>
-              <div class="age-option" onclick="selectAge(this)">27-37</div>
-              <div class="age-option" onclick="selectAge(this)">38-50</div>
-              <div class="age-option" onclick="selectAge(this)">50+</div>
-            </div>
-          </div>
-          <div class="form-group">
-            <label>Cidade / Estado</label>
-            <input type="text" class="form-input" placeholder="Ex: Hortolândia, SP." id="fCidade">
-          </div>
-          <div class="form-group">
-            <label>Há quanto tempo o jogo virou um problema?</label>
-            <div class="radio-option"><input type="radio" name="tempo" value="1"> Menos de 1 ano</div>
-            <div class="radio-option"><input type="radio" name="tempo" value="2"> Entre 1 e 5 anos</div>
-            <div class="radio-option"><input type="radio" name="tempo" value="3"> Mais de 5 anos</div>
-            <div class="radio-option"><input type="radio" name="tempo" value="4"> Prefiro não dizer</div>
-          </div>
-          <div class="form-group">
-            <label>Como prefere ser contatado?</label>
-            <div class="contact-options">
-              <div class="contact-opt" onclick="selectContact(this)">WhatsApp</div>
-              <div class="contact-opt" onclick="selectContact(this)">E-mail</div>
-              <div class="contact-opt" onclick="selectContact(this)">Ligação</div>
-            </div>
-          </div>
-          <button class="btn btn-blue" style="width:100%;margin-top:16px;" onclick="nextEtapa()">Continuar →</button>
+        <div class="historia-image">
+          <img src="images-pagina-principal/quem-somos.jpg" alt="História do JA">
         </div>
 
-        <!-- Etapa 2 -->
-        <div id="etapa2" style="display:none;">
-          <div class="form-group">
-            <label>Qual é o seu contato?</label>
-            <input type="text" class="form-input" placeholder="Telefone ou e-mail" id="fContato">
-          </div>
-          <div class="form-group">
-            <label>Você já tentou parar de jogar antes?</label>
-            <div class="radio-option"><input type="radio" name="tentou" value="s"> Sim</div>
-            <div class="radio-option"><input type="radio" name="tentou" value="n"> Não</div>
-            <div class="radio-option"><input type="radio" name="tentou" value="nd"> Prefiro não dizer</div>
-          </div>
-          <div class="form-group">
-            <label>Você prefere reuniões…</label>
-            <div class="radio-option"><input type="radio" name="tipo_r" value="p"> Presenciais</div>
-            <div class="radio-option"><input type="radio" name="tipo_r" value="o"> Online</div>
-            <div class="radio-option"><input type="radio" name="tipo_r" value="a"> Ambos</div>
-          </div>
-          <div style="display:flex;gap:12px;margin-top:16px;">
-            <button class="btn" style="flex:1;border:1.5px solid #e2e8f0;color:#475569;" onclick="prevEtapa()">← Voltar</button>
-            <button class="btn btn-blue" style="flex:2;" onclick="nextEtapa()">Continuar →</button>
-          </div>
-        </div>
-
-        <!-- Etapa 3 -->
-        <div id="etapa3" style="display:none;">
-          <div style="text-align:center;padding:32px 0;">
-            <div style="font-size:3rem;margin-bottom:16px;">✅</div>
-            <h3 style="font-size:1.4rem;font-weight:800;margin-bottom:12px;">Recebemos sua mensagem!</h3>
-            <p style="color:#64748b;line-height:1.7;">Entraremos em contato em breve para te conectar com um grupo de apoio. Lembre-se: você não está sozinho.</p>
-            <div style="margin-top:28px;padding:20px;background:#f0f9ff;border-radius:12px;font-size:0.9rem;color:#1e3a8a;font-weight:600;">
-              Em crise agora? CVV — 188 (24h, gratuito e anônimo)<br>JA Brasil — 0800-026-1212
-            </div>
-          </div>
-        </div>
       </div>
+
+      <div class="historia-timeline">
+
+        <div class="timeline-item">
+          <div class="timeline-year">1957</div>
+
+          <div class="timeline-content">
+            Primeiro grupo oficial de Jogadores Anônimos em Los Angeles.
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-year">San Francisco</div>
+
+          <div class="timeline-content">
+            Primeira expansão da irmandade através da recuperação de uma família.
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-year">Las Vegas</div>
+
+          <div class="timeline-content">
+            Formação da terceira grande área de apoio de J.A.
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-year">1993</div>
+
+          <div class="timeline-content">
+            Primeira reunião de Jogadores Anônimos no Brasil, no Rio de Janeiro.
+          </div>
+        </div>
+
+      </div>
+
+      <div class="como-funciona">
+
+        <div class="funciona-texto">
+
+          <span class="historia-tag">COMO FUNCIONA</span>
+
+          <h2>Um caminho de apoio e recuperação</h2>
+
+          <p>
+            O único requisito para participar de Jogadores Anônimos é o desejo de parar de jogar.
+            Não existem mensalidades ou taxas: a irmandade é totalmente autossustentável através
+            das contribuições voluntárias dos próprios membros.
+          </p>
+
+          <p>
+            Jogadores Anônimos não está ligado a partidos políticos, religiões ou instituições.
+            O principal objetivo é ajudar pessoas a interromper o ciclo do jogo compulsivo e
+            encontrar apoio através da troca de experiências.
+          </p>
+
+          <p>
+            Milhares de homens e mulheres participam semanalmente de reuniões presenciais e online
+            em diversos países do mundo.
+          </p>
+
+          <p>
+            Se você acredita que tem problemas com o jogo ou conhece alguém que tenha,
+            participe de uma reunião e descubra que você não está sozinho.
+          </p>
+
+        </div>
+
+        <div class="funciona-box">
+
+          <div class="funciona-item">
+            <strong>✔ Anônimo</strong>
+            <span>Privacidade e acolhimento para todos.</span>
+          </div>
+
+          <div class="funciona-item">
+            <strong>✔ Gratuito</strong>
+            <span>Sem mensalidades ou cobranças.</span>
+          </div>
+
+          <div class="funciona-item">
+            <strong>✔ Apoio mútuo</strong>
+            <span>Pessoas ajudando pessoas.</span>
+          </div>
+
+          <div class="funciona-item">
+            <strong>✔ Reuniões semanais</strong>
+            <span>Encontros presenciais e online.</span>
+          </div>
+
+          <div class="funciona-item">
+            <strong>✔ Sem julgamentos</strong>
+            <span>Um ambiente seguro e acolhedor.</span>
+          </div>
+
+        </div>
+
+      </div>
+
     </div>
-  </div>
+  </section>
+</section>
 </div>
 
 <!-- ═══════════════════════════════════════════════════
@@ -423,6 +490,95 @@
     </div>
   </section>
 </div>
+
+<section id="doze-passos-page" class="page doze-passos-page hidden">
+
+  <div class="passos-hero">
+    <div class="passos-hero-overlay"></div>
+    <div class="passos-hero-content">
+      <div class="passos-hero-logo">
+
+        <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="22" cy="22" r="20" stroke="#ffffff" stroke-width="2.5"/>
+          <circle cx="22" cy="22" r="13" stroke="#ffffff" stroke-width="2"/>
+          <circle cx="22" cy="22" r="6" fill="#D4A843"/>
+        </svg>
+
+        <div>
+          <h1>OS 12 PASSOS</h1>
+          <p>Um caminho de recuperação, esperança e transformação.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="passos-page-container">
+    <div class="passos-page-grid">
+      <div class="passo-page-card">
+        <div class="passo-page-num">1</div>
+        <p>Admitimos que éramos impotentes perante o jogo e que nossas vidas haviam se tornado ingovernáveis.</p>
+      </div>
+
+      <div class="passo-page-card">
+        <div class="passo-page-num">2</div>
+        <p>Viemos a acreditar que um Poder superior a nós mesmos poderia devolver-nos à sanidade.</p>
+      </div>
+
+      <div class="passo-page-card">
+        <div class="passo-page-num">3</div>
+        <p>Decidimos entregar nossa vontade e nossa vida aos cuidados de Deus, na forma em que O concebíamos.</p>
+      </div>
+
+      <div class="passo-page-card">
+        <div class="passo-page-num">4</div>
+        <p>Fizemos minucioso e destemido inventário moral de nós mesmos.</p>
+      </div>
+
+      <div class="passo-page-card">
+        <div class="passo-page-num">5</div>
+        <p>Admitimos perante Deus, perante nós mesmos e perante outro ser humano a natureza exata de nossas falhas.</p>
+      </div>
+
+      <div class="passo-page-card">
+        <div class="passo-page-num">6</div>
+        <p>Prontificamo-nos inteiramente a deixar que Deus removesse todos esses defeitos de caráter.</p>
+      </div>
+
+      <div class="passo-page-card">
+        <div class="passo-page-num">7</div>
+        <p>Humildemente pedimos a Ele que removesse nossos defeitos.</p>
+      </div>
+
+      <div class="passo-page-card">
+        <div class="passo-page-num">8</div>
+        <p>Fizemos uma relação de todas as pessoas que tínhamos prejudicado e nos dispusemos a reparar os danos a elas causados.</p>
+      </div>
+
+      <div class="passo-page-card">
+        <div class="passo-page-num">9</div>
+        <p>Fizemos reparações diretas dos danos causados a tais pessoas, sempre que possível, salvo quando fazê-lo significasse prejudicá-las ou a outrem.</p>
+      </div>
+
+      <div class="passo-page-card">
+        <div class="passo-page-num">10</div>
+        <p>Continuamos fazendo o inventário pessoal e, quando estávamos errados, nós o admitíamos prontamente.</p>
+      </div>
+
+      <div class="passo-page-card">
+        <div class="passo-page-num">11</div>
+        <p>Procuramos, através da prece e da meditação, melhorar nosso contato consciente com Deus.</p>
+      </div>
+
+      <div class="passo-page-card">
+        <div class="passo-page-num">12</div>
+        <p>Tendo experimentado um despertar espiritual, procuramos transmitir esta mensagem a outros jogadores compulsivos.</p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
 
 <!-- ═══════════════════════════════════════════════════
      CHATBOT

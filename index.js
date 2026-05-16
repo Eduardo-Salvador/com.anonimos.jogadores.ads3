@@ -1,14 +1,34 @@
 /* ── NAVIGATION ── */
 function showPage(page) {
-  document.querySelectorAll('.page-section').forEach(el => el.classList.remove('active'));
-  document.getElementById('page-' + page).classList.add('active');
+  document.querySelectorAll('.page-section').forEach(el => {
+    el.classList.remove('active');
+  });
 
-  // atualiza link ativo
+  document.querySelectorAll('.page').forEach(el => {
+    el.classList.add('hidden');
+  });
+
+  const sectionPage = document.getElementById('page-' + page);
+
+  if (sectionPage) {
+    sectionPage.classList.add('active');
+  }
+
+  const hiddenPage = document.getElementById(page + '-page');
+
+  if (hiddenPage) {
+    hiddenPage.classList.remove('hidden');
+  }
+
   document.querySelectorAll('.nav-links a').forEach(a => {
     a.classList.toggle('active', a.dataset.page === page);
   });
 
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+
   closeMenu();
 
   if (page === 'videoteca') renderVideos();

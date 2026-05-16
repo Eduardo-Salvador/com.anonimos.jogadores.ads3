@@ -17,17 +17,14 @@
 html { scroll-behavior: smooth; min-height: 100%; }
 
 body {
-  display: flex;
-  flex-direction: column;
   min-height: 100vh;
   font-family: 'Sora', sans-serif;
   color: var(--text-dark);
   background: var(--white);
   overflow-x: hidden;
-  padding-top: calc(var(--nav-height) + 4px);
 }
 
-section { padding: 80px 0; }
+section { padding: 75px 0; }
 
 .container {
   max-width: 1200px;
