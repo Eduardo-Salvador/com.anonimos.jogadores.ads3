@@ -46,8 +46,8 @@
 }
 
 .slide-content p {
-  font-size: 1rem;
-  color: var(--yellow);
+  font-size: 1.2rem;
+  color: #D4A843;
   line-height: 1.65;
   font-weight: 500;
   margin-bottom: 36px;

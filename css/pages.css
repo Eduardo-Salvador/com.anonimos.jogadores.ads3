@@ -1,43 +1,67 @@
 .quem-somos { background: var(--gray-100); }
 
 .quem-somos h2 {
-  font-size: 2.2rem;
+  font-size: 3rem;
   font-weight: 800;
-  color: var(--blue);
-  margin-bottom: 28px;
+  color: var(--cor-padrao-ja);
+  margin-bottom: 32px;
 }
 
 .quem-somos p {
-  font-size: 1.05rem;
+  font-size: 1.3rem;
   line-height: 1.8;
   color: #334155;
   margin-bottom: 16px;
 }
 
+.contact-cta {
+  text-align: center;
+  padding-top: 40px;
+}
+
+.contact-cta-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
 .whatsapp-btn {
   display: flex;
   align-items: center;
-  gap: 14px;
-  background: var(--green);
-  color: var(--white);
-  padding: 18px 36px;
-  border-radius: 50px;
+  justify-content: center;
+  gap: 12px;
+  background: #25D366;
+  color: white;
+  padding: 32px 52px;
+  min-width: 320px;
+  font-size: 1.5rem;
+  border-radius: 14px;
   text-decoration: none;
-  font-size: 1.4rem;
   font-weight: 700;
-  width: fit-content;
-  margin: 40px auto 0;
-  transition: transform 0.15s, box-shadow 0.15s;
+  min-width: 260px;
+  transition: 0.2s;
+  box-shadow: 0 6px 18px rgba(37, 211, 102, 0.25);
 }
 
-.whatsapp-btn:hover { transform: scale(1.03); box-shadow: 0 8px 24px rgba(22,163,74,0.3); }
+.whatsapp-btn:hover {
+  background: #1ebe5d;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(37, 211, 102, 0.35);
+}
 
-.contact-cta { text-align: center; padding-top: 24px; }
+.whatsapp-btn svg {
+  width: 24px;
+  height: 24px;
+  fill: white;
+  flex-shrink: 0;
+}
 
 .contact-cta h3 {
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-weight: 800;
-  color: var(--yellow);
+  color: #D4A843;
   margin-bottom: 24px;
 }
 
@@ -53,25 +77,31 @@
 .sobre h2 {
   font-size: 2.4rem;
   font-weight: 800;
-  color: #1e293b;
+  color: var(--cor-padrao-ja);
   margin-bottom: 24px;
 }
 
 .sobre p {
-  font-size: 1rem;
+  font-size: 1.25rem;
   line-height: 1.8;
   color: #475569;
   margin-bottom: 32px;
 }
 
 .sobre-video {
-  border-radius: 16px;
+  border-radius: 20px;
   overflow: hidden;
   position: relative;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+  box-shadow: 0 30px 50px rgba(0,0,0,0.15);
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
 }
 
-.sobre-video img { width: 100%; display: block; }
+.sobre-video img {
+  width: 100%;
+  display: block;
+}
 
 .play-btn {
   position: absolute;

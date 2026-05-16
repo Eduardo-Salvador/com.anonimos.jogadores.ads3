@@ -11,7 +11,7 @@
   --gray-100: #F0F9FF;
   --text-dark: #1e293b;
   --text-muted: #64748b;
-  --nav-height: 56px;
+  --nav-height: 72px;
 }
 
 html { scroll-behavior: smooth; min-height: 100%; }
@@ -42,10 +42,12 @@ section { padding: 80px 0; }
 }
 
 .btn {
-  display: inline-block;
-  padding: 14px 32px;
-  border-radius: 6px;
-  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px 90px;
+  font-size: 1.25rem;
+  border-radius: 10px;
   font-weight: 700;
   text-decoration: none;
   cursor: pointer;
@@ -56,5 +58,5 @@ section { padding: 80px 0; }
 
 .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.2); }
 
-.btn-blue { background: var(--blue); color: var(--white); }
-.btn-yellow { background: var(--yellow-btn); color: #1a1a1a; }
+.btn-red { background: #742C24; color: var(--white); }
+.btn-yellow { background: #D4A843; color: #1a1a1a; }

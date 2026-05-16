@@ -40,7 +40,7 @@ function nextSlide() {
   goSlide((currentSlide + 1) % totalSlides);
 }
 
-sliderInterval = setInterval(nextSlide, 5000);
+sliderInterval = setInterval(nextSlide, 10000);
 
 /* ── FORM ETAPAS ── */
 let etapaAtual = 1;
