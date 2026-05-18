@@ -181,8 +181,10 @@ function renderQuiz() {
               ? 'Você respondeu SIM a ' + sim + ' perguntas. A maioria dos jogadores compulsivos respondeu SIM a pelo menos 7 dessas perguntas.'
               : 'Você respondeu SIM a apenas ' + sim + ' pergunta(s). A maioria dos jogadores compulsivos respondeu SIM a pelo menos 7 dessas perguntas.'}
         </p>
-        <a class="btn btn-blue" href="#" onclick="showPage('quem-somos')" style="margin-right:12px;">Primeiro passo</a>
-        <a class="btn btn-yellow" href="#" onclick="showPage('reunioes')">Encontrar um grupo</a>
+          <div style="display:flex; gap:16px; justify-content:center; margin-top:8px;">
+            <a class="btn btn-red" href="#" onclick="showPage('quem-somos')" style="padding:16px 40px; white-space:nowrap;">Primeiro passo</a>
+            <a class="btn btn-yellow" href="#" onclick="showPage('reunioes')" style="padding:16px 40px; white-space:nowrap;">Encontrar um grupo</a>
+          </div>
       </div>
     `;
     return;
@@ -192,12 +194,12 @@ function renderQuiz() {
   container.innerHTML = `
     <div style="margin-bottom:8px;font-size:0.85rem;color:#64748b;font-weight:600;">Pergunta ${perguntaAtual + 1} de ${quizPerguntas.length}</div>
     <div style="height:6px;background:#e2e8f0;border-radius:3px;margin-bottom:32px;">
-      <div style="height:6px;background:var(--blue);border-radius:3px;width:${progresso}%;transition:width 0.4s;"></div>
+      <div style="height:6px;background:#742C24;border-radius:3px;width:${progresso}%;transition:width 0.4s;"></div>
     </div>
     <h3 style="font-size:1.3rem;font-weight:700;margin-bottom:32px;line-height:1.5;">${quizPerguntas[perguntaAtual]}</h3>
     <div style="display:flex;gap:16px;">
-      <button onclick="responder('sim')" class="btn btn-blue" style="flex:1;font-size:1.1rem;padding:16px;">SIM</button>
-      <button onclick="responder('nao')" class="btn" style="flex:1;font-size:1.1rem;padding:16px;border:2px solid #e2e8f0;color:#475569;">NÃO</button>
+      <button onclick="responder('sim')" class="btn btn-yellow" style="flex:1;font-size:1.1rem;padding:16px;color:#ffffff;">SIM</button>
+      <button onclick="responder('nao')" class="btn btn-red" style="flex:1;font-size:1.1rem;padding:16px;border:2px solid #e2e8f0;color:#ffffff;">NÃO</button>
     </div>
   `;
 }
