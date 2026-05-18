@@ -303,6 +303,7 @@
 
 .reunioes-page {
   padding: 60px;
+  padding-top: calc(var(--nav-height) + 50px);
   background: var(--gray-100);
   min-height: 100vh;
 }
@@ -362,7 +363,7 @@
 }
 
 .reunioes-tab.active {
-  color: var(--blue);
+  color: var(--cor-padrao-ja);
   border-bottom-color: var(--yellow);
 }
 
@@ -414,7 +415,7 @@
   transition: background 0.2s;
 }
 
-.filter-btn.active { background: var(--yellow); border-color: var(--yellow); }
+.filter-btn.active { background: #D4A843; border-color: #D4A843; color: white;}
 
 .reunioes-count {
   font-size: 0.95rem;
@@ -438,7 +439,7 @@
   padding: 16px;
   min-width: 80px;
   text-align: center;
-  border-right: 3px solid var(--blue);
+  border-right: 3px solid var(--cor-padrao-ja);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -453,7 +454,7 @@
 .reuniao-date .month,
 .reuniao-date .weekday {
   font-size: 0.7rem;
-  color: var(--blue);
+  color: var(--cor-padrao-ja);
   font-weight: 700;
   text-transform: uppercase;
 }
@@ -487,12 +488,12 @@
   gap: 5px;
   font-size: 0.8rem;
   font-weight: 600;
-  color: var(--blue);
+  color: var(--cor-padrao-ja);
 }
 
 .dist-badge::before {
   content: '●';
-  color: var(--blue);
+  color: var(--cor-padrao-ja);
   font-size: 0.6rem;
 }
 
@@ -504,7 +505,7 @@
 
 .btn-detalhes {
   padding: 8px 20px;
-  background: var(--blue);
+  background: var(--cor-padrao-ja);
   color: white;
   border: none;
   border-radius: 6px;
@@ -515,7 +516,7 @@
   transition: background 0.2s;
 }
 
-.btn-detalhes:hover { background: var(--blue-dark); }
+.btn-detalhes:hover { background: #D4A843; }
 
 .autoaval-header {
   background: var(--blue);
@@ -1207,6 +1208,7 @@ footer p { font-size: 0.85rem; opacity: 0.7; }
 }
 
 .passos-hero {
+  padding-top: calc(var(--nav-height) + 4px);
   position: relative;
   background:
     linear-gradient(
@@ -1368,4 +1370,31 @@ footer p { font-size: 0.85rem; opacity: 0.7; }
 
   bottom: -120px;
   left: -80px;
+}
+#page-doze-passos-page .passos-hero {
+  padding-top: calc(var(--nav-height) + 4px);
+}
+#lista-reunioes {
+  max-height: 420px;
+  overflow-y: auto;
+  padding-right: 8px;
+  scroll-behavior: smooth;
+}
+
+#lista-reunioes::-webkit-scrollbar {
+  width: 6px;
+}
+
+#lista-reunioes::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 3px;
+}
+
+#lista-reunioes::-webkit-scrollbar-thumb {
+  background: #742C24;
+  border-radius: 3px;
+}
+
+#lista-reunioes::-webkit-scrollbar-thumb:hover {
+  background: #5a2018;
 }
