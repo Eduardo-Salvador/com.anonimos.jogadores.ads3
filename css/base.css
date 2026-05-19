@@ -16,6 +16,10 @@
 
 html { scroll-behavior: smooth; min-height: 100%; }
 
+#contato-home {
+  scroll-margin-top: 120px;
+}
+
 body {
   min-height: 100vh;
   font-family: 'Sora', sans-serif;
@@ -43,7 +47,7 @@ section { padding: 75px 0; }
   align-items: center;
   justify-content: center;
   padding: 18px 90px;
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   border-radius: 10px;
   font-weight: 700;
   text-decoration: none;
@@ -57,3 +61,4 @@ section { padding: 75px 0; }
 
 .btn-red { background: #742C24; color: var(--white); }
 .btn-yellow { background: #D4A843; color: #1a1a1a; }
+.btn-yellow2 { background: #D4A843; color: #1a1a1a; padding: 18px 160px; }

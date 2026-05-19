@@ -1,7 +1,7 @@
 .hero {
   margin-top: 0;
   position: relative;
-  height: calc(100vh - var(--nav-height) - 4px);
+  height: calc(111vh - var(--nav-height) - 4px);
   overflow: hidden;
 }
 
@@ -34,11 +34,12 @@
   position: relative;
   z-index: 2;
   padding: 0 80px;
-  max-width: 660px;
+  padding-top: 60px;
+  max-width: 750px;
 }
 
 .slide-content h1 {
-  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-size: clamp(1rem, 4vw, 2.9rem);
   font-weight: 800;
   color: var(--white);
   line-height: 1.15;
@@ -46,7 +47,7 @@
 }
 
 .slide-content p {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: #D4A843;
   line-height: 1.65;
   font-weight: 500;
@@ -56,7 +57,7 @@
 .slide-btns {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 10px;
   width: fit-content;
 }
 

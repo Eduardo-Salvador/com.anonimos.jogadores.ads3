@@ -1,14 +1,14 @@
 .quem-somos { background: var(--gray-100); }
 
 .quem-somos h2 {
-  font-size: 3rem;
+  font-size: 2.2rem;
   font-weight: 800;
   color: var(--cor-padrao-ja);
   margin-bottom: 32px;
 }
 
 .quem-somos p {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   line-height: 1.8;
   color: #334155;
   margin-bottom: 16px;
@@ -34,7 +34,7 @@
   gap: 12px;
   background: #25D366;
   color: white;
-  padding: 32px 52px;
+  padding: 26px 42px;
   min-width: 320px;
   font-size: 1.5rem;
   border-radius: 14px;
@@ -59,7 +59,7 @@
 }
 
 .contact-cta h3 {
-  font-size: 2.2rem;
+  font-size: 2rem;
   font-weight: 800;
   color: #D4A843;
   margin-bottom: 24px;
@@ -75,7 +75,7 @@
 }
 
 .sobre h2 {
-  font-size: 2.4rem;
+  font-size: 2.2rem;
   font-weight: 800;
   color: var(--cor-padrao-ja);
   margin-bottom: 24px;
@@ -531,16 +531,16 @@
 }
 
 .autoaval-header h1 {
-    font-size: 56px;
+    font-size: 35px;
     font-weight: 800;
     letter-spacing: -2px;
     line-height: 1;
     margin-bottom: 10px;
-    color: white;
+    color: #D4A843;
 }
 
 .autoaval-header p {
-    font-size: 22px;
+    font-size: 20px;
     color: rgba(255,255,255,0.82);
     font-weight: 500;
 }
@@ -565,7 +565,8 @@
     max-width: 620px;
 
     padding-left: 85px;
-    padding-top: 105px;
+    padding-top: 55px;
+    padding-bottom: 50px;
 
     display: flex;
     flex-direction: column;
@@ -600,7 +601,7 @@
 
   width: 420px;
 
-  padding: 24px 34px;
+  padding: 16px 24px;
 
   border-radius: 18px;
 
@@ -625,7 +626,7 @@
 
   color: #111;
 
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 800;
 }
 
@@ -703,6 +704,7 @@
   align-items: center;
   justify-content: space-between;
   margin-bottom: 40px;
+  margin-top:60px;
 }
 
 .videos-header h2 { 
@@ -1463,7 +1465,7 @@ footer p { font-size: 0.85rem; opacity: 0.7; }
 
 .questions-preview-card {
   width: 100%;
-  max-width: 1250px;
+  max-width: 1050px;
 
   background: white;
   box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.5);
@@ -1505,7 +1507,7 @@ footer p { font-size: 0.85rem; opacity: 0.7; }
 .questions-preview-content {
   flex: 1;
 
-  max-width: 560px;
+  max-width: 760px;
 
   display: flex;
   flex-direction: column;
@@ -1536,7 +1538,7 @@ footer p { font-size: 0.85rem; opacity: 0.7; }
 }
 
 .questions-preview h2 {
-  font-size: 58px;
+  font-size: 50px;
 
   line-height: 0.95;
 
