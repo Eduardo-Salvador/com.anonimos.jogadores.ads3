@@ -1,565 +1,669 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Jogadores Anônimos</title>
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet" />
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/navbar.css">
   <link rel="stylesheet" href="css/hero.css">
   <link rel="stylesheet" href="css/pages.css">
   <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/map.css">
+
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
+
 <body>
 
-<!-- NAVBAR -->
-<nav id="navbar">
-  <a class="nav-logo" href="#" data-page="home">
-    <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="22" cy="22" r="20" stroke="#ffffff" stroke-width="2.5"/>
-      <circle cx="22" cy="22" r="13" stroke="#ffffff" stroke-width="2"/>
-      <circle cx="22" cy="22" r="6" fill="#D4A843"/>
-    </svg>
-    <div class="nav-logo-text">
-      <span style="color:#ffffff;">JOGADORES</span>
-      <span style="color:#D4A843; font-weight:700;">ANÔNIMOS</span>
-      <span style="font-size:7px; color:#ffffff; letter-spacing:0.06em;">APOIO AO JOGADOR COMPULSIVO DO ANONIMATO</span>
-    </div>
-  </a>
+  <!-- NAVBAR -->
+  <nav id="navbar">
+    <a class="nav-logo" href="#" data-page="home">
+      <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="22" cy="22" r="20" stroke="#ffffff" stroke-width="2.5" />
+        <circle cx="22" cy="22" r="13" stroke="#ffffff" stroke-width="2" />
+        <circle cx="22" cy="22" r="6" fill="#D4A843" />
+      </svg>
+      <div class="nav-logo-text">
+        <span style="color:#ffffff;">JOGADORES</span>
+        <span style="color:#D4A843; font-weight:700;">ANÔNIMOS</span>
+        <span style="font-size:7px; color:#ffffff; letter-spacing:0.06em;">APOIO AO JOGADOR COMPULSIVO DO
+          ANONIMATO</span>
+      </div>
+    </a>
 
-  <button class="hamburger" id="hamburger-btn" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">
-    <span></span><span></span><span></span>
-  </button>
+    <button class="hamburger" id="hamburger-btn" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
 
-  <ul class="nav-links" id="navLinks" role="list">
-    <li><a href="#" data-page="quem-somos">QUEM SOMOS</a></li>
-    <li><a href="#" data-page="reunioes">REUNIÕES</a></li>
-    <li><a href="#" data-page="doze-passos">OS 12 PASSOS</a></li>
-    <li><a href="#" data-page="autoaval">AS 20 PERGUNTAS</a></li>
-    <li><a href="#" data-page="contato">CONTATO</a></li>
-    <li><a href="#" data-page="videoteca">VIDEOTECA</a></li>
-  </ul>
-</nav>
-<div class="nav-accent"></div>
+    <ul class="nav-links" id="navLinks" role="list">
+      <li><a href="#" data-page="quem-somos">QUEM SOMOS</a></li>
+      <li><a href="#" data-page="reunioes">REUNIÕES</a></li>
+      <li><a href="#" data-page="doze-passos">OS 12 PASSOS</a></li>
+      <li><a href="#" data-page="autoaval">AS 20 PERGUNTAS</a></li>
+      <li><a href="#" data-page="contato">CONTATO</a></li>
+      <li><a href="#" data-page="videoteca">VIDEOTECA</a></li>
+    </ul>
+  </nav>
+  <div class="nav-accent"></div>
 
-<!-- ═══════════════════════════════════════════════════
+  <!-- ═══════════════════════════════════════════════════
      HOME PAGE
 ═══════════════════════════════════════════════════ -->
-<div id="page-home" class="page-section active">
+  <div id="page-home" class="page-section active">
 
-  <!-- HERO SLIDER -->
-  <section class="hero" aria-label="Carrossel principal">
-    <div class="slide active" id="slide-0">
-      <div class="slide-bg" style="background-color: #1a2a4a;"></div>
-      <div style="position:absolute;inset:0;background:linear-gradient(135deg,#0f1f3d 0%,#1a3a6b 50%,#2d5a8e 100%);"></div>
-      <img
-        src="images-pagina-principal/quem-somos.jpg"
-        alt="Quem somos"
-        loading="eager"
-        fetchpriority="high"
-        style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:0.7;"
-      >
-      <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,0.65) 45%,transparent 80%);"></div>
-      <div class="slide-content">
-        <h1>O Desejo de Parar é o Início</h1>
-        <p>Somos uma comunidade de pessoas que conhece de perto o peso do jogo compulsivo.<br>
-        Este espaço é anônimo, gratuito, e foi feito para quem está tentando entender o que está vivendo — sem julgamento, sem pressa.</p>
-        <div class="slide-btns">
-          <a class="btn btn-red" href="#" data-page="quem-somos">Quem somos?</a>
-          <a class="btn btn-yellow" href="#" data-page="reunioes">Ver proximas reuniões</a>
+    <!-- HERO SLIDER -->
+    <section class="hero" aria-label="Carrossel principal">
+      <div class="slide active" id="slide-0">
+        <div class="slide-bg" style="background-color: #1a2a4a;"></div>
+        <div style="position:absolute;inset:0;background:linear-gradient(135deg,#0f1f3d 0%,#1a3a6b 50%,#2d5a8e 100%);">
+        </div>
+        <img src="images-pagina-principal/quem-somos.jpg" alt="Quem somos" loading="eager" fetchpriority="high"
+          style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:0.7;">
+        <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,0.65) 45%,transparent 80%);">
+        </div>
+        <div class="slide-content">
+          <h1>O Desejo de Parar é o Início</h1>
+          <p>Somos uma comunidade de pessoas que conhece de perto o peso do jogo compulsivo.<br>
+            Este espaço é anônimo, gratuito, e foi feito para quem está tentando entender o que está vivendo — sem
+            julgamento, sem pressa.</p>
+          <div class="slide-btns">
+            <a class="btn btn-red" href="#" data-page="quem-somos">Quem somos?</a>
+            <a class="btn btn-yellow" href="#" data-page="reunioes">Ver proximas reuniões</a>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="slide" id="slide-1">
-      <img
-        src="images-pagina-principal/reunioes.jpg"
-        alt="Reuniões"
-        loading="lazy"
-        style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.7;"
-      >
-      <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,0.65) 45%,transparent 80%);"></div>
-      <div class="slide-content">
-        <h1>Reuniões</h1>
-        <p>Localizar reuniões de ajuda próximas a você, onde encontrará um ambiente acolhedor, com pessoas que passam por desafios semelhantes e estão dispostas a compartilhar experiências e caminhos de superação.</p>
-        <div class="slide-btns">
-          <a class="btn btn-red" href="#" data-page="reunioes">Localizar Reuniões</a>
+      <div class="slide" id="slide-1">
+        <img src="images-pagina-principal/reunioes.jpg" alt="Reuniões" loading="lazy"
+          style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.7;">
+        <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,0.65) 45%,transparent 80%);">
+        </div>
+        <div class="slide-content">
+          <h1>Reuniões</h1>
+          <p>Localizar reuniões de ajuda próximas a você, onde encontrará um ambiente acolhedor, com pessoas que passam
+            por desafios semelhantes e estão dispostas a compartilhar experiências e caminhos de superação.</p>
+          <div class="slide-btns">
+            <a class="btn btn-red" href="#" data-page="reunioes">Localizar Reuniões</a>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="slide" id="slide-2">
-      <img
-        src="images-pagina-principal/20-perguntas.jpg"
-        alt="Autoavaliação"
-        loading="lazy"
-        style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.7;"
-      >
-      <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,0.65) 45%,transparent 80%);"></div>
-      <div class="slide-content">
-        <h1>As 20 Perguntas</h1>
-        <p>Quer entender melhor sua relação com os jogos? Faça uma rápida autoavaliação anônima e descubra se o seu hábito está equilibrado ou se já apresenta sinais de excesso.</p>
-        <div class="slide-btns">
-          <a class="btn btn-red" href="#" data-page="autoaval">Quero entender</a>
+      <div class="slide" id="slide-2">
+        <img src="images-pagina-principal/20-perguntas.jpg" alt="Autoavaliação" loading="lazy"
+          style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.7;">
+        <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,0.65) 45%,transparent 80%);">
+        </div>
+        <div class="slide-content">
+          <h1>As 20 Perguntas</h1>
+          <p>Quer entender melhor sua relação com os jogos? Faça uma rápida autoavaliação anônima e descubra se o seu
+            hábito está equilibrado ou se já apresenta sinais de excesso.</p>
+          <div class="slide-btns">
+            <a class="btn btn-red" href="#" data-page="autoaval">Quero entender</a>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="slide" id="slide-3">
-      <img
-        src="images-pagina-principal/videos.jpg"
-        alt="Videoteca"
-        loading="lazy"
-        style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.7;"
-      >
-      <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,0.65) 45%,transparent 80%);"></div>
-      <div class="slide-content">
-        <h1>Aprenda &amp; Compartilhe</h1>
-        <p>Quer aprender mais sobre os riscos e impactos do vício em apostas? Explore conteúdos educativos que explicam de forma clara como esse comportamento pode afetar a vida financeira, emocional e social.</p>
-        <div class="slide-btns">
-          <a class="btn btn-red" href="#" data-page="videoteca">Explorar Videoteca</a>
+      <div class="slide" id="slide-3">
+        <img src="images-pagina-principal/videos.jpg" alt="Videoteca" loading="lazy"
+          style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.7;">
+        <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,0.65) 45%,transparent 80%);">
+        </div>
+        <div class="slide-content">
+          <h1>Aprenda &amp; Compartilhe</h1>
+          <p>Quer aprender mais sobre os riscos e impactos do vício em apostas? Explore conteúdos educativos que
+            explicam de forma clara como esse comportamento pode afetar a vida financeira, emocional e social.</p>
+          <div class="slide-btns">
+            <a class="btn btn-red" href="#" data-page="videoteca">Explorar Videoteca</a>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="slider-dots" role="tablist" aria-label="Slides">
-      <button class="dot active" data-slide="0" aria-label="Slide 1" role="tab" aria-selected="true"></button>
-      <button class="dot" data-slide="1" aria-label="Slide 2" role="tab" aria-selected="false"></button>
-      <button class="dot" data-slide="2" aria-label="Slide 3" role="tab" aria-selected="false"></button>
-      <button class="dot" data-slide="3" aria-label="Slide 4" role="tab" aria-selected="false"></button>
-    </div>
-  </section>
+      <div class="slider-dots" role="tablist" aria-label="Slides">
+        <button class="dot active" data-slide="0" aria-label="Slide 1" role="tab" aria-selected="true"></button>
+        <button class="dot" data-slide="1" aria-label="Slide 2" role="tab" aria-selected="false"></button>
+        <button class="dot" data-slide="2" aria-label="Slide 3" role="tab" aria-selected="false"></button>
+        <button class="dot" data-slide="3" aria-label="Slide 4" role="tab" aria-selected="false"></button>
+      </div>
+    </section>
 
-  <!-- QUEM SOMOS TEASER -->
-  <section class="quem-somos" id="contato-home" style="background:#f1f5f9">
-    <div class="container">
-      <h2>O que é o programa Jogadores Anônimos?</h2>
-      <p>Jogadores Anônimos é uma irmandade formada por pessoas que compartilham experiências para parar de jogar, manter a abstinência e ajudar outros jogadores compulsivos. Surgiu em 1957, em Los Angeles, a partir do encontro de dois homens que buscavam superar o vício em jogos.</p>
-      <p>Com base em princípios espirituais e no apoio mútuo, o grupo cresceu e se espalhou por diversos países, oferecendo ajuda a quem enfrenta a compulsão por jogos. No Brasil, a primeira reunião aconteceu em 1993, no Rio de Janeiro.</p>
-      <div class="contact-cta">
-        <h3>Entre em contato e saiba mais!</h3>
-        <div class="contact-cta-buttons">
-          <a class="whatsapp-btn" href="https://wa.me/5511995716942" target="_blank" rel="noopener noreferrer">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            SP - 11 99571-6942
+    <!-- QUEM SOMOS TEASER -->
+    <section class="quem-somos" id="contato-home" style="background:#f1f5f9">
+      <div class="container">
+        <h2>O que é o programa Jogadores Anônimos?</h2>
+        <p>Jogadores Anônimos é uma irmandade formada por pessoas que compartilham experiências para parar de jogar,
+          manter a abstinência e ajudar outros jogadores compulsivos. Surgiu em 1957, em Los Angeles, a partir do
+          encontro de dois homens que buscavam superar o vício em jogos.</p>
+        <p>Com base em princípios espirituais e no apoio mútuo, o grupo cresceu e se espalhou por diversos países,
+          oferecendo ajuda a quem enfrenta a compulsão por jogos. No Brasil, a primeira reunião aconteceu em 1993, no
+          Rio de Janeiro.</p>
+        <div class="contact-cta">
+          <h3>Entre em contato e saiba mais!</h3>
+          <div class="contact-cta-buttons">
+            <a class="whatsapp-btn" href="https://wa.me/5511995716942" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+              </svg>
+              SP - 11 99571-6942
+            </a>
+            <a class="whatsapp-btn" href="https://wa.me/5521997503174" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+              </svg>
+              RJ - 21 99750 3174
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOBRE JA + VIDEO -->
+    <section class="sobre" style="background:#f1f5f9">
+      <div class="container">
+        <div class="sobre-grid">
+          <div>
+            <h2>Sobre o JA</h2>
+            <p>Jogadores Anônimos é uma comunidade de apoio mútuo, anônima e sem fins lucrativos, para pessoas em
+              recuperação do jogo compulsivo. Baseada nos Doze Passos, oferece um caminho de recuperação através do
+              apoio entre pares que compartilham a mesma experiência.</p>
+            <a class="btn btn-yellow" href="#" data-page="quem-somos">Saiba mais sobre o JA</a>
+          </div>
+          <div class="sobre-video">
+            <img src="images-pagina-principal/video-ja.jpg" alt="Vídeo sobre o JA" loading="lazy"
+              onerror="this.style.background='#1e293b';this.style.height='240px';">
+            <button class="play-btn" id="play-sobre-btn" aria-label="Reproduzir vídeo sobre o JA"></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REUNIÕES TEASER -->
+    <section style="background:#f1f5f9; padding:75px 0;">
+      <div class="container">
+        <div class="reunioes-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;">
+          <div>
+            <p
+              style="font-size:0.85rem;font-weight:700;letter-spacing:0.1em;color:#94a3b8;text-transform:uppercase;margin-bottom:12px;">
+              ENCONTRE APOIO PERTO DE VOCÊ</p>
+            <h2 style="font-size:2.4rem;font-weight:800;color:#742C24;margin-bottom:20px;">Reuniões semanais</h2>
+            <p style="font-size:1.1rem;line-height:1.8;color:#475569;margin-bottom:32px;">Grupos presenciais e online em
+              todo o Brasil. Um ambiente acolhedor, gratuito e anônimo, onde pessoas com a mesma experiência se reúnem
+              para apoiar umas às outras.</p>
+            <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:40px;">
+              <div style="display:flex;align-items:center;gap:10px;font-size:0.95rem;color:#475569;">
+                <span style="width:10px;height:10px;border-radius:50%;background:#742C24;display:inline-block;"></span>
+                Presenciais
+              </div>
+              <div style="display:flex;align-items:center;gap:10px;font-size:0.95rem;color:#475569;">
+                <span style="width:10px;height:10px;border-radius:50%;background:#D4A843;display:inline-block;"></span>
+                Online via Zoom
+              </div>
+              <div style="display:flex;align-items:center;gap:10px;font-size:0.95rem;color:#475569;">
+                <span style="width:10px;height:10px;border-radius:50%;background:#1A56DB;display:inline-block;"></span>
+                Gratuito e anônimo
+              </div>
+            </div>
+            <a class="btn btn-yellow2" href="#" data-page="reunioes" style="width:fit-content;">Localizar reuniões</a>
+          </div>
+          <div class="reunioes-cards" style="display:flex;flex-direction:column;gap:16px;">
+            <div
+              style="background:#f8fafc;border-radius:16px;padding:24px;border-left:5px solid #742C24;box-shadow:0 4px 16px rgba(0,0,0,0.06);">
+              <div style="font-size:0.8rem;font-weight:700;color:#742C24;letter-spacing:0.06em;margin-bottom:6px;">QUI ·
+                16 ABR</div>
+              <div style="font-weight:700;font-size:1rem;margin-bottom:4px;">Grupo Nova História — Osasco</div>
+              <div style="font-size:0.85rem;color:#64748b;">18h00 – 19h30 · Reunião aberta</div>
+            </div>
+            <div
+              style="background:#f8fafc;border-radius:16px;padding:24px;border-left:5px solid #D4A843;box-shadow:0 4px 16px rgba(0,0,0,0.06);">
+              <div style="font-size:0.8rem;font-weight:700;color:#D4A843;letter-spacing:0.06em;margin-bottom:6px;">SEX ·
+                17 ABR</div>
+              <div style="font-weight:700;font-size:1rem;margin-bottom:4px;">Grupo Recomeço — São Paulo</div>
+              <div style="font-size:0.85rem;color:#64748b;">19h00 – 20h30 · Reunião aberta</div>
+            </div>
+            <div
+              style="background:#f8fafc;border-radius:16px;padding:24px;border-left:5px solid #1A56DB;box-shadow:0 4px 16px rgba(0,0,0,0.06);">
+              <div style="font-size:0.8rem;font-weight:700;color:#1A56DB;letter-spacing:0.06em;margin-bottom:6px;">SAB ·
+                18 ABR</div>
+              <div style="font-weight:700;font-size:1rem;margin-bottom:4px;">Grupo Esperança — Santo André</div>
+              <div style="font-size:0.85rem;color:#64748b;">20h00 – 21h00 · Reunião fechada</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 12 PASSOS TEASER -->
+    <section style="background:#f1f5f9; padding:75px 0;">
+      <div class="container">
+        <div class="doze-passos-header">
+          <h2>OS DOZE PASSOS</h2>
+          <h1>Um caminho de recuperação</h1>
+          <p>Os Doze Passos de Jogadores Anônimos oferecem um caminho espiritual e prático para superar a compulsão pelo
+            jogo, baseado na experiência de milhares de pessoas que já encontraram a recuperação.</p>
+        </div>
+        <div class="passos-grid">
+          <div class="passo-card">
+            <div class="passo-num">1</div>
+            <p class="passo-text">Admitimos que éramos impotentes perante o jogo e que nossas vidas haviam se tornado
+              ingovernáveis.</p>
+          </div>
+          <div class="passo-card">
+            <div class="passo-num">2</div>
+            <p class="passo-text">Viemos a acreditar que um Poder superior a nós mesmos poderia devolver-nos à sanidade.
+            </p>
+          </div>
+          <div class="passo-card">
+            <div class="passo-num">3</div>
+            <p class="passo-text">Decidimos entregar nossa vontade e nossa vida aos cuidados de Deus, na forma em que O
+              concebíamos.</p>
+          </div>
+          <div class="passo-card">
+            <div class="passo-num">4</div>
+            <p class="passo-text">Fizemos minucioso e destemido inventário moral de nós mesmos.</p>
+          </div>
+        </div>
+        <div style="text-align:center; margin-top:40px;">
+          <a class="btn btn-yellow" href="#" data-page="doze-passos">Ver todos os 12 passos</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 20 PERGUNTAS TEASER -->
+    <section class="questions-preview" style="background:#f1f5f9">
+      <div class="questions-preview-card">
+        <div class="questions-preview-content">
+          <h2>As 20 Perguntas</h2>
+          <p>Um questionário simples e direto para ajudar você a identificar sinais de compulsão com jogos de azar.</p>
+          <a href="#" data-page="autoaval">
+            Fazer Autoavaliação
+            <span>→</span>
           </a>
-          <a class="whatsapp-btn" href="https://wa.me/5521997503174" target="_blank" rel="noopener noreferrer">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            RJ - 21 99750 3174
-          </a>
+        </div>
+        <div class="questions-preview-image">
+          <img src="images-pagina-principal/20-perguntas.jpg" alt="Autoavaliação" loading="lazy">
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- SOBRE JA + VIDEO -->
-  <section class="sobre" style="background:#f1f5f9">
-    <div class="container">
-      <div class="sobre-grid">
-        <div>
-          <h2>Sobre o JA</h2>
-          <p>Jogadores Anônimos é uma comunidade de apoio mútuo, anônima e sem fins lucrativos, para pessoas em recuperação do jogo compulsivo. Baseada nos Doze Passos, oferece um caminho de recuperação através do apoio entre pares que compartilham a mesma experiência.</p>
-          <a class="btn btn-yellow" href="#" data-page="quem-somos">Saiba mais sobre o JA</a>
-        </div>
-        <div class="sobre-video">
-          <img
-            src="images-pagina-principal/video-ja.jpg"
-            alt="Vídeo sobre o JA"
-            loading="lazy"
-            onerror="this.style.background='#1e293b';this.style.height='240px';"
-          >
-          <button class="play-btn" id="play-sobre-btn" aria-label="Reproduzir vídeo sobre o JA"></button>
-        </div>
-      </div>
-    </div>
-  </section>
+  </div><!-- /page-home -->
 
-  <!-- REUNIÕES TEASER -->
-  <section style="background:#f1f5f9; padding:75px 0;">
-    <div class="container">
-      <div class="reunioes-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;">
-        <div>
-          <p style="font-size:0.85rem;font-weight:700;letter-spacing:0.1em;color:#94a3b8;text-transform:uppercase;margin-bottom:12px;">ENCONTRE APOIO PERTO DE VOCÊ</p>
-          <h2 style="font-size:2.4rem;font-weight:800;color:#742C24;margin-bottom:20px;">Reuniões semanais</h2>
-          <p style="font-size:1.1rem;line-height:1.8;color:#475569;margin-bottom:32px;">Grupos presenciais e online em todo o Brasil. Um ambiente acolhedor, gratuito e anônimo, onde pessoas com a mesma experiência se reúnem para apoiar umas às outras.</p>
-          <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:40px;">
-            <div style="display:flex;align-items:center;gap:10px;font-size:0.95rem;color:#475569;">
-              <span style="width:10px;height:10px;border-radius:50%;background:#742C24;display:inline-block;"></span> Presenciais
-            </div>
-            <div style="display:flex;align-items:center;gap:10px;font-size:0.95rem;color:#475569;">
-              <span style="width:10px;height:10px;border-radius:50%;background:#D4A843;display:inline-block;"></span> Online via Zoom
-            </div>
-            <div style="display:flex;align-items:center;gap:10px;font-size:0.95rem;color:#475569;">
-              <span style="width:10px;height:10px;border-radius:50%;background:#1A56DB;display:inline-block;"></span> Gratuito e anônimo
-            </div>
-          </div>
-          <a class="btn btn-yellow2" href="#" data-page="reunioes" style="width:fit-content;">Localizar reuniões</a>
-        </div>
-        <div class="reunioes-cards" style="display:flex;flex-direction:column;gap:16px;">
-          <div style="background:#f8fafc;border-radius:16px;padding:24px;border-left:5px solid #742C24;box-shadow:0 4px 16px rgba(0,0,0,0.06);">
-            <div style="font-size:0.8rem;font-weight:700;color:#742C24;letter-spacing:0.06em;margin-bottom:6px;">QUI · 16 ABR</div>
-            <div style="font-weight:700;font-size:1rem;margin-bottom:4px;">Grupo Nova História — Osasco</div>
-            <div style="font-size:0.85rem;color:#64748b;">18h00 – 19h30 · Reunião aberta</div>
-          </div>
-          <div style="background:#f8fafc;border-radius:16px;padding:24px;border-left:5px solid #D4A843;box-shadow:0 4px 16px rgba(0,0,0,0.06);">
-            <div style="font-size:0.8rem;font-weight:700;color:#D4A843;letter-spacing:0.06em;margin-bottom:6px;">SEX · 17 ABR</div>
-            <div style="font-weight:700;font-size:1rem;margin-bottom:4px;">Grupo Recomeço — São Paulo</div>
-            <div style="font-size:0.85rem;color:#64748b;">19h00 – 20h30 · Reunião aberta</div>
-          </div>
-          <div style="background:#f8fafc;border-radius:16px;padding:24px;border-left:5px solid #1A56DB;box-shadow:0 4px 16px rgba(0,0,0,0.06);">
-            <div style="font-size:0.8rem;font-weight:700;color:#1A56DB;letter-spacing:0.06em;margin-bottom:6px;">SAB · 18 ABR</div>
-            <div style="font-weight:700;font-size:1rem;margin-bottom:4px;">Grupo Esperança — Santo André</div>
-            <div style="font-size:0.85rem;color:#64748b;">20h00 – 21h00 · Reunião fechada</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 12 PASSOS TEASER -->
-  <section style="background:#f1f5f9; padding:75px 0;">
-    <div class="container">
-      <div class="doze-passos-header">
-        <h2>OS DOZE PASSOS</h2>
-        <h1>Um caminho de recuperação</h1>
-        <p>Os Doze Passos de Jogadores Anônimos oferecem um caminho espiritual e prático para superar a compulsão pelo jogo, baseado na experiência de milhares de pessoas que já encontraram a recuperação.</p>
-      </div>
-      <div class="passos-grid">
-        <div class="passo-card">
-          <div class="passo-num">1</div>
-          <p class="passo-text">Admitimos que éramos impotentes perante o jogo e que nossas vidas haviam se tornado ingovernáveis.</p>
-        </div>
-        <div class="passo-card">
-          <div class="passo-num">2</div>
-          <p class="passo-text">Viemos a acreditar que um Poder superior a nós mesmos poderia devolver-nos à sanidade.</p>
-        </div>
-        <div class="passo-card">
-          <div class="passo-num">3</div>
-          <p class="passo-text">Decidimos entregar nossa vontade e nossa vida aos cuidados de Deus, na forma em que O concebíamos.</p>
-        </div>
-        <div class="passo-card">
-          <div class="passo-num">4</div>
-          <p class="passo-text">Fizemos minucioso e destemido inventário moral de nós mesmos.</p>
-        </div>
-      </div>
-      <div style="text-align:center; margin-top:40px;">
-        <a class="btn btn-yellow" href="#" data-page="doze-passos">Ver todos os 12 passos</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- 20 PERGUNTAS TEASER -->
-  <section class="questions-preview" style="background:#f1f5f9">
-    <div class="questions-preview-card">
-      <div class="questions-preview-content">
-        <h2>As 20 Perguntas</h2>
-        <p>Um questionário simples e direto para ajudar você a identificar sinais de compulsão com jogos de azar.</p>
-        <a href="#" data-page="autoaval">
-          Fazer Autoavaliação
-          <span>→</span>
-        </a>
-      </div>
-      <div class="questions-preview-image">
-        <img src="images-pagina-principal/20-perguntas.jpg" alt="Autoavaliação" loading="lazy">
-      </div>
-    </div>
-  </section>
-
-</div><!-- /page-home -->
-
-<!-- ═══════════════════════════════════════════════════
+  <!-- ═══════════════════════════════════════════════════
      QUEM SOMOS
 ═══════════════════════════════════════════════════ -->
-<div id="page-quem-somos" class="page-section">
-  <div class="quem-logo-top">
-    <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <circle cx="22" cy="22" r="20" stroke="#742C24" stroke-width="2.5"/>
-      <circle cx="22" cy="22" r="13" stroke="#742C24" stroke-width="2"/>
-      <circle cx="22" cy="22" r="6" fill="#D4A843"/>
-    </svg>
-    <div class="quem-logo-text">
-      <span class="logo-main">JOGADORES</span>
-      <span class="logo-highlight">ANÔNIMOS</span>
-      <span class="logo-sub">APOIO AO JOGADOR COMPULSIVO DO ANONIMATO</span>
-    </div>
-  </div>
-
-  <section class="historia-ja">
-    <div class="container">
-      <div class="historia-header">
-        <h1>A História de J.A.</h1>
-        <p>Uma irmandade formada por pessoas que compartilham experiências, esperança e apoio mútuo para superar o jogo compulsivo.</p>
-      </div>
-
-      <div class="historia-grid">
-        <div class="historia-card">
-          <h2>Como surgiu</h2>
-          <p>Jogadores Anônimos é uma irmandade composta de pessoas que compartilham suas experiências, energia e esperança, com o objetivo de parar de jogar, manter-se abstinente e ajudar outros jogadores compulsivos a fazerem o mesmo.</p>
-          <p>Ao longo da história, indescritíveis sofrimentos e humilhações marcaram a vida de milhares de homens e mulheres devido à compulsão pelo jogo.</p>
-          <p>A Irmandade surgiu em janeiro de 1957, a partir do encontro casual entre dois homens que enfrentavam graves consequências causadas pela obsessão pelo jogo. Ao começarem a se reunir regularmente, perceberam que o apoio mútuo ajudava ambos a permanecerem sem jogar.</p>
-          <p>Eles concluíram que, para evitar recaídas, precisariam realizar profundas mudanças pessoais e espirituais. Assim nasceram os princípios utilizados até hoje em Jogadores Anônimos.</p>
-        </div>
-        <div class="historia-image">
-          <img src="images-pagina-principal/quem-somos.jpg" alt="História do JA" loading="lazy">
-        </div>
-      </div>
-
-      <div class="historia-timeline">
-        <div class="timeline-item">
-          <div class="timeline-year">1957</div>
-          <div class="timeline-content">Primeiro grupo oficial de Jogadores Anônimos em Los Angeles.</div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-year">San Francisco</div>
-          <div class="timeline-content">Primeira expansão da irmandade através da recuperação de uma família.</div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-year">Las Vegas</div>
-          <div class="timeline-content">Formação da terceira grande área de apoio de J.A.</div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-year">1993</div>
-          <div class="timeline-content">Primeira reunião de Jogadores Anônimos no Brasil, no Rio de Janeiro.</div>
-        </div>
-      </div>
-
-      <div class="como-funciona">
-        <div class="funciona-texto">
-          <span class="historia-tag">COMO FUNCIONA</span>
-          <h2>Um caminho de apoio e recuperação</h2>
-          <p>O único requisito para participar de Jogadores Anônimos é o desejo de parar de jogar. Não existem mensalidades ou taxas: a irmandade é totalmente autossustentável através das contribuições voluntárias dos próprios membros.</p>
-          <p>Jogadores Anônimos não está ligado a partidos políticos, religiões ou instituições. O principal objetivo é ajudar pessoas a interromper o ciclo do jogo compulsivo e encontrar apoio através da troca de experiências.</p>
-          <p>Milhares de homens e mulheres participam semanalmente de reuniões presenciais e online em diversos países do mundo.</p>
-          <p>Se você acredita que tem problemas com o jogo ou conhece alguém que tenha, participe de uma reunião e descubra que você não está sozinho.</p>
-        </div>
-        <div class="funciona-box">
-          <div class="funciona-item">
-            <strong>✔ Anônimo</strong>
-            <span>Privacidade e acolhimento para todos.</span>
-          </div>
-          <div class="funciona-item">
-            <strong>✔ Gratuito</strong>
-            <span>Sem mensalidades ou cobranças.</span>
-          </div>
-          <div class="funciona-item">
-            <strong>✔ Apoio mútuo</strong>
-            <span>Pessoas ajudando pessoas.</span>
-          </div>
-          <div class="funciona-item">
-            <strong>✔ Reuniões semanais</strong>
-            <span>Encontros presenciais e online.</span>
-          </div>
-          <div class="funciona-item">
-            <strong>✔ Sem julgamentos</strong>
-            <span>Um ambiente seguro e acolhedor.</span>
-          </div>
-        </div>
+  <div id="page-quem-somos" class="page-section">
+    <div class="quem-logo-top">
+      <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="22" cy="22" r="20" stroke="#742C24" stroke-width="2.5" />
+        <circle cx="22" cy="22" r="13" stroke="#742C24" stroke-width="2" />
+        <circle cx="22" cy="22" r="6" fill="#D4A843" />
+      </svg>
+      <div class="quem-logo-text">
+        <span class="logo-main">JOGADORES</span>
+        <span class="logo-highlight">ANÔNIMOS</span>
+        <span class="logo-sub">APOIO AO JOGADOR COMPULSIVO DO ANONIMATO</span>
       </div>
     </div>
-  </section>
-</div><!-- /page-quem-somos -->
 
-<!-- ═══════════════════════════════════════════════════
+    <section class="historia-ja">
+      <div class="container">
+        <div class="historia-header">
+          <h1>A História de J.A.</h1>
+          <p>Uma irmandade formada por pessoas que compartilham experiências, esperança e apoio mútuo para superar o
+            jogo compulsivo.</p>
+        </div>
+
+        <div class="historia-grid">
+          <div class="historia-card">
+            <h2>Como surgiu</h2>
+            <p>Jogadores Anônimos é uma irmandade composta de pessoas que compartilham suas experiências, energia e
+              esperança, com o objetivo de parar de jogar, manter-se abstinente e ajudar outros jogadores compulsivos a
+              fazerem o mesmo.</p>
+            <p>Ao longo da história, indescritíveis sofrimentos e humilhações marcaram a vida de milhares de homens e
+              mulheres devido à compulsão pelo jogo.</p>
+            <p>A Irmandade surgiu em janeiro de 1957, a partir do encontro casual entre dois homens que enfrentavam
+              graves consequências causadas pela obsessão pelo jogo. Ao começarem a se reunir regularmente, perceberam
+              que o apoio mútuo ajudava ambos a permanecerem sem jogar.</p>
+            <p>Eles concluíram que, para evitar recaídas, precisariam realizar profundas mudanças pessoais e
+              espirituais. Assim nasceram os princípios utilizados até hoje em Jogadores Anônimos.</p>
+          </div>
+          <div class="historia-image">
+            <img src="images-pagina-principal/quem-somos.jpg" alt="História do JA" loading="lazy">
+          </div>
+        </div>
+
+        <div class="historia-timeline">
+          <div class="timeline-item">
+            <div class="timeline-year">1957</div>
+            <div class="timeline-content">Primeiro grupo oficial de Jogadores Anônimos em Los Angeles.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">San Francisco</div>
+            <div class="timeline-content">Primeira expansão da irmandade através da recuperação de uma família.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">Las Vegas</div>
+            <div class="timeline-content">Formação da terceira grande área de apoio de J.A.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">1993</div>
+            <div class="timeline-content">Primeira reunião de Jogadores Anônimos no Brasil, no Rio de Janeiro.</div>
+          </div>
+        </div>
+
+        <div class="como-funciona">
+          <div class="funciona-texto">
+            <span class="historia-tag">COMO FUNCIONA</span>
+            <h2>Um caminho de apoio e recuperação</h2>
+            <p>O único requisito para participar de Jogadores Anônimos é o desejo de parar de jogar. Não existem
+              mensalidades ou taxas: a irmandade é totalmente autossustentável através das contribuições voluntárias dos
+              próprios membros.</p>
+            <p>Jogadores Anônimos não está ligado a partidos políticos, religiões ou instituições. O principal objetivo
+              é ajudar pessoas a interromper o ciclo do jogo compulsivo e encontrar apoio através da troca de
+              experiências.</p>
+            <p>Milhares de homens e mulheres participam semanalmente de reuniões presenciais e online em diversos países
+              do mundo.</p>
+            <p>Se você acredita que tem problemas com o jogo ou conhece alguém que tenha, participe de uma reunião e
+              descubra que você não está sozinho.</p>
+          </div>
+          <div class="funciona-box">
+            <div class="funciona-item">
+              <strong>✔ Anônimo</strong>
+              <span>Privacidade e acolhimento para todos.</span>
+            </div>
+            <div class="funciona-item">
+              <strong>✔ Gratuito</strong>
+              <span>Sem mensalidades ou cobranças.</span>
+            </div>
+            <div class="funciona-item">
+              <strong>✔ Apoio mútuo</strong>
+              <span>Pessoas ajudando pessoas.</span>
+            </div>
+            <div class="funciona-item">
+              <strong>✔ Reuniões semanais</strong>
+              <span>Encontros presenciais e online.</span>
+            </div>
+            <div class="funciona-item">
+              <strong>✔ Sem julgamentos</strong>
+              <span>Um ambiente seguro e acolhedor.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div><!-- /page-quem-somos -->
+
+  <!-- ═══════════════════════════════════════════════════
      REUNIÕES
 ═══════════════════════════════════════════════════ -->
-<div id="page-reunioes" class="page-section">
-  <div class="reunioes-page">
-    <div class="reunioes-layout">
-      <div class="reunioes-sidebar">
-        <h1>Localizar Reuniões</h1>
-        <ul>
-          <li>
-            <img src="https://flagcdn.com/w40/br.png" alt="Brasil"
-              style="width:28px;height:20px;object-fit:cover;border-radius:3px;box-shadow:0 1px 4px rgba(0,0,0,0.15);">
-            <a href="#" data-page="reunioes">Brasil</a>
-          </li>
-          <li>
-            <img src="https://flagcdn.com/w40/ao.png" alt="Angola"
-              style="width:28px;height:20px;object-fit:cover;border-radius:3px;box-shadow:0 1px 4px rgba(0,0,0,0.15);">
-            <span>Angola</span>
-          </li>
-          <li>
-            <img src="https://flagcdn.com/w40/mz.png" alt="Moçambique"
-              style="width:28px;height:20px;object-fit:cover;border-radius:3px;box-shadow:0 1px 4px rgba(0,0,0,0.15);">
-            <span>Moçambique</span>
-          </li>
-        </ul>
-      </div>
-      <div class="reunioes-main">
-        <div class="reunioes-tabs" role="tablist">
-          <button class="reunioes-tab active" data-tab="presenciais" role="tab" aria-selected="true" aria-controls="presenciais">Presenciais</button>
-          <button class="reunioes-tab" data-tab="online" role="tab" aria-selected="false" aria-controls="online">Online</button>
+  <div id="page-reunioes" class="page-section">
+    <div class="reunioes-page">
+      <div class="reunioes-layout">
+        <div class="reunioes-sidebar">
+          <h1>Localizar Reuniões</h1>
+          <ul>
+            <li>
+              <img src="https://flagcdn.com/w40/br.png" alt="Brasil"
+                style="width:28px;height:20px;object-fit:cover;border-radius:3px;box-shadow:0 1px 4px rgba(0,0,0,0.15);">
+              <a href="#" data-page="reunioes">Brasil</a>
+            </li>
+            <li>
+              <img src="https://flagcdn.com/w40/ao.png" alt="Angola"
+                style="width:28px;height:20px;object-fit:cover;border-radius:3px;box-shadow:0 1px 4px rgba(0,0,0,0.15);">
+              <span>Angola</span>
+            </li>
+            <li>
+              <img src="https://flagcdn.com/w40/mz.png" alt="Moçambique"
+                style="width:28px;height:20px;object-fit:cover;border-radius:3px;box-shadow:0 1px 4px rgba(0,0,0,0.15);">
+              <span>Moçambique</span>
+            </li>
+          </ul>
         </div>
+        <div class="reunioes-main">
+          <div class="reunioes-tabs" role="tablist">
+            <button class="reunioes-tab active" data-tab="presenciais" role="tab" aria-selected="true"
+              aria-controls="presenciais">Presenciais</button>
+            <button class="reunioes-tab" data-tab="online" role="tab" aria-selected="false"
+              aria-controls="online">Online</button>
+          </div>
 
-        <div id="presenciais" role="tabpanel">
-          <div class="reunioes-map">
+          <div id="presenciais" role="tabpanel">
+            <!-- <div class="reunioes-map">
             <iframe
               src="https://www.google.com/maps/embed?&pb=!1m18!1m12!1m3!1d117702.51688649286!2d-43.42824879902637!3d-22.908918649083143!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x997203001e70eb%3A0x7dd8d3bc842df91!2sRio%20de%20Janeiro%2C%20RJ!5e0!3m2!1spt-BR!2sbr!4v1714151000000!5m2!1spt-BR!2sbr"
               loading="lazy"
               title="Mapa de reuniões"
               referrerpolicy="no-referrer-when-downgrade">
             </iframe>
-          </div>
-          <div class="reunioes-search">
-            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#94a3b8" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-            <input type="text" id="reunioes-search-input" placeholder="Buscar por bairro, cidade ou CEP" aria-label="Buscar reuniões">
-          </div>
-          <div class="filter-btns" role="group" aria-label="Filtrar por período">
-            <button class="filter-btn active" data-filter="hoje">Hoje</button>
-            <button class="filter-btn" data-filter="semana">Esta semana</button>
-            <button class="filter-btn" data-filter="mes">Este mês</button>
-          </div>
-          <p class="reunioes-count">5 reuniões próximas de você</p>
-          <div id="lista-reunioes" role="list"></div>
-        </div>
+          </div> -->
 
-        <div id="online" role="tabpanel" hidden>
-          <div style="padding:40px;text-align:center;color:#64748b;">
-            <p style="font-size:1.1rem;margin-bottom:16px;">Reuniões online disponíveis via Zoom e Google Meet.</p>
-            <a class="btn btn-yellow" href="https://wa.me/5599999999999" target="_blank" rel="noopener noreferrer">Solicitar link por WhatsApp</a>
+            <div class="reunioes-map">
+              <div id="map"></div>
+            </div>
+            
+
+            <div class="reunioes-search">
+              <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#94a3b8" stroke-width="2"
+                aria-hidden="true">
+                <circle cx="11" cy="11" r="8" />
+                <path d="m21 21-4.35-4.35" />
+              </svg>
+              <input type="text" id="reunioes-search-input" placeholder="Buscar por bairro, cidade ou CEP"
+                aria-label="Buscar reuniões">
+            </div>
+            <div class="filter-btns" role="group" aria-label="Filtrar por período">
+              <button class="filter-btn active" data-filter="hoje">Hoje</button>
+              <button class="filter-btn" data-filter="semana">Esta semana</button>
+              <button class="filter-btn" data-filter="mes">Este mês</button>
+            </div>
+            <p class="reunioes-count">5 reuniões próximas de você</p>
+            <div id="lista-reunioes" role="list"></div>
+          </div>
+
+          <div id="online" role="tabpanel" hidden>
+            <div style="padding:40px;text-align:center;color:#64748b;">
+              <p style="font-size:1.1rem;margin-bottom:16px;">Reuniões online disponíveis via Zoom e Google Meet.</p>
+              <a class="btn btn-yellow" href="https://wa.me/5599999999999" target="_blank"
+                rel="noopener noreferrer">Solicitar link por WhatsApp</a>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</div><!-- /page-reunioes -->
+  </div><!-- /page-reunioes -->
 
-<!-- ═══════════════════════════════════════════════════
+  <!-- ═══════════════════════════════════════════════════
      AUTOAVALIAÇÃO
 ═══════════════════════════════════════════════════ -->
-<div id="page-autoaval" class="page-section">
-  <div class="autoaval-header">
-    <h1>AS 20 PERGUNTAS</h1>
-    <p>Uma conversa honesta consigo mesmo</p>
-  </div>
-  <div class="autoaval-hero">
-    <img src="https://www.autoescolaonline.net/wp-content/uploads/2020/03/gabarito.jpg" alt="Autoavaliação" loading="lazy">
-    <div class="autoaval-hero-content">
-      <div class="autoaval-hero-text">
-        <p>Escritas por pessoas que passaram pelo mesmo que você talvez esteja passando. Não é um diagnóstico, não é um julgamento, é um espelho. Responda com calma, sem ninguém vendo. Ao final, você decide o que fazer com o resultado.</p>
-        <p>O questionário é completamente anônimo, nós não coletamos informações e nem as respostas das perguntas.</p>
-        <div class="autoaval-cta-card">
-          <a href="#" id="start-autoaval-btn">Responder &nbsp; →</a>
-        </div>
-        <div class="autoaval-badges" style="position:relative;left:0;bottom:0;margin-top:32px;">
-          <div class="autoaval-badge">Leva 3 minutos</div>
-          <div class="autoaval-badge">Anônimo</div>
-          <div class="autoaval-badge">Sem julgamentos</div>
+  <div id="page-autoaval" class="page-section">
+    <div class="autoaval-header">
+      <h1>AS 20 PERGUNTAS</h1>
+      <p>Uma conversa honesta consigo mesmo</p>
+    </div>
+    <div class="autoaval-hero">
+      <img src="https://www.autoescolaonline.net/wp-content/uploads/2020/03/gabarito.jpg" alt="Autoavaliação"
+        loading="lazy">
+      <div class="autoaval-hero-content">
+        <div class="autoaval-hero-text">
+          <p>Escritas por pessoas que passaram pelo mesmo que você talvez esteja passando. Não é um diagnóstico, não é
+            um julgamento, é um espelho. Responda com calma, sem ninguém vendo. Ao final, você decide o que fazer com o
+            resultado.</p>
+          <p>O questionário é completamente anônimo, nós não coletamos informações e nem as respostas das perguntas.</p>
+          <div class="autoaval-cta-card">
+            <a href="#" id="start-autoaval-btn">Responder &nbsp; →</a>
+          </div>
+          <div class="autoaval-badges" style="position:relative;left:0;bottom:0;margin-top:32px;">
+            <div class="autoaval-badge">Leva 3 minutos</div>
+            <div class="autoaval-badge">Anônimo</div>
+            <div class="autoaval-badge">Sem julgamentos</div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div id="autoaval-quiz" style="display:none;background:var(--gray-100);padding:60px;">
-    <div style="max-width:700px;margin:0 auto;">
-      <div id="quiz-container"></div>
+    <div id="autoaval-quiz" style="display:none;background:var(--gray-100);padding:60px;">
+      <div style="max-width:700px;margin:0 auto;">
+        <div id="quiz-container"></div>
+      </div>
     </div>
-  </div>
-</div><!-- /page-autoaval -->
+  </div><!-- /page-autoaval -->
 
-<!-- ═══════════════════════════════════════════════════
+  <!-- ═══════════════════════════════════════════════════
      VIDEOTECA
 ═══════════════════════════════════════════════════ -->
-<div id="page-videoteca" class="page-section">
-  <section class="videos-section">
-    <div style="max-width:1200px;margin:0 auto;">
-      <div class="videos-header">
-        <div>
-          <h2>Videoteca</h2>
-          <p style="color:#D4A843;font-size:1.2rem;margin-top:6px;">Conteúdos educativos sobre jogo compulsivo</p>
+  <div id="page-videoteca" class="page-section">
+    <section class="videos-section">
+      <div style="max-width:1200px;margin:0 auto;">
+        <div class="videos-header">
+          <div>
+            <h2>Videoteca</h2>
+            <p style="color:#D4A843;font-size:1.2rem;margin-top:6px;">Conteúdos educativos sobre jogo compulsivo</p>
+          </div>
         </div>
+        <div class="videos-grid" id="videosGrid"></div>
       </div>
-      <div class="videos-grid" id="videosGrid"></div>
-    </div>
-  </section>
-</div><!-- /page-videoteca -->
+    </section>
+  </div><!-- /page-videoteca -->
 
-<!-- ═══════════════════════════════════════════════════
+  <!-- ═══════════════════════════════════════════════════
      OS 12 PASSOS
 ═══════════════════════════════════════════════════ -->
-<div id="page-doze-passos" class="page-section doze-passos-page">
-  <div class="passos-hero">
-    <div class="passos-hero-content">
-      <div class="passos-hero-logo">
-        <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <circle cx="22" cy="22" r="20" stroke="#ffffff" stroke-width="2.5"/>
-          <circle cx="22" cy="22" r="13" stroke="#ffffff" stroke-width="2"/>
-          <circle cx="22" cy="22" r="6" fill="#D4A843"/>
-        </svg>
-        <div>
-          <h1>OS 12 PASSOS</h1>
-          <p>Um caminho de recuperação, esperança e transformação.</p>
+  <div id="page-doze-passos" class="page-section doze-passos-page">
+    <div class="passos-hero">
+      <div class="passos-hero-content">
+        <div class="passos-hero-logo">
+          <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="22" cy="22" r="20" stroke="#ffffff" stroke-width="2.5" />
+            <circle cx="22" cy="22" r="13" stroke="#ffffff" stroke-width="2" />
+            <circle cx="22" cy="22" r="6" fill="#D4A843" />
+          </svg>
+          <div>
+            <h1>OS 12 PASSOS</h1>
+            <p>Um caminho de recuperação, esperança e transformação.</p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="passos-page-container">
-    <div class="passos-page-grid">
-      <div class="passo-page-card"><div class="passo-page-num">1</div><p>Admitimos que éramos impotentes perante o jogo e que nossas vidas haviam se tornado ingovernáveis.</p></div>
-      <div class="passo-page-card"><div class="passo-page-num">2</div><p>Viemos a acreditar que um Poder superior a nós mesmos poderia devolver-nos à sanidade.</p></div>
-      <div class="passo-page-card"><div class="passo-page-num">3</div><p>Decidimos entregar nossa vontade e nossa vida aos cuidados de Deus, na forma em que O concebíamos.</p></div>
-      <div class="passo-page-card"><div class="passo-page-num">4</div><p>Fizemos minucioso e destemido inventário moral de nós mesmos.</p></div>
-      <div class="passo-page-card"><div class="passo-page-num">5</div><p>Admitimos perante Deus, perante nós mesmos e perante outro ser humano a natureza exata de nossas falhas.</p></div>
-      <div class="passo-page-card"><div class="passo-page-num">6</div><p>Prontificamo-nos inteiramente a deixar que Deus removesse todos esses defeitos de caráter.</p></div>
-      <div class="passo-page-card"><div class="passo-page-num">7</div><p>Humildemente pedimos a Ele que removesse nossos defeitos.</p></div>
-      <div class="passo-page-card"><div class="passo-page-num">8</div><p>Fizemos uma relação de todas as pessoas que tínhamos prejudicado e nos dispusemos a reparar os danos a elas causados.</p></div>
-      <div class="passo-page-card"><div class="passo-page-num">9</div><p>Fizemos reparações diretas dos danos causados a tais pessoas, sempre que possível, salvo quando fazê-lo significasse prejudicá-las ou a outrem.</p></div>
-      <div class="passo-page-card"><div class="passo-page-num">10</div><p>Continuamos fazendo o inventário pessoal e, quando estávamos errados, nós o admitíamos prontamente.</p></div>
-      <div class="passo-page-card"><div class="passo-page-num">11</div><p>Procuramos, através da prece e da meditação, melhorar nosso contato consciente com Deus.</p></div>
-      <div class="passo-page-card"><div class="passo-page-num">12</div><p>Tendo experimentado um despertar espiritual, procuramos transmitir esta mensagem a outros jogadores compulsivos.</p></div>
+    <div class="passos-page-container">
+      <div class="passos-page-grid">
+        <div class="passo-page-card">
+          <div class="passo-page-num">1</div>
+          <p>Admitimos que éramos impotentes perante o jogo e que nossas vidas haviam se tornado ingovernáveis.</p>
+        </div>
+        <div class="passo-page-card">
+          <div class="passo-page-num">2</div>
+          <p>Viemos a acreditar que um Poder superior a nós mesmos poderia devolver-nos à sanidade.</p>
+        </div>
+        <div class="passo-page-card">
+          <div class="passo-page-num">3</div>
+          <p>Decidimos entregar nossa vontade e nossa vida aos cuidados de Deus, na forma em que O concebíamos.</p>
+        </div>
+        <div class="passo-page-card">
+          <div class="passo-page-num">4</div>
+          <p>Fizemos minucioso e destemido inventário moral de nós mesmos.</p>
+        </div>
+        <div class="passo-page-card">
+          <div class="passo-page-num">5</div>
+          <p>Admitimos perante Deus, perante nós mesmos e perante outro ser humano a natureza exata de nossas falhas.
+          </p>
+        </div>
+        <div class="passo-page-card">
+          <div class="passo-page-num">6</div>
+          <p>Prontificamo-nos inteiramente a deixar que Deus removesse todos esses defeitos de caráter.</p>
+        </div>
+        <div class="passo-page-card">
+          <div class="passo-page-num">7</div>
+          <p>Humildemente pedimos a Ele que removesse nossos defeitos.</p>
+        </div>
+        <div class="passo-page-card">
+          <div class="passo-page-num">8</div>
+          <p>Fizemos uma relação de todas as pessoas que tínhamos prejudicado e nos dispusemos a reparar os danos a elas
+            causados.</p>
+        </div>
+        <div class="passo-page-card">
+          <div class="passo-page-num">9</div>
+          <p>Fizemos reparações diretas dos danos causados a tais pessoas, sempre que possível, salvo quando fazê-lo
+            significasse prejudicá-las ou a outrem.</p>
+        </div>
+        <div class="passo-page-card">
+          <div class="passo-page-num">10</div>
+          <p>Continuamos fazendo o inventário pessoal e, quando estávamos errados, nós o admitíamos prontamente.</p>
+        </div>
+        <div class="passo-page-card">
+          <div class="passo-page-num">11</div>
+          <p>Procuramos, através da prece e da meditação, melhorar nosso contato consciente com Deus.</p>
+        </div>
+        <div class="passo-page-card">
+          <div class="passo-page-num">12</div>
+          <p>Tendo experimentado um despertar espiritual, procuramos transmitir esta mensagem a outros jogadores
+            compulsivos.</p>
+        </div>
+      </div>
     </div>
-  </div>
-</div><!-- /page-doze-passos -->
+  </div><!-- /page-doze-passos -->
 
-<!-- TOAST (substitui alert) -->
-<div id="toast" role="alert" aria-live="polite" style="
+  <!-- TOAST (substitui alert) -->
+  <div id="toast" role="alert" aria-live="polite" style="
   position:fixed;bottom:100px;left:50%;transform:translateX(-50%) translateY(20px);
   background:#1e293b;color:white;padding:12px 24px;border-radius:8px;
   font-size:0.9rem;font-weight:600;opacity:0;pointer-events:none;
   transition:opacity 0.3s,transform 0.3s;z-index:3000;">
-</div>
+  </div>
 
-<!-- CHATBOT -->
-<button class="chatbot-btn" id="chatbot-toggle-btn" aria-label="Abrir chat de suporte" aria-expanded="false" aria-controls="chatWindow">
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-</button>
-
-<div class="chatbot-window" id="chatWindow" aria-hidden="true">
-  <div class="chatbot-header">
-    <svg width="36" height="36" viewBox="0 0 44 44" fill="none" aria-hidden="true">
-      <circle cx="22" cy="22" r="20" stroke="#ffffff" stroke-width="2.5"/>
-      <circle cx="22" cy="22" r="13" stroke="#ffffff" stroke-width="2"/>
-      <circle cx="22" cy="22" r="6" fill="#D4A843"/>
+  <!-- CHATBOT -->
+  <button class="chatbot-btn" id="chatbot-toggle-btn" aria-label="Abrir chat de suporte" aria-expanded="false"
+    aria-controls="chatWindow">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round"
+      aria-hidden="true">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
     </svg>
-    <div class="chatbot-header-text">
-      <strong>Jogadores Anônimos</strong>
-      <span>Fale conosco</span>
+  </button>
+
+  <div class="chatbot-window" id="chatWindow" aria-hidden="true">
+    <div class="chatbot-header">
+      <svg width="36" height="36" viewBox="0 0 44 44" fill="none" aria-hidden="true">
+        <circle cx="22" cy="22" r="20" stroke="#ffffff" stroke-width="2.5" />
+        <circle cx="22" cy="22" r="13" stroke="#ffffff" stroke-width="2" />
+        <circle cx="22" cy="22" r="6" fill="#D4A843" />
+      </svg>
+      <div class="chatbot-header-text">
+        <strong>Jogadores Anônimos</strong>
+        <span>Fale conosco</span>
+      </div>
+    </div>
+    <div class="chatbot-body">
+      <div class="chatbot-msg"><strong>Como posso te ajudar?</strong></div>
+      <div class="chatbot-quick-btns">
+        <a class="chatbot-quick" href="#" data-page="reunioes" data-close-chat="true">Como encontro um grupo perto de
+          mim? ↗</a>
+        <a class="chatbot-quick" href="#" data-page="autoaval" data-close-chat="true">Quero descobrir se sou viciado
+          ↗</a>
+        <a class="chatbot-quick" href="#" data-page="quem-somos" data-close-chat="true">O que é esse site? ↗</a>
+      </div>
     </div>
   </div>
-  <div class="chatbot-body">
-    <div class="chatbot-msg"><strong>Como posso te ajudar?</strong></div>
-    <div class="chatbot-quick-btns">
-      <a class="chatbot-quick" href="#" data-page="reunioes" data-close-chat="true">Como encontro um grupo perto de mim? ↗</a>
-      <a class="chatbot-quick" href="#" data-page="autoaval" data-close-chat="true">Quero descobrir se sou viciado ↗</a>
-      <a class="chatbot-quick" href="#" data-page="quem-somos" data-close-chat="true">O que é esse site? ↗</a>
+
+  <!-- FOOTER -->
+  <footer>
+    <div>
+      <p>© 2025 Jogadores Anônimos Brasil</p>
+      <p style="margin-top:6px;">Comunidade de apoio mútuo, anônima e sem fins lucrativos.</p>
     </div>
-  </div>
-</div>
+    <div class="footer-crisis">
+      <strong>Em crise agora?</strong>
+      CVV — 188 (24h, gratuito e anônimo) · JA Brasil — 0800-026-1212
+    </div>
+  </footer>
 
-<!-- FOOTER -->
-<footer>
-  <div>
-    <p>© 2025 Jogadores Anônimos Brasil</p>
-    <p style="margin-top:6px;">Comunidade de apoio mútuo, anônima e sem fins lucrativos.</p>
-  </div>
-  <div class="footer-crisis">
-    <strong>Em crise agora?</strong>
-    CVV — 188 (24h, gratuito e anônimo) · JA Brasil — 0800-026-1212
-  </div>
-</footer>
-
-<script src="index.js"></script>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="index.js"></script>
 
 </body>
+
 </html>

@@ -15,10 +15,20 @@ function showPage(page) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
   closeMenu();
 
-  if (page === 'videoteca') renderVideos();
-  if (page === 'reunioes' && !reunioesRendered) {
-    renderReunioes();
-    reunioesRendered = true;
+  if (page === 'videoteca') {
+    renderVideos();
+  }
+
+  if (page === 'reunioes') {
+
+    if (!reunioesRendered) {
+      renderReunioes();
+      reunioesRendered = true;
+    }
+
+    setTimeout(() => {
+      initMap();
+    }, 100);
   }
 }
 
@@ -82,7 +92,7 @@ let sliderInterval;
 
 function goSlide(idx) {
   const slides = document.querySelectorAll('.slide');
-  const dots   = document.querySelectorAll('.dot');
+  const dots = document.querySelectorAll('.dot');
 
   slides[currentSlide].classList.remove('active');
   dots[currentSlide].classList.remove('active');
@@ -151,12 +161,12 @@ function selectContact(el) {
 }
 
 const reunioesData = [
-  { nome: 'Grupo Nova História — Osasco',   horario: '18h00 - 19h30', endereco: 'Av. Thereza Ana Cecon Breda, 1896', tipo: 'Reunião aberta',  dist: '1,2 KM DE VOCÊ',  dia: '16', mes: 'ABR', diasem: 'QUI' },
-  { nome: 'Grupo Recomeço — São Paulo',      horario: '19h00 - 20h30', endereco: 'Rua da Consolação, 451',           tipo: 'Reunião aberta',  dist: '3,5 KM DE VOCÊ',  dia: '17', mes: 'ABR', diasem: 'SEX' },
-  { nome: 'Grupo Esperança — Santo André',   horario: '20h00 - 21h00', endereco: 'Av. Industrial, 2000',             tipo: 'Reunião fechada', dist: '8,1 KM DE VOCÊ',  dia: '18', mes: 'ABR', diasem: 'SAB' },
-  { nome: 'Grupo Renascer — Campinas',       horario: '19h00 - 20h30', endereco: 'Rua Barão de Jaguara, 1234',      tipo: 'Reunião aberta',  dist: '12,4 KM DE VOCÊ', dia: '19', mes: 'ABR', diasem: 'DOM' },
-  { nome: 'Grupo Liberdade — Santos',        horario: '18h30 - 20h00', endereco: 'Av. Ana Costa, 555',              tipo: 'Reunião aberta',  dist: '18,7 KM DE VOCÊ', dia: '20', mes: 'ABR', diasem: 'SEG' },
-  { nome: 'Grupo Horizonte — Guarulhos',     horario: '20h00 - 21h30', endereco: 'Rua Sete de Setembro, 300',       tipo: 'Reunião fechada', dist: '22,1 KM DE VOCÊ', dia: '21', mes: 'ABR', diasem: 'TER' },
+  { nome: 'Grupo Nova História — Osasco', horario: '18h00 - 19h30', endereco: 'Av. Thereza Ana Cecon Breda, 1896', tipo: 'Reunião aberta', dist: '1,2 KM DE VOCÊ', dia: '16', mes: 'ABR', diasem: 'QUI' },
+  { nome: 'Grupo Recomeço — São Paulo', horario: '19h00 - 20h30', endereco: 'Rua da Consolação, 451', tipo: 'Reunião aberta', dist: '3,5 KM DE VOCÊ', dia: '17', mes: 'ABR', diasem: 'SEX' },
+  { nome: 'Grupo Esperança — Santo André', horario: '20h00 - 21h00', endereco: 'Av. Industrial, 2000', tipo: 'Reunião fechada', dist: '8,1 KM DE VOCÊ', dia: '18', mes: 'ABR', diasem: 'SAB' },
+  { nome: 'Grupo Renascer — Campinas', horario: '19h00 - 20h30', endereco: 'Rua Barão de Jaguara, 1234', tipo: 'Reunião aberta', dist: '12,4 KM DE VOCÊ', dia: '19', mes: 'ABR', diasem: 'DOM' },
+  { nome: 'Grupo Liberdade — Santos', horario: '18h30 - 20h00', endereco: 'Av. Ana Costa, 555', tipo: 'Reunião aberta', dist: '18,7 KM DE VOCÊ', dia: '20', mes: 'ABR', diasem: 'SEG' },
+  { nome: 'Grupo Horizonte — Guarulhos', horario: '20h00 - 21h30', endereco: 'Rua Sete de Setembro, 300', tipo: 'Reunião fechada', dist: '22,1 KM DE VOCÊ', dia: '21', mes: 'ABR', diasem: 'TER' },
 ];
 
 let reunioesRendered = false;
@@ -207,7 +217,7 @@ document.querySelector('.reunioes-tabs')?.addEventListener('click', (e) => {
   tab.setAttribute('aria-selected', 'true');
 
   document.getElementById('presenciais').hidden = tabName !== 'presenciais';
-  document.getElementById('online').hidden      = tabName !== 'online';
+  document.getElementById('online').hidden = tabName !== 'online';
 });
 
 document.querySelector('.filter-btns')?.addEventListener('click', (e) => {
@@ -241,8 +251,8 @@ const quizPerguntas = [
   'Alguma vez você já pensou em se auto-destruir como resultado de seu jogo?',
 ];
 
-let respostas      = [];
-let perguntaAtual  = 0;
+let respostas = [];
+let perguntaAtual = 0;
 
 function getResultadoTexto(sim) {
   if (sim >= 7) {
@@ -261,9 +271,9 @@ function getResultadoEmoji(sim) {
 }
 
 function startAutoaval() {
-  respostas     = [];
+  respostas = [];
   perguntaAtual = 0;
-  const quiz    = document.getElementById('autoaval-quiz');
+  const quiz = document.getElementById('autoaval-quiz');
   quiz.style.display = 'flex';
   renderQuiz();
 }
@@ -330,11 +340,11 @@ document.getElementById('play-sobre-btn')?.addEventListener('click', () => {
 });
 
 const videosData = [
-  { titulo: '#015 Vício em Jogos e Saúde Pública',        thumb: 'images-videoteca/Video1.jpg',  canal: 'JA Brasil', views: '2.3K' },
-  { titulo: 'Como funcionam as apostas online?',           thumb: 'images-videoteca/Video2.jpeg', canal: 'JA Brasil', views: '1.8K' },
+  { titulo: '#015 Vício em Jogos e Saúde Pública', thumb: 'images-videoteca/Video1.jpg', canal: 'JA Brasil', views: '2.3K' },
+  { titulo: 'Como funcionam as apostas online?', thumb: 'images-videoteca/Video2.jpeg', canal: 'JA Brasil', views: '1.8K' },
   { titulo: 'Os Doze Passos: O caminho para a recuperação', thumb: 'images-videoteca/Video3.jpg', canal: 'JA Brasil', views: '3.1K' },
-  { titulo: 'Depoimento: Como parei de jogar',             thumb: 'images-videoteca/Video4.jpg',  canal: 'JA Brasil', views: '4.7K' },
-  { titulo: 'Família e jogo compulsivo: como ajudar',      thumb: 'images-videoteca/Video5.jpeg', canal: 'JA Brasil', views: '2.0K' },
+  { titulo: 'Depoimento: Como parei de jogar', thumb: 'images-videoteca/Video4.jpg', canal: 'JA Brasil', views: '4.7K' },
+  { titulo: 'Família e jogo compulsivo: como ajudar', thumb: 'images-videoteca/Video5.jpeg', canal: 'JA Brasil', views: '2.0K' },
   { titulo: 'Autoavaliação: Você é um jogador compulsivo?', thumb: 'images-videoteca/Video6.jpg', canal: 'JA Brasil', views: '5.5K' },
 ];
 
@@ -378,3 +388,100 @@ document.getElementById('chatbot-toggle-btn')?.addEventListener('click', () => {
 
 renderReunioes();
 reunioesRendered = true;
+
+
+
+
+
+
+
+
+
+// ===============================
+// MAPA LEAFLET
+// ===============================
+
+let mapaInicializado = false;
+let map;
+
+function initMap() {
+
+  if (mapaInicializado) return;
+
+  mapaInicializado = true;
+
+  // Centro inicial
+  map = L.map('map').setView([-23.5505, -46.6333], 11);
+
+  // Camada do mapa
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap'
+  }).addTo(map);
+
+  // Reuniões convertidas em pontos
+  const pontos = [
+    {
+      nome: 'Grupo Nova História — Osasco',
+      lat: -23.5329,
+      lng: -46.7917,
+      endereco: 'Av. Thereza Ana Cecon Breda, 1896'
+    },
+
+    {
+      nome: 'Grupo Recomeço — São Paulo',
+      lat: -23.5489,
+      lng: -46.6388,
+      endereco: 'Rua da Consolação, 451'
+    },
+
+    {
+      nome: 'Grupo Esperança — Santo André',
+      lat: -23.6639,
+      lng: -46.5383,
+      endereco: 'Av. Industrial, 2000'
+    },
+
+    //JÁ CORRIGIDO
+    {
+      nome: 'Grupo Renascer — Campinas',
+      lat: -22.903498189812275,
+      lng: -47.0591845744453,
+      endereco: 'Rua Barão de Jaguara, 1234'
+    },
+
+
+    //JÁ CORRIGIDO
+    {
+      nome: 'Grupo Liberdade — Santos',
+      lat: -23.96878119099821,
+      lng: -46.3326912762638,
+      endereco: 'Av. Ana Costa, 555'
+    },
+
+    {
+      nome: 'Grupo Horizonte — Guarulhos',
+      lat: -23.4628,
+      lng: -46.5333,
+      endereco: 'Rua Sete de Setembro, 300'
+    }
+  ];
+
+  // Adiciona marcadores
+  pontos.forEach(p => {
+
+    L.marker([p.lat, p.lng])
+      .addTo(map)
+      .bindPopup(`
+        <div style="min-width:220px">
+          <strong>${p.nome}</strong><br>
+          ${p.endereco}
+        </div>
+      `);
+
+  });
+
+  // Corrige renderização
+  setTimeout(() => {
+    map.invalidateSize();
+  }, 300);
+}
