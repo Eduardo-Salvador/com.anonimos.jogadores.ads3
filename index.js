@@ -161,22 +161,22 @@ function selectContact(el) {
 }
 
 const reunioesData = [
-  { nome: 'Grupo Nova História — Osasco', horario: '18h00 - 19h30', endereco: 'Av. Thereza Ana Cecon Breda, 1896', tipo: 'Reunião aberta', dist: '1,2 KM DE VOCÊ', dia: '16', mes: 'ABR', diasem: 'QUI' },
-  { nome: 'Grupo Recomeço — São Paulo', horario: '19h00 - 20h30', endereco: 'Rua da Consolação, 451', tipo: 'Reunião aberta', dist: '3,5 KM DE VOCÊ', dia: '17', mes: 'ABR', diasem: 'SEX' },
-  { nome: 'Grupo Esperança — Santo André', horario: '20h00 - 21h00', endereco: 'Av. Industrial, 2000', tipo: 'Reunião fechada', dist: '8,1 KM DE VOCÊ', dia: '18', mes: 'ABR', diasem: 'SAB' },
-  { nome: 'Grupo Renascer — Campinas', horario: '19h00 - 20h30', endereco: 'Rua Barão de Jaguara, 1234', tipo: 'Reunião aberta', dist: '12,4 KM DE VOCÊ', dia: '19', mes: 'ABR', diasem: 'DOM' },
-  { nome: 'Grupo Liberdade — Santos', horario: '18h30 - 20h00', endereco: 'Av. Ana Costa, 555', tipo: 'Reunião aberta', dist: '18,7 KM DE VOCÊ', dia: '20', mes: 'ABR', diasem: 'SEG' },
-  { nome: 'Grupo Horizonte — Guarulhos', horario: '20h00 - 21h30', endereco: 'Rua Sete de Setembro, 300', tipo: 'Reunião fechada', dist: '22,1 KM DE VOCÊ', dia: '21', mes: 'ABR', diasem: 'TER' },
+  { nome: 'Grupo Nova História — Osasco', horario: '18h00 - 19h30', endereco: 'Av. Thereza Ana Cecon Breda, 1896', tipo: 'Reunião aberta', dist: '1,2 KM DE VOCÊ', dia: '16', mes: 'ABR', diasem: 'QUI', cidade: 'Osasco — SP', contato: '(11) 99571-6942', descricao: 'Grupo voltado para iniciantes e veteranos. Ambiente acolhedor, café e água disponíveis. Chegue 10 minutos antes para se ambientar.' },
+  { nome: 'Grupo Recomeço — São Paulo', horario: '19h00 - 20h30', endereco: 'Rua da Consolação, 451', tipo: 'Reunião aberta', dist: '3,5 KM DE VOCÊ', dia: '17', mes: 'ABR', diasem: 'SEX', cidade: 'São Paulo — SP', contato: '(11) 99571-6942', descricao: 'Reunião semanal com partilha aberta. Todos são bem-vindos, não é necessário avisar com antecedência.' },
+  { nome: 'Grupo Esperança — Santo André', horario: '20h00 - 21h00', endereco: 'Av. Industrial, 2000', tipo: 'Reunião fechada', dist: '8,1 KM DE VOCÊ', dia: '18', mes: 'ABR', diasem: 'SAB', cidade: 'Santo André — SP', contato: '(11) 94321-0000', descricao: 'Reunião fechada exclusiva para membros em recuperação. Para participar pela primeira vez, entre em contato antes.' },
+  { nome: 'Grupo Renascer — Campinas', horario: '19h00 - 20h30', endereco: 'Rua Barão de Jaguara, 1234', tipo: 'Reunião aberta', dist: '12,4 KM DE VOCÊ', dia: '19', mes: 'ABR', diasem: 'DOM', cidade: 'Campinas — SP', contato: '(19) 99876-5432', descricao: 'Grupo ativo há mais de 10 anos. Reuniões aos domingos com foco em estudo dos 12 Passos.' },
+  { nome: 'Grupo Liberdade — Santos', horario: '18h30 - 20h00', endereco: 'Av. Ana Costa, 555', tipo: 'Reunião aberta', dist: '18,7 KM DE VOCÊ', dia: '20', mes: 'ABR', diasem: 'SEG', cidade: 'Santos — SP', contato: '(13) 99765-4321', descricao: 'Grupo próximo à praia com ambiente tranquilo. Estacionamento disponível no local.' },
+  { nome: 'Grupo Horizonte — Guarulhos', horario: '20h00 - 21h30', endereco: 'Rua Sete de Setembro, 300', tipo: 'Reunião fechada', dist: '22,1 KM DE VOCÊ', dia: '21', mes: 'ABR', diasem: 'TER', cidade: 'Guarulhos — SP', contato: '(11) 98765-1234', descricao: 'Reunião fechada com foco em prevenção de recaída. Indicada para membros com pelo menos 30 dias de abstinência.' },
 ];
-
+ 
 let reunioesRendered = false;
-
+ 
 function renderReunioes() {
   const container = document.getElementById('lista-reunioes');
   if (!container) return;
-
-  container.innerHTML = reunioesData.map(r => `
-    <div class="reuniao-card" role="listitem">
+ 
+  container.innerHTML = reunioesData.map((r, i) => `
+    <div class="reuniao-card" role="listitem" data-index="${i}">
       <div class="reuniao-date">
         <div class="day">${r.dia}</div>
         <div class="month">${r.mes}</div>
@@ -189,41 +189,104 @@ function renderReunioes() {
         <div class="dist-badge">${r.dist}</div>
       </div>
       <div class="reuniao-action">
-        <button class="btn-detalhes" data-action="detalhes">Detalhes</button>
+        <button class="btn-detalhes" data-action="detalhes" data-index="${i}">Detalhes</button>
       </div>
     </div>
   `).join('');
-
-  // Botões de detalhes via event delegation
+ 
   container.addEventListener('click', (e) => {
-    if (e.target.closest('[data-action="detalhes"]')) {
-      toast('Detalhes em breve!');
+    const btn = e.target.closest('[data-action="detalhes"]');
+    if (!btn) return;
+    const idx = Number(btn.dataset.index);
+    if (idx >= 0 && idx < reunioesData.length) {
+      openReuniaoModal(reunioesData[idx]);
     }
   });
 }
-
+ 
+/* ── Modal de detalhes da reunião ── */
+ 
+function openReuniaoModal(r) {
+  const modal = document.getElementById('reuniao-modal');
+  if (!modal || !r) return;
+ 
+  const tipo = r.tipo || '';
+  const contato = r.contato || '';
+  const tipoClass = tipo.includes('fechada') ? 'tipo-fechada' : 'tipo-aberta';
+ 
+  document.getElementById('modal-nome').textContent = r.nome || 'Reunião';
+  document.getElementById('modal-tipo').textContent = tipo;
+  document.getElementById('modal-tipo').className = 'modal-tipo-badge ' + tipoClass;
+  document.getElementById('modal-dia').textContent = `${r.diasem || ''}, ${r.dia || ''} ${r.mes || ''}`.trim();
+  document.getElementById('modal-horario').textContent = r.horario || '—';
+  document.getElementById('modal-endereco').textContent = r.endereco || '—';
+  document.getElementById('modal-cidade').textContent = r.cidade || '—';
+  document.getElementById('modal-dist').textContent = r.dist || '';
+  document.getElementById('modal-descricao').textContent = r.descricao || 'Sem informações adicionais no momento.';
+ 
+  const contatoEl = document.getElementById('modal-contato');
+  const whatsappEl = document.getElementById('modal-whatsapp');
+ 
+  if (contato) {
+    contatoEl.textContent = contato;
+    contatoEl.href = 'tel:' + contato.replace(/[^\d+]/g, '');
+    contatoEl.style.display = '';
+    whatsappEl.href = 'https://wa.me/55' + contato.replace(/\D/g, '');
+    whatsappEl.style.display = '';
+  } else {
+    contatoEl.style.display = 'none';
+    whatsappEl.style.display = 'none';
+  }
+ 
+  const distBar = document.querySelector('.modal-dist-bar');
+  if (distBar) distBar.style.display = r.dist ? '' : 'none';
+ 
+  modal.classList.add('open');
+  modal.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+ 
+  modal.querySelector('.modal-close').focus();
+}
+ 
+function closeReuniaoModal() {
+  const modal = document.getElementById('reuniao-modal');
+  if (!modal) return;
+  modal.classList.remove('open');
+  modal.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+ 
+document.addEventListener('click', (e) => {
+  if (e.target.closest('.modal-close')) closeReuniaoModal();
+  if (e.target.id === 'reuniao-modal') closeReuniaoModal();
+});
+ 
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeReuniaoModal();
+});
+ 
 document.querySelector('.reunioes-tabs')?.addEventListener('click', (e) => {
   const tab = e.target.closest('.reunioes-tab');
   if (!tab) return;
-
+ 
   const tabName = tab.dataset.tab;
-
+ 
   document.querySelectorAll('.reunioes-tab').forEach(t => {
     t.classList.remove('active');
     t.setAttribute('aria-selected', 'false');
   });
-
+ 
   tab.classList.add('active');
   tab.setAttribute('aria-selected', 'true');
-
+ 
   document.getElementById('presenciais').hidden = tabName !== 'presenciais';
   document.getElementById('online').hidden = tabName !== 'online';
 });
-
+ 
 document.querySelector('.filter-btns')?.addEventListener('click', (e) => {
   const btn = e.target.closest('.filter-btn');
   if (!btn) return;
-
+ 
   document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
 });

@@ -548,6 +548,243 @@
 }
 
 /* ══════════════════════════════════════════
+   MODAL: DETALHES DA REUNIÃO
+══════════════════════════════════════════ */
+ 
+.reuniao-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+ 
+.reuniao-modal-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+ 
+.reuniao-modal {
+  background: white;
+  border-radius: 24px;
+  width: 100%;
+  max-width: 520px;
+  max-height: calc(100dvh - 48px);
+  overflow-y: auto;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
+  position: relative;
+  transform: translateY(20px) scale(0.97);
+  transition: transform 0.25s ease;
+}
+ 
+.reuniao-modal-overlay.open .reuniao-modal {
+  transform: translateY(0) scale(1);
+}
+ 
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: #f1f5f9;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+  z-index: 2;
+  color: #64748b;
+}
+ 
+.modal-close:hover {
+  background: #e2e8f0;
+  color: #1e293b;
+}
+ 
+.modal-header-bar {
+  padding: 32px 28px 20px;
+  border-bottom: 1px solid #f1f5f9;
+}
+ 
+.modal-header-bar h2 {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin-bottom: 10px;
+  padding-right: 40px;
+}
+ 
+.modal-tipo-badge {
+  display: inline-block;
+  padding: 5px 14px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+ 
+.modal-tipo-badge.tipo-aberta {
+  background: rgba(22, 163, 74, 0.1);
+  color: #16a34a;
+}
+ 
+.modal-tipo-badge.tipo-fechada {
+  background: rgba(234, 179, 8, 0.12);
+  color: #a16207;
+}
+ 
+.modal-body {
+  padding: 24px 28px 28px;
+}
+ 
+.modal-info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+ 
+.modal-info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+ 
+.modal-info-icon {
+  font-size: 1.3rem;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8fafc;
+  border-radius: 10px;
+}
+ 
+.modal-info-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 2px;
+}
+ 
+.modal-info-value {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  line-height: 1.3;
+}
+ 
+.modal-dist-bar {
+  background: rgba(116, 44, 36, 0.06);
+  border-radius: 10px;
+  padding: 10px 16px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+ 
+.modal-dist-bar::before {
+  content: '●';
+  color: var(--cor-padrao-ja);
+  font-size: 0.6rem;
+}
+ 
+.modal-dist-bar span {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--cor-padrao-ja);
+  letter-spacing: 0.02em;
+}
+ 
+.modal-descricao {
+  margin-bottom: 24px;
+}
+ 
+.modal-descricao h4 {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 8px;
+}
+ 
+.modal-descricao p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #475569;
+}
+ 
+.modal-actions {
+  display: flex;
+  gap: 12px;
+}
+ 
+.modal-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 20px;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+ 
+.modal-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+ 
+.modal-btn-whatsapp {
+  background: #25D366;
+  color: white;
+}
+ 
+.modal-btn-ligar {
+  background: var(--cor-padrao-ja);
+  color: white;
+}
+ 
+@media (max-width: 480px) {
+  .reuniao-modal {
+    border-radius: 20px 20px 0 0;
+    max-height: 85dvh;
+    align-self: flex-end;
+  }
+ 
+  .reuniao-modal-overlay {
+    padding: 0;
+    align-items: flex-end;
+  }
+ 
+  .modal-info-grid {
+    grid-template-columns: 1fr;
+  }
+ 
+  .modal-actions {
+    flex-direction: column;
+  }
+}
+
+/* ══════════════════════════════════════════
    PÁGINA: AUTOAVALIAÇÃO
 ══════════════════════════════════════════ */
 
