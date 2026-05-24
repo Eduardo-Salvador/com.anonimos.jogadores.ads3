@@ -1038,6 +1038,8 @@
   gap: 18px;
   padding-top: 125px;
   margin-bottom: -30px;
+  padding-left: clamp(20px, 5vw, 60px);
+  padding-right: clamp(20px, 5vw, 60px);
 }
 
 .quem-logo-top svg  { width: 72px; height: 72px; }

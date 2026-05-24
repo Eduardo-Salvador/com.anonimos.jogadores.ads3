@@ -71,7 +71,6 @@ section {
   text-decoration: none;
   cursor: pointer;
   border: none;
-  margin: 5px;
   transition: transform 0.15s, box-shadow 0.15s;
 }
 
