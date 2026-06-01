@@ -4,17 +4,17 @@ let respostas = [];
 let perguntaAtual = 0;
 
 function getResultadoTexto(sim) {
-  if (sim >= 7) {
-    return `Você respondeu SIM a ${sim} perguntas. A maioria dos jogadores compulsivos respondeu SIM a pelo menos 7 dessas perguntas.`;
+  if (sim >= 9) {
+    return `Você respondeu SIM a ${sim} perguntas. Vários sinais importantes estão presentes. Buscar apoio de um profissional de saúde é um passo de coragem e cuidado com você mesmo.`;
   }
   if (sim >= 4) {
-    return `Você respondeu SIM a ${sim} perguntas. A maioria dos jogadores compulsivos respondeu SIM a pelo menos 7 dessas perguntas.`;
+    return `Você respondeu SIM a ${sim} perguntas. Alguns sinais merecem atenção. Conversar com alguém de confiança ou um profissional pode ajudar muito.`;
   }
-  return `Você respondeu SIM a apenas ${sim} pergunta(s). A maioria dos jogadores compulsivos respondeu SIM a pelo menos 7 dessas perguntas.`;
+  return `Você respondeu SIM a apenas ${sim} pergunta(s). Nenhum sinal preocupante no momento. Continue atento ao seu bem-estar.`;
 }
 
 function getResultadoIcon(sim) {
-  if (sim >= 7) {
+  if (sim >= 9) {
     // Ícone vermelho com "X"
     return `<svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <circle cx="12" cy="12" r="10" fill="#EF4444"/>
