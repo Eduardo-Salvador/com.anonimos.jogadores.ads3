@@ -48,6 +48,7 @@
       <li><a href="#" data-page="reunioes">REUNIÕES</a></li>
       <li><a href="#" data-page="doze-passos">OS 12 PASSOS</a></li>
       <li><a href="#" data-page="autoaval">AS 20 PERGUNTAS</a></li>
+      <li><a href="#" data-page="curiosidades">CURIOSIDADES</a></li>
       <li><a href="#" data-page="contato">CONTATO</a></li>
       <li><a href="#" data-page="videoteca">VIDEOTECA</a></li>
     </ul>
@@ -405,126 +406,142 @@
      REUNIÕES
 ═══════════════════════════════════════════════════ -->
   <div id="page-reunioes" class="page-section">
-  <div class="reunioes-page">
-    <div class="reunioes-layout">
-      <div class="reunioes-sidebar">
-        <h1>Localizar Reuniões</h1>
-        <ul>
-          <li>
-            <img src="https://flagcdn.com/w40/br.png" alt="Brasil"
-              style="width:28px;height:20px;object-fit:cover;border-radius:3px;box-shadow:0 1px 4px rgba(0,0,0,0.15);">
-            <a href="#" data-page="reunioes">Brasil</a>
-          </li>
-          <li>
-            <img src="https://flagcdn.com/w40/ao.png" alt="Angola"
-              style="width:28px;height:20px;object-fit:cover;border-radius:3px;box-shadow:0 1px 4px rgba(0,0,0,0.15);">
-            <span>Angola</span>
-          </li>
-          <li>
-            <img src="https://flagcdn.com/w40/mz.png" alt="Moçambique"
-              style="width:28px;height:20px;object-fit:cover;border-radius:3px;box-shadow:0 1px 4px rgba(0,0,0,0.15);">
-            <span>Moçambique</span>
-          </li>
-        </ul>
+    <div class="reunioes-page">
+      <div class="reunioes-layout">
+        <div class="reunioes-sidebar">
+          <h1>Localizar Reuniões</h1>
+          <ul>
+            <li>
+              <img src="https://flagcdn.com/w40/br.png" alt="Brasil"
+                style="width:28px;height:20px;object-fit:cover;border-radius:3px;box-shadow:0 1px 4px rgba(0,0,0,0.15);">
+              <a href="#" data-page="reunioes">Brasil</a>
+            </li>
+            <li>
+              <img src="https://flagcdn.com/w40/ao.png" alt="Angola"
+                style="width:28px;height:20px;object-fit:cover;border-radius:3px;box-shadow:0 1px 4px rgba(0,0,0,0.15);">
+              <span>Angola</span>
+            </li>
+            <li>
+              <img src="https://flagcdn.com/w40/mz.png" alt="Moçambique"
+                style="width:28px;height:20px;object-fit:cover;border-radius:3px;box-shadow:0 1px 4px rgba(0,0,0,0.15);">
+              <span>Moçambique</span>
+            </li>
+          </ul>
+        </div>
+        <div class="reunioes-main">
+          <div class="reunioes-tabs" role="tablist">
+            <button class="reunioes-tab active" data-tab="presenciais" role="tab" aria-selected="true"
+              aria-controls="presenciais">Presenciais</button>
+            <button class="reunioes-tab" data-tab="online" role="tab" aria-selected="false"
+              aria-controls="online">Online</button>
+          </div>
+
+          <div id="presenciais" role="tabpanel">
+            <div class="reunioes-map">
+              <div id="map"></div>
+            </div>
+            <div class="reunioes-search">
+              <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#94a3b8" stroke-width="2"
+                aria-hidden="true">
+                <circle cx="11" cy="11" r="8" />
+                <path d="m21 21-4.35-4.35" />
+              </svg>
+              <input type="text" id="reunioes-search-input" placeholder="Buscar por bairro, cidade ou CEP"
+                aria-label="Buscar reuniões">
+            </div>
+            <div class="filter-btns" role="group" aria-label="Filtrar por período">
+              <button class="filter-btn active" data-filter="hoje">Hoje</button>
+              <button class="filter-btn" data-filter="semana">Esta semana</button>
+              <button class="filter-btn" data-filter="mes">Este mês</button>
+            </div>
+            <p class="reunioes-count">5 reuniões próximas de você</p>
+            <div id="lista-reunioes" role="list"></div>
+          </div>
+
+          <div id="online" role="tabpanel" hidden>
+            <div style="padding:40px;text-align:center;color:#64748b;">
+              <p style="font-size:1.1rem;margin-bottom:16px;">Reuniões online disponíveis via Zoom e Google Meet.</p>
+              <a class="btn btn-yellow" href="https://wa.me/5599999999999" target="_blank"
+                rel="noopener noreferrer">Solicitar link por WhatsApp</a>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="reunioes-main">
-        <div class="reunioes-tabs" role="tablist">
-          <button class="reunioes-tab active" data-tab="presenciais" role="tab" aria-selected="true" aria-controls="presenciais">Presenciais</button>
-          <button class="reunioes-tab" data-tab="online" role="tab" aria-selected="false" aria-controls="online">Online</button>
+    </div>
+  </div><!-- /page-reunioes -->
+
+  <!-- MODAL DETALHES REUNIÃO -->
+  <div class="reuniao-modal-overlay" id="reuniao-modal" aria-hidden="true" role="dialog" aria-labelledby="modal-nome">
+    <div class="reuniao-modal">
+      <button class="modal-close" aria-label="Fechar detalhes">✕</button>
+
+      <div class="modal-header-bar">
+        <h2 id="modal-nome"></h2>
+        <span id="modal-tipo" class="modal-tipo-badge"></span>
+      </div>
+
+      <div class="modal-body">
+        <div class="modal-info-grid">
+          <div class="modal-info-item">
+            <div class="modal-info-icon">📅</div>
+            <div>
+              <div class="modal-info-label">Data</div>
+              <div class="modal-info-value" id="modal-dia"></div>
+            </div>
+          </div>
+          <div class="modal-info-item">
+            <div class="modal-info-icon">🕐</div>
+            <div>
+              <div class="modal-info-label">Horário</div>
+              <div class="modal-info-value" id="modal-horario"></div>
+            </div>
+          </div>
+          <div class="modal-info-item">
+            <div class="modal-info-icon">📍</div>
+            <div>
+              <div class="modal-info-label">Endereço</div>
+              <div class="modal-info-value" id="modal-endereco"></div>
+            </div>
+          </div>
+          <div class="modal-info-item">
+            <div class="modal-info-icon">🏙️</div>
+            <div>
+              <div class="modal-info-label">Cidade</div>
+              <div class="modal-info-value" id="modal-cidade"></div>
+            </div>
+          </div>
         </div>
- 
-        <div id="presenciais" role="tabpanel">
-          <div class="reunioes-map">
-            <div id="map"></div>
-          </div>
-          <div class="reunioes-search">
-            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#94a3b8" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-            <input type="text" id="reunioes-search-input" placeholder="Buscar por bairro, cidade ou CEP" aria-label="Buscar reuniões">
-          </div>
-          <div class="filter-btns" role="group" aria-label="Filtrar por período">
-            <button class="filter-btn active" data-filter="hoje">Hoje</button>
-            <button class="filter-btn" data-filter="semana">Esta semana</button>
-            <button class="filter-btn" data-filter="mes">Este mês</button>
-          </div>
-          <p class="reunioes-count">5 reuniões próximas de você</p>
-          <div id="lista-reunioes" role="list"></div>
+
+        <div class="modal-dist-bar">
+          <span id="modal-dist"></span>
         </div>
- 
-        <div id="online" role="tabpanel" hidden>
-          <div style="padding:40px;text-align:center;color:#64748b;">
-            <p style="font-size:1.1rem;margin-bottom:16px;">Reuniões online disponíveis via Zoom e Google Meet.</p>
-            <a class="btn btn-yellow" href="https://wa.me/5599999999999" target="_blank" rel="noopener noreferrer">Solicitar link por WhatsApp</a>
-          </div>
+
+        <div class="modal-descricao">
+          <h4>Sobre esta reunião</h4>
+          <p id="modal-descricao"></p>
+        </div>
+
+        <div class="modal-actions">
+          <a id="modal-whatsapp" class="modal-btn modal-btn-whatsapp" href="#" target="_blank"
+            rel="noopener noreferrer">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+              <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+            </svg>
+            WhatsApp
+          </a>
+          <a id="modal-contato" class="modal-btn modal-btn-ligar" href="#">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"
+              stroke-linecap="round">
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+            </svg>
+            Ligar
+          </a>
         </div>
       </div>
     </div>
   </div>
-</div><!-- /page-reunioes -->
- 
-<!-- MODAL DETALHES REUNIÃO -->
-<div class="reuniao-modal-overlay" id="reuniao-modal" aria-hidden="true" role="dialog" aria-labelledby="modal-nome">
-  <div class="reuniao-modal">
-    <button class="modal-close" aria-label="Fechar detalhes">✕</button>
- 
-    <div class="modal-header-bar">
-      <h2 id="modal-nome"></h2>
-      <span id="modal-tipo" class="modal-tipo-badge"></span>
-    </div>
- 
-    <div class="modal-body">
-      <div class="modal-info-grid">
-        <div class="modal-info-item">
-          <div class="modal-info-icon">📅</div>
-          <div>
-            <div class="modal-info-label">Data</div>
-            <div class="modal-info-value" id="modal-dia"></div>
-          </div>
-        </div>
-        <div class="modal-info-item">
-          <div class="modal-info-icon">🕐</div>
-          <div>
-            <div class="modal-info-label">Horário</div>
-            <div class="modal-info-value" id="modal-horario"></div>
-          </div>
-        </div>
-        <div class="modal-info-item">
-          <div class="modal-info-icon">📍</div>
-          <div>
-            <div class="modal-info-label">Endereço</div>
-            <div class="modal-info-value" id="modal-endereco"></div>
-          </div>
-        </div>
-        <div class="modal-info-item">
-          <div class="modal-info-icon">🏙️</div>
-          <div>
-            <div class="modal-info-label">Cidade</div>
-            <div class="modal-info-value" id="modal-cidade"></div>
-          </div>
-        </div>
-      </div>
- 
-      <div class="modal-dist-bar">
-        <span id="modal-dist"></span>
-      </div>
- 
-      <div class="modal-descricao">
-        <h4>Sobre esta reunião</h4>
-        <p id="modal-descricao"></p>
-      </div>
- 
-      <div class="modal-actions">
-        <a id="modal-whatsapp" class="modal-btn modal-btn-whatsapp" href="#" target="_blank" rel="noopener noreferrer">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          WhatsApp
-        </a>
-        <a id="modal-contato" class="modal-btn modal-btn-ligar" href="#">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          Ligar
-        </a>
-      </div>
-    </div>
-  </div>
-</div>
 
   <!-- ═══════════════════════════════════════════════════
      AUTOAVALIAÇÃO
@@ -535,8 +552,7 @@
       <p>Uma conversa honesta consigo mesmo</p>
     </div>
     <div class="autoaval-hero">
-      <img src="assets/images/main-page/gabarito.jpg" alt="Autoavaliação"
-        loading="lazy">
+      <img src="assets/images/main-page/gabarito.jpg" alt="Autoavaliação" loading="lazy">
       <div class="autoaval-hero-content">
         <div class="autoaval-hero-text">
           <p>Escritas por pessoas que passaram pelo mesmo que você talvez esteja passando. Não é um diagnóstico, não é
@@ -697,6 +713,256 @@
     </div>
   </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- PÁGINA CURIOSIDADES -->
+
+  <div id="page-curiosidades" class="page-section">
+    <main class="page-curiosidades page-curiosidades-grid">
+      <div class="container-page-curiosidades">
+
+        <header class="curiosidades-banner">
+          <div class="banner-content">
+            <span class="subtitle">CURIOSIDADES</span>
+            <h1>Informação também faz parte da recuperação.</h1>
+            <p>Aqui você encontra notícias, estudos, curiosidades e histórias reais sobre o mundo das apostas, seus
+              impactos e caminhos de superação.</p>
+
+            <div class="banner-filters">
+              <div class="search-box">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path
+                    d="M17.5 17.5L13.8833 13.8833M15.8333 9.16667C15.8333 12.8486 12.8486 15.8333 9.16667 15.8333C5.48477 15.8333 2.5 12.8486 2.5 9.16667C2.5 5.48477 5.48477 2.5 9.16667 2.5C12.8486 2.5 15.8333 5.48477 15.8333 9.16667Z"
+                    stroke="#797979" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                <input type="text" placeholder="Pesquisar notícia..." class="search-input" />
+              </div>
+
+              <div class="category-dropdown">
+                <button class="category-button" type="button">
+
+                  <div class="category-left">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                      <path d="M1.66667 4.16663H18.3333M5 9.99996H15M7.5 15.8333H12.5" stroke="#797979" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+
+                    <span>Filtrar por categoria</span>
+                  </div>
+                    <svg class="dropdown-arrow" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                      <path d="M5 7.5L10 12.5L15 7.5" stroke="#797979" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    </svg>
+                </button>
+
+                <ul class="category-menu">
+                  <li data-value="frontend">categoria 1</li>
+                  <li data-value="backend">categoria 2</li>
+                  <li data-value="mobile">categoria 3</li>
+                  <li data-value="database">categoria 4</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="banner-illustration">
+            <img src="./assets/images/curiosidades/picture.png" alt="News illustration" />
+          </div>
+        </header>
+
+        <div class="curiosidades-content">
+          <section class="featured-news">
+            <div class="featured-card">
+              <div class="container-badge">
+                <span class="badge">Destaque</span>
+              </div>
+              <div class="featured-content">
+                <span class="date">18 de maio de 2024</span>
+                <h2 class="featured-title">Operação mira casas de apostas ilegais e lavagem de dinheiro no Brasil</h2>
+                <p>A Polícia Federal deflagrou uma operação contra plataformas de apostas que movimentaram milhões sem
+                  autorização.</p>
+                <a href="#" class="btn-more">
+                  Ler mais
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M1 8H15M8 15L15 8L8 1" stroke="#30120E" stroke-width="2" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </section>
+
+          <aside class="latest-news-sidebar">
+            <div class="latest-news-header">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <g clip-path="url(#clip0_55_20)">
+                  <path
+                    d="M12 6V12L16 14M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z"
+                    stroke="#754F50" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                </g>
+                <defs>
+                  <clipPath id="clip0_55_20">
+                    <rect width="24" height="24" fill="white" />
+                  </clipPath>
+                </defs>
+              </svg>
+              <h3>ÚLTIMAS NOTÍCIAS</h3>
+            </div>
+
+            <div class="news-list">
+              <article class="news-item">
+                <img src="./assets/images/curiosidades/news-laws.jpg" alt="Thumb regras de publicidade"
+                  class="news-thumb" />
+                <div class="news-item-content">
+                  <h4>Projeto de lei propõe novas regras para publicidade de apostas</h4>
+                  <span class="news-date">16 de maio de 2024</span>
+                </div>
+              </article>
+
+              <article class="news-item">
+                <img src="./assets/images/curiosidades/news-influencer.jpg" alt="Thumb influenciadores investigados"
+                  class="news-thumb" />
+                <div class="news-item-content">
+                  <h4>Influenciadores são investigados por promoção de jogos de azar</h4>
+                  <span class="news-date">16 de maio de 2024</span>
+                </div>
+              </article>
+
+              <article class="news-item">
+                <img src="./assets/images/curiosidades/news-young.jpg" alt="Thumb vício entre jovens"
+                  class="news-thumb" />
+                <div class="news-item-content">
+                  <h4>Estudo aponta aumento do vício em apostas entre jovens de 18 a 24 anos</h4>
+                  <span class="news-date">16 de maio de 2024</span>
+                </div>
+              </article>
+
+              <article class="news-item">
+                <img src="./assets/images/curiosidades/news-society.jpg" alt="Thumb riscos das bets sem licença"
+                  class="news-thumb" />
+                <div class="news-item-content">
+                  <h4>Bets sem licença: os riscos para o consumidor e para a sociedade</h4>
+                  <span class="news-date">16 de maio de 2024</span>
+                </div>
+              </article>
+            </div>
+
+            <a href="#" class="view-all">
+              Ver todas as notícias
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M5 12H19M12 19L19 12L12 5" stroke="#754F50" stroke-width="3" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </a>
+          </aside>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   <!-- FOOTER -->
   <footer>
     <div>
@@ -717,7 +983,7 @@
   <script src="js/reunioes.js"></script>
   <script src="js/map.js"></script>
   <script src="js/videos.js"></script>
-
+  <script src="js/teste.js"></script>
 </body>
 
 </html>
