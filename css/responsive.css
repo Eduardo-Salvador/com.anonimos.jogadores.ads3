@@ -145,6 +145,40 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* =====================================================
    <= 1600px (Notebook grande)
    ===================================================== */
@@ -152,16 +186,34 @@
 @media (max-width: 1600px) {
 
   .curiosidades-banner {
-    gap: 80px;
+    gap: 130px;
+  }
+
+  .banner-content .subtitle {
+    font-size: 1.5rem;
+  }
+
+  .banner-content h1 {
+    font-size: 2.8rem;
+  }
+
+  .banner-content p {
+    font-size: 1.3rem;
   }
 
   .banner-content {
     width: 100%;
-    max-width: 800px;
+    max-width: 748px;
   }
 
   .featured-news {
     width: 100%;
+  }
+
+  .banner-filters {
+    width: 100%;
+    justify-content: space-between;
+    gap: 16px;
   }
 
   .latest-news-sidebar {
@@ -173,6 +225,10 @@
   .news-item-content h4 {
     width: 100%;
   }
+
+  .featured-content {
+    height: auto;
+  }
 }
 
 /* =====================================================
@@ -181,12 +237,17 @@
 
 @media (max-width: 1366px) {
 
+  .banner-content {
+    width: 100%;
+    max-width: 700px;
+  }
+
   .page-curiosidades-grid {
-    padding: 0 24px;
+    padding: 0 40px;
   }
 
   .curiosidades-banner {
-    gap: 48px;
+    gap: 90px;
   }
 
   .banner-content h1 {
@@ -235,18 +296,20 @@
   }
 
   .banner-illustration {
-    display: flex;
+    display: none;
     justify-content: center;
   }
 
-  .banner-illustration img {
+  /* .banner-illustration img {
     max-width: 400px;
     width: 100%;
     height: auto;
-  }
+  } */
 
   .banner-filters {
     width: 100%;
+      justify-content: flex-start;
+      gap: 16px;
   }
 
   .featured-title {
@@ -256,6 +319,7 @@
   .featured-content {
     height: auto;
   }
+  
 }
 
 /* =====================================================
