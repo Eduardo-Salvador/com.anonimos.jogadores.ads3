@@ -28,7 +28,8 @@
     z-index: 998;
   }
 
-  .nav-links.open { display: flex; }
+  .nav-links.open { display: flex; z-index: 998;
+  }
 
   .nav-links li          { border-bottom: 1px solid #f1f5f9; }
   .nav-links a           { display: block; padding: 14px 8px; font-size: 14px; border-bottom: none; color: var(--text-dark); }
