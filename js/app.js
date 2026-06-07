@@ -19,6 +19,7 @@ function showPage(page) {
 
   if (page === 'videoteca') renderVideos();
   if (page === 'reunioes') initReunioes();
+  if (page === 'dashboard')  initDashboard();
 }
 
 // ── Menu hamburger ──
