@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tela Administrador</title>
+    <link rel="stylesheet" href="css/telaAdmin.css">
+    <link rel="icon" href="assets/images/icons/ja-icon.png" type="image/png" />
+</head>
+
+<body>
+
+    <div class="admin-panel">
+
+        <!-- ══ SIDEBAR ══ -->
+        <aside class="sidebar">
+
+            <div class="sidebar-logo">
+                <h1>Jogadores Anônimos</h1>
+                <span>Painel Administrativo</span>
+            </div>
+
+            <div class="sidebar-divider"></div>
+
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active">Dashboard</a>
+                <a href="#" class="nav-item logout">Sair</a>
+            </nav>
+
+        </aside>
+
+        <!-- ══ CONTEÚDO ══ -->
+        <main class="main-content">
+
+            <!-- Cabeçalho -->
+            <header class="page-header">
+                <h2>Painel Administrativo</h2>
+                <p>Gerencie reuniões e modere relatos enviados pela comunidade.</p>
+            </header>
+
+            <!-- Stats -->
+            <section class="stats-grid">
+
+                <div class="stat-card">
+                    <span class="stat-card__label">Total de reuniões</span>
+                    <strong class="stat-card__value">24</strong>
+                </div>
+
+                <div class="stat-card">
+                    <span class="stat-card__label">Relatos publicados</span>
+                    <strong class="stat-card__value">18</strong>
+                </div>
+
+                <div class="stat-card">
+                    <span class="stat-card__label">Aguardando análise</span>
+                    <strong class="stat-card__value">4</strong>
+                </div>
+
+            </section>
+
+            <!-- Reuniões -->
+            <section class="section">
+
+                <div class="section-header">
+                    <h3>Reuniões</h3>
+                    <button class="btn btn--primary btn--lg" id="openModalReuniao">
+                        + Nova reunião
+                    </button>
+                </div>
+
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Cidade</th>
+                                <th>Nome</th>
+                                <th>Data</th>
+                                <th>Hora</th>
+                                <th>Descrição</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>São Paulo</td>
+                                <td>JA Centro</td>
+                                <td>15/06/2026</td>
+                                <td>19:00</td>
+                                <td>Reunião de apoio para pessoas com vício em apostas</td>
+                                <td>
+                                    <div class="td-actions">
+                                        <button class="btn btn--gold btn-editar" data-nome="JA Centro"
+                                            data-cidade="São Paulo" data-data="2026-06-15" data-hora="19:00"
+                                            data-descricao="Reunião de apoio para pessoas com vício em apostas">
+                                            Editar
+                                        </button>
+                                        <button class="btn btn--danger">Excluir</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </section>
+
+            <!-- Relatos -->
+            <section class="section">
+
+                <div class="section-header">
+                    <h3>Relatos enviados</h3>
+                    <span class="badge badge--pending">4 pendentes</span>
+                </div>
+
+                <div class="relatos-grid">
+
+                    <div class="relato-card">
+                        <h4>Anônimo</h4>
+                        <p>
+                            Meu vício em apostas começou com apostas esportivas.
+                            Em poucos meses já estava endividado...
+                        </p>
+                        <div class="relato-actions">
+                            <button class="btn btn--primary">Publicar</button>
+                            <button class="btn btn--danger">Ocultar</button>
+                        </div>
+                    </div>
+
+                    <div class="relato-card">
+                        <h4>Anônimo</h4>
+                        <p>
+                            Perdi muito dinheiro durante anos.
+                            Procurar ajuda foi a melhor decisão da minha vida...
+                        </p>
+                        <div class="relato-actions">
+                            <button class="btn btn--primary">Publicar</button>
+                            <button class="btn btn--danger">Ocultar</button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+    </div>
+
+    <!-- ══ MODAL: Nova Reunião ══ -->
+    <div class="modal-overlay" id="modalReuniao">
+        <div class="modal-card">
+
+            <div class="modal-header">
+                <h2>Nova reunião</h2>
+                <button class="modal-close" id="closeModalReuniao" aria-label="Fechar">×</button>
+            </div>
+
+            <form class="modal-body" id="formReuniao">
+
+                <div class="field-row">
+                    <div class="field">
+                        <label>Nome da reunião</label>
+                        <input type="text" placeholder="Ex: JA Centro — Sexta" required />
+                    </div>
+                    <div class="field">
+                        <label>Cidade</label>
+                        <input type="text" placeholder="Ex: São Paulo" required />
+                    </div>
+                </div>
+
+                <div class="field-row">
+                    <div class="field">
+                        <label>Data</label>
+                        <input type="date" required />
+                    </div>
+                    <div class="field">
+                        <label>Hora</label>
+                        <input type="time" required />
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label>Descrição</label>
+                    <textarea placeholder="Descreva a reunião..." required></textarea>
+                </div>
+
+            </form>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn--ghost btn--full" id="cancelModal">Cancelar</button>
+                <button type="submit" form="formReuniao" class="btn btn--primary btn--full">Salvar reunião</button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ══ MODAL: Editar Reunião ══ -->
+    <div class="modal-overlay" id="modalEditarReuniao">
+        <div class="modal-card">
+
+            <div class="modal-header">
+                <h2>Editar reunião</h2>
+                <button class="modal-close" id="closeModalEditar" aria-label="Fechar">×</button>
+            </div>
+
+            <form class="modal-body" id="formEditarReuniao">
+
+                <div class="field-row">
+                    <div class="field">
+                        <label>Nome da reunião</label>
+                        <input type="text" id="editNome" required />
+                    </div>
+                    <div class="field">
+                        <label>Cidade</label>
+                        <input type="text" id="editCidade" required />
+                    </div>
+                </div>
+
+                <div class="field-row">
+                    <div class="field">
+                        <label>Data</label>
+                        <input type="date" id="editData" required />
+                    </div>
+                    <div class="field">
+                        <label>Hora</label>
+                        <input type="time" id="editHora" required />
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label>Descrição</label>
+                    <textarea id="editDescricao" required></textarea>
+                </div>
+
+            </form>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn--ghost btn--full" id="cancelEditar">Cancelar</button>
+                <button type="submit" form="formEditarReuniao" class="btn btn--primary btn--full">Salvar
+                    alterações</button>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        /* ── Helpers ── */
+        const $ = id => document.getElementById(id);
+
+        function openModal(el) { el.classList.add('active'); }
+        function closeModal(el) { el.classList.remove('active'); }
+        function closeOnBackdrop(overlay) {
+            overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(overlay); });
+        }
+
+        /* ── Modal: Nova Reunião ── */
+        const modalNova = $('modalReuniao');
+        $('openModalReuniao').addEventListener('click', () => openModal(modalNova));
+        $('closeModalReuniao').addEventListener('click', () => closeModal(modalNova));
+        $('cancelModal').addEventListener('click', () => closeModal(modalNova));
+        closeOnBackdrop(modalNova);
+
+        /* ── Modal: Editar Reunião ── */
+        const modalEditar = $('modalEditarReuniao');
+        const editInputs = {
+            nome: $('editNome'),
+            cidade: $('editCidade'),
+            data: $('editData'),
+            hora: $('editHora'),
+            descricao: $('editDescricao'),
+        };
+
+        document.querySelectorAll('.btn-editar').forEach(btn => {
+            btn.addEventListener('click', () => {
+                editInputs.nome.value = btn.dataset.nome;
+                editInputs.cidade.value = btn.dataset.cidade;
+                editInputs.data.value = btn.dataset.data;
+                editInputs.hora.value = btn.dataset.hora;
+                editInputs.descricao.value = btn.dataset.descricao;
+                openModal(modalEditar);
+            });
+        });
+
+        $('closeModalEditar').addEventListener('click', () => closeModal(modalEditar));
+        $('cancelEditar').addEventListener('click', () => closeModal(modalEditar));
+        closeOnBackdrop(modalEditar);
+
+        /* ── Fechar com ESC ── */
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') {
+                closeModal(modalNova);
+                closeModal(modalEditar);
+            }
+        });
+    </script>
+
+</html>

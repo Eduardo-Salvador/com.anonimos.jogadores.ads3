@@ -1,0 +1,150 @@
+/* ── Reset básico ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      background:
+        radial-gradient(ellipse at 80% 10%, rgba(212, 168, 67, 0.13) 0%, transparent 45%),
+        radial-gradient(ellipse at 10% 90%, rgba(116, 44, 36, 0.07) 0%, transparent 45%),
+        #f1f5f9;
+    }
+
+    /* ── Card ── */
+    .login-card {
+      width: 100%;
+      max-width: 480px;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 28px;
+      padding: 52px 48px;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.09);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* detalhe decorativo */
+    .login-card::before {
+      content: '';
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: rgba(212, 168, 67, 0.07);
+      top: -80px;
+      right: -70px;
+      pointer-events: none;
+    }
+
+    /* ── Cabeçalho ── */
+    .login-header {
+      text-align: center;
+      margin-bottom: 40px;
+      position: relative;
+    }
+
+    .login-badge {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(116, 44, 36, 0.08);
+      color: #742c24;
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .login-header h1 {
+      font-size: 2rem;
+      font-weight: 900;
+      color: #742c24;
+      margin-bottom: 10px;
+      line-height: 1.2;
+    }
+
+    .login-header p {
+      color: #64748b;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* ── Formulário ── */
+    .login-form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .field label {
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: #334155;
+    }
+
+    .field input {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 12px;
+      background: #f8fafc;
+      color: #1e293b;
+      font-size: 0.95rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+    }
+
+    .field input::placeholder { color: #94a3b8; }
+
+    .field input:focus {
+      border-color: #d4a843;
+      background: #ffffff;
+      box-shadow: 0 0 0 4px rgba(212, 168, 67, 0.14);
+    }
+
+    /* ── Botão ── */
+    .btn-entrar {
+      margin-top: 8px;
+      width: 100%;
+      padding: 16px;
+      border: none;
+      border-radius: 14px;
+      background: #742c24;
+      color: #ffffff;
+      font-size: 0.95rem;
+      font-weight: 800;
+      font-family: inherit;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    }
+
+    .btn-entrar:hover {
+      background: #5d221b;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(116, 44, 36, 0.28);
+    }
+
+    .btn-entrar:active { transform: translateY(0); }
+
+    .btn-entrar:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 4px rgba(212, 168, 67, 0.35);
+    }
+
+    /* ── Responsivo ── */
+    @media (max-width: 520px) {
+      .login-card { padding: 36px 24px; border-radius: 22px; }
+      .login-header h1 { font-size: 1.7rem; }
+    }
