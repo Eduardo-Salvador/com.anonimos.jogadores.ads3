@@ -21,6 +21,7 @@ public class ReuniaoService {
         Cidade cidade = cidadeRepository.findById(request.idCidade()).orElseThrow(() -> new IllegalArgumentException("Cidade não encontrada"));
         Reuniao reuniao = new Reuniao(request.titulo(), request.endereco(), cidade, request.dataHora());
         if(reuniao.getDescricao() != null) reuniao.setDescricao(request.descricao());
+        reuniaoRepository.save(reuniao);
         return ReuniaoResponse.fromEntity(reuniao);
     }
 
@@ -36,6 +37,7 @@ public class ReuniaoService {
     public ReuniaoResponse updateReuniao(Long id, ReuniaoRequest request) throws IllegalArgumentException {
         Reuniao reuniao = findReuniaoById(id);
         request.updateReuniao(reuniao);
+        reuniaoRepository.save(reuniao);
         return ReuniaoResponse.fromEntity(reuniao);
     }
 

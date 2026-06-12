@@ -16,6 +16,7 @@ public class CidadeService {
 
     public CidadeResponse criarCidade(CidadeRequest request) {
         Cidade cidade = new Cidade(request.nome(), request.estado());
+        cidadeRepository.save(cidade);
         return CidadeResponse.fromEntity(cidade);
     }
 
@@ -31,6 +32,7 @@ public class CidadeService {
     public CidadeResponse updateCidade(Long id, CidadeRequest request) throws IllegalArgumentException {
         Cidade cidade = findCidadeById(id);
         request.updateCidade(cidade);
+        cidadeRepository.save(cidade);
         return CidadeResponse.fromEntity(cidade);
     }
 

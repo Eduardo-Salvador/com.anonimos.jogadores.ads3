@@ -18,6 +18,7 @@ public class FeedbackService {
 
     public FeedbackResponse criarFeedback(FeedbackRequest request) {
         Feedback feedback = new Feedback(request.nome(), request.idade(), request.descricao());
+        feedbackRepository.save(feedback);
         return FeedbackResponse.fromEntity(feedback);
     }
 
@@ -33,6 +34,7 @@ public class FeedbackService {
     public FeedbackResponse updateFeedback(Long id, FeedbackRequest request) throws IllegalArgumentException {
         Feedback feedback = findFeedbackById(id);
         request.updateFeedback(feedback);
+        feedbackRepository.save(feedback);
         return FeedbackResponse.fromEntity(feedback);
     }
 

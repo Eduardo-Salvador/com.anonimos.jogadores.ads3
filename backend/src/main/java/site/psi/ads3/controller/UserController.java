@@ -8,6 +8,7 @@ import site.psi.ads3.service.UserService;
 
 @RequiredArgsConstructor
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/users")
 public class UserController {
 

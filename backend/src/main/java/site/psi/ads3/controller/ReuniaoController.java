@@ -10,6 +10,7 @@ import site.psi.ads3.service.ReuniaoService;
 
 @RequiredArgsConstructor
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/reunioes")
 public class ReuniaoController {
 

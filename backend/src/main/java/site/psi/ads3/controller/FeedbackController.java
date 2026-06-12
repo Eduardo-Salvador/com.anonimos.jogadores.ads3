@@ -10,6 +10,7 @@ import site.psi.ads3.service.FeedbackService;
 
 @RequiredArgsConstructor
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/feedbacks")
 public class FeedbackController {
 
