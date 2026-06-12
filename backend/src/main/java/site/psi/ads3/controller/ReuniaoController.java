@@ -1,11 +1,15 @@
 package site.psi.ads3.controller;
 import lombok.RequiredArgsConstructor;
+
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import site.psi.ads3.dto.request.ReuniaoRequest;
 import site.psi.ads3.dto.response.ReuniaoResponse;
+import site.psi.ads3.entity.Reuniao;
 import site.psi.ads3.service.ReuniaoService;
 
 @RequiredArgsConstructor
@@ -41,5 +45,15 @@ public class ReuniaoController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteReuniao(@PathVariable Long id) {
         reuniaoService.deleteReuniao(id);
+    }
+
+     @GetMapping("/hoje")
+    public List<Reuniao> listarHoje() {
+        return reuniaoService.listarHoje();
+    }
+
+    @GetMapping("/semana")
+    public List<Reuniao> listarSemana() {
+        return reuniaoService.listarSemana();
     }
 }

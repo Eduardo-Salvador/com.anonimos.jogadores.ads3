@@ -66,7 +66,7 @@ function formatarData(dataHoraStr) {
 
 // ── Render principal ──
 
-async function renderReunioes() {
+async function renderReunioes(endpoint = 'http://localhost:8081/reunioes?size=50&sort=dataHora,asc') {
   const container = document.getElementById('lista-reunioes');
   if (!container) return;
 
@@ -78,9 +78,9 @@ async function renderReunioes() {
   // 2. Busca do backend
   let reunioes = [];
   try {
-    const res = await fetch('http://localhost:8081/reunioes?size=50&sort=dataHora,asc');
+    const res = await fetch(endpoint);
     const data = await res.json();
-    reunioes = data.content ?? [];
+    reunioes = data.content ?? data ?? [];
   } catch (e) {
     container.innerHTML = '<p style="padding:16px;color:#742C24">Erro ao carregar reuniões.</p>';
     console.error(e);
@@ -153,36 +153,30 @@ function openReuniaoModal(r) {
   const modal = document.getElementById('reuniao-modal');
   if (!modal || !r) return;
 
-  const tipo = r.tipo || '';
-  const contato = r.contato || '';
-  const tipoClass = tipo.includes('fechada') ? 'tipo-fechada' : 'tipo-aberta';
+  const data = new Date(r.dataHora);
 
-  document.getElementById('modal-nome').textContent = r.nome || 'Reunião';
-  document.getElementById('modal-tipo').textContent = tipo;
-  document.getElementById('modal-tipo').className = 'modal-tipo-badge ' + tipoClass;
-  document.getElementById('modal-dia').textContent = `${r.diasem || ''}, ${r.dia || ''} ${r.mes || ''}`.trim();
-  document.getElementById('modal-horario').textContent = r.horario || '—';
-  document.getElementById('modal-endereco').textContent = r.endereco || '—';
-  document.getElementById('modal-cidade').textContent = r.cidade || '—';
-  document.getElementById('modal-dist').textContent = r.dist || '';
-  document.getElementById('modal-descricao').textContent = r.descricao || 'Sem informações adicionais no momento.';
+  document.getElementById('modal-nome').textContent =
+    r.titulo || 'Reunião';
 
-  const contatoEl = document.getElementById('modal-contato');
-  const whatsappEl = document.getElementById('modal-whatsapp');
+  document.getElementById('modal-dia').textContent =
+    data.toLocaleDateString('pt-BR');
 
-  if (contato) {
-    contatoEl.textContent = contato;
-    contatoEl.href = 'tel:' + contato.replace(/[^\d+]/g, '');
-    contatoEl.style.display = '';
-    whatsappEl.href = 'https://wa.me/55' + contato.replace(/\D/g, '');
-    whatsappEl.style.display = '';
-  } else {
-    contatoEl.style.display = 'none';
-    whatsappEl.style.display = 'none';
-  }
+  document.getElementById('modal-horario').textContent =
+    data.toLocaleTimeString('pt-BR', {
+      hour: '2-digit',
+      minute: '2-digit'
+    });
 
-  const distBar = document.querySelector('.modal-dist-bar');
-  if (distBar) distBar.style.display = r.dist ? '' : 'none';
+  document.getElementById('modal-endereco').textContent =
+    r.endereco
+        ? r.endereco.split(',').slice(0, 2).join(',')
+        : '—';
+
+  document.getElementById('modal-descricao').textContent =
+    r.descricao || 'Sem informações adicionais no momento.';
+
+  document.getElementById('modal-cidade').textContent =
+    r.nomeCidade + " - " + r.uf || '—';
 
   modal.classList.add('open');
   modal.setAttribute('aria-hidden', 'false');
@@ -230,10 +224,36 @@ document.querySelector('.reunioes-tabs')?.addEventListener('click', (e) => {
 
 // ── Filtros ──
 
-document.querySelector('.filter-btns')?.addEventListener('click', (e) => {
+document.querySelector('.filter-btns')?.addEventListener('click', async (e) => {
+
   const btn = e.target.closest('.filter-btn');
   if (!btn) return;
 
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.filter-btn')
+    .forEach(b => b.classList.remove('active'));
+
   btn.classList.add('active');
+
+  const filtro = btn.dataset.filter;
+
+  switch (filtro) {
+
+    case 'hoje':
+      await renderReunioes(
+        'http://localhost:8081/reunioes/hoje'
+      );
+      break;
+
+    case 'semana':
+      await renderReunioes(
+        'http://localhost:8081/reunioes/semana'
+      );
+      break;
+
+    default:
+      await renderReunioes(
+        'http://localhost:8081/reunioes?size=50&sort=dataHora,asc'
+      );
+  }
+
 });

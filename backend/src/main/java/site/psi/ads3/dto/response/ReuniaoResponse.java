@@ -8,7 +8,10 @@ public record ReuniaoResponse(
         String descricao,
         String endereco,
         Long idCidade,
+        String nomeCidade,
+        String uf,
         LocalDateTime dataHora
+       
 ) {
     public static ReuniaoResponse fromEntity(Reuniao reuniao) {
         return new ReuniaoResponse(
@@ -17,6 +20,8 @@ public record ReuniaoResponse(
                 reuniao.getDescricao(),
                 reuniao.getEndereco(),
                 reuniao.getCidade().getId(),
+                reuniao.getCidade().getNome(),
+                reuniao.getCidade().getEstado(),
                 reuniao.getDataHora()
         );
     }
