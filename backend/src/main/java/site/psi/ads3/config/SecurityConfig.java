@@ -26,13 +26,13 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-            .cors(cors -> {})
+            .cors(cors -> cors.configurationSource(corsConfigurationSource()))
             .csrf(csrf -> csrf.disable())
             .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/auth/**").permitAll()
                 .requestMatchers(HttpMethod.GET, "/reunioes/**", "/cidades/**", "/feedbacks/**").permitAll()
-                .requestMatchers(HttpMethod.POST, "/feedbacks").permitAll() 
+                .requestMatchers(HttpMethod.POST, "/feedbacks").permitAll()
                 .anyRequest().authenticated()
             )
             .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class);
@@ -57,7 +57,8 @@ public class SecurityConfig {
             "http://127.0.0.1:5500",
             "http://localhost:5500",
             "http://127.0.0.1:5501",
-            "http://localhost:5501"
+            "http://localhost:5501",
+            "https://com-anonimos-jogadores-ads3.vercel.app"
         ));
 
         configuration.setAllowedMethods(List.of("*"));

@@ -4,7 +4,7 @@ let mapaInicializado = false;
 let map;
 let markersLayer;
 
-async function initMap(endpoint = 'http://localhost:8081/reunioes?size=50') {
+async function initMap(endpoint = 'https://comanonimosjogadoresads3-production.up.railway.app/reunioes?size=50') {
 
   if (!mapaInicializado) {
     mapaInicializado = true;
