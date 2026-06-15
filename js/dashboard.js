@@ -10,6 +10,8 @@ const DASH_CONFIG = {
   RANGE:     'A:S',
 };
 
+const N_QUESTOES = 15;
+
 // ── Mapeamento de colunas (igual ao test.html original) ──
 const DASH_COL = {
   TIMESTAMP:  0,
@@ -68,7 +70,8 @@ let dashSheetTimer = null;
 // ═══════════════════════════════════════════════════════════════
 function initDashboard() {
   // ── Seção local ──
-  const dadosLocais = typeof respostas !== 'undefined' ? respostas : [];
+  const saved = localStorage.getItem('autoaval_resultado');
+  const dadosLocais = saved ? JSON.parse(saved).respostas : [];
   if (!dadosLocais.length) {
     mostrarEstadoVazio();
   } else {
@@ -101,7 +104,7 @@ function esconderEstadoVazio() {
 
 function renderLocal(dados) {
   const n          = dados.length;
-  const nPerguntas = typeof quizPerguntas !== 'undefined' ? quizPerguntas.length : 15;
+  const nPerguntas = N_QUESTOES;
   const totalSim   = dados.reduce((acc, r) => acc + (r === 'sim' ? 1 : 0), 0);
   const classif    = classificarResultado(totalSim);
   const simArr     = dados.map(r => r === 'sim' ? 1 : 0);

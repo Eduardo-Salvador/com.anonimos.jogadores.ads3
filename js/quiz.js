@@ -12,7 +12,12 @@ const quizPerguntas = [
   "Você já pediu dinheiro emprestado para jogar?",
   "Você já tentou recuperar perdas?",
   "Você já sentiu culpa após jogar?",
-  "Você acha difícil ficar sem jogar?"
+  "Você acha difícil ficar sem jogar?",
+  "Você já deixou de cumprir compromissos por causa do jogo?",
+  "Você já escondeu o quanto joga de outras pessoas?",
+  "O jogo já causou conflitos com família ou amigos?",
+  "Você já perdeu noção do tempo enquanto jogava?",
+  "Você já jogou para aliviar estresse ou problemas pessoais?"
 ];
 
 function getResultadoTexto(sim) {
@@ -76,6 +81,15 @@ function renderQuiz() {
 
   if (perguntaAtual >= quizPerguntas.length) {
     const sim = respostas.filter(r => r === 'sim').length;
+
+    const resultado = {
+      respostas,
+      sim,
+      total: respostas.length,
+      data: new Date().toISOString()
+    };
+
+    localStorage.setItem('autoaval_resultado', JSON.stringify(resultado));
 
     container.innerHTML = `
       <div style="text-align:center;">

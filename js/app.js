@@ -48,6 +48,70 @@ function nextSlide() {
   goSlide((currentSlide + 1) % totalSlides);
 }
 
+// ==========================
+// HOME - REUNIÕES TEASER
+// ==========================
+async function renderReunioesHome(
+  endpoint = 'http://localhost:8081/reunioes?size=3&sort=dataHora,asc'
+) {
+  const container = document.getElementById('home-reunioes-cards');
+  if (!container) return;
+
+  container.innerHTML = '<p style="color:#64748b">Carregando...</p>';
+
+  try {
+    const res = await fetch(endpoint);
+    const data = await res.json();
+
+    const reunioes = data.content ?? data ?? [];
+
+    if (!Array.isArray(reunioes) || reunioes.length === 0) {
+      container.innerHTML = '<p style="color:#64748b">Nenhuma reunião encontrada.</p>';
+      return;
+    }
+
+    container.innerHTML = reunioes.map(r => {
+      if (!r?.dataHora) return '';
+
+      const d = new Date(r.dataHora);
+
+      const diasSem = ['DOM','SEG','TER','QUA','QUI','SEX','SAB'];
+      const meses = ['JAN','FEV','MAR','ABR','MAI','JUN','JUL','AGO','SET','OUT','NOV','DEZ'];
+
+      const dia = String(d.getDate()).padStart(2,'0');
+      const mes = meses[d.getMonth()];
+      const diasem = diasSem[d.getDay()];
+      const horario = d.toLocaleTimeString('pt-BR', {
+        hour: '2-digit',
+        minute: '2-digit'
+      });
+
+      return `
+        <div class="home-reuniao-card">
+          <div class="home-date">
+            <div class="day">${dia}</div>
+            <div class="month">${mes}</div>
+            <div class="weekday">${diasem}</div>
+          </div>
+
+          <div class="home-info">
+            <div class="home-title">${r.titulo ?? ''}</div>
+            <div class="home-sub">
+              ${horario} · ${r.nomeCidade ?? ''}/${r.uf ?? ''}
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+  } catch (e) {
+    console.error(e);
+    container.innerHTML = '<p style="color:#742C24">Erro ao carregar reuniões.</p>';
+  }
+}
+
+
+
 // ── autoplay ──
 function startSlider() {
   stopSlider();
@@ -87,17 +151,26 @@ function showPage(page) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
   closeMenu();
 
-  if (page === 'videoteca') renderVideos?.();
-  if (page === 'reunioes') initReunioes?.();
-  if (page === 'dashboard') initDashboard?.();
-  if (page === 'autoaval') {
+  if(page === 'videoteca') renderVideos?.();
+  if(page === 'reunioes') initReunioes?.();
+  if(page === 'dashboard') initDashboard?.();
+
+  if(page === 'autoaval') {
     respostas = [];
     perguntaAtual = 0;
     const quiz = document.getElementById('autoaval-quiz');
-    if (quiz) quiz.style.display = 'none';
+    if(quiz) quiz.style.display = 'none';
   }
-  if (page === 'home') startSlider();
-  else stopSlider();
+
+  if(page === 'home') {
+    startSlider();
+
+    setTimeout(() => {
+      renderReunioesHome();
+    }, 0);
+  } else {
+    stopSlider();
+  }
 }
 
 // ── menu ──
@@ -197,3 +270,4 @@ document.querySelector('.slider-dots')
 
 // ── init ──
 startSlider();
+renderReunioesHome()
