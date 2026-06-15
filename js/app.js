@@ -1,4 +1,4 @@
-const API = 'http://localhost:8081';
+const API = 'https://comanonimosjogadoresads3-production.up.railway.app';
 
 'use strict';
 
@@ -54,7 +54,7 @@ function nextSlide() {
 // HOME - REUNIÕES TEASER
 // ==========================
 async function renderReunioesHome(
-  endpoint = 'http://localhost:8081/reunioes?size=3&sort=dataHora,asc'
+  endpoint = `${API}/reunioes?size=3&sort=dataHora,asc`
 ) {
   const container = document.getElementById('home-reunioes-cards');
   if (!container) return;

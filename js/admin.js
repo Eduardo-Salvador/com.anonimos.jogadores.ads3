@@ -1,4 +1,4 @@
-const API = 'http://localhost:8081';
+const API = 'https://comanonimosjogadoresads3-production.up.railway.app';
 
 /* ══════════════════════════════════
    AUTH

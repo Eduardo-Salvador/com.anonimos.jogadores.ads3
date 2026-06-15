@@ -66,7 +66,7 @@ function formatarData(dataHoraStr) {
 
 // ── Render principal ──
 
-async function renderReunioes(endpoint = 'http://localhost:8081/reunioes?size=50&sort=dataHora,asc') {
+async function renderReunioes(endpoint = 'https://comanonimosjogadoresads3-production.up.railway.app/reunioes?size=50&sort=dataHora,asc') {
   const container = document.getElementById('lista-reunioes');
   if (!container) return;
 
@@ -252,21 +252,15 @@ document.querySelector('.filter-btns')?.addEventListener('click', async (e) => {
   switch (filtro) {
 
     case 'hoje':
-      await renderReunioes(
-        'http://localhost:8081/reunioes/hoje'
-      );
+      await renderReunioes('https://comanonimosjogadoresads3-production.up.railway.app/reunioes/hoje');
       break;
 
     case 'semana':
-      await renderReunioes(
-        'http://localhost:8081/reunioes/semana'
-      );
+      await renderReunioes('https://comanonimosjogadoresads3-production.up.railway.app/reunioes/semana');
       break;
 
     default:
-      await renderReunioes(
-        'http://localhost:8081/reunioes?size=50&sort=dataHora,asc'
-      );
+      await renderReunioes('https://comanonimosjogadoresads3-production.up.railway.app/reunioes?size=50&sort=dataHora,asc');
   }
 
 });
