@@ -1,15 +1,18 @@
 'use strict';
 
-let currentSlide = 0;
 const totalSlides = document.querySelectorAll('.slide').length;
-let sliderInterval;
-
-const somRoleta = new Audio('assets/images/som/cash.mp3');
 const imagem = document.getElementById("roleta-sonora");
 
 somRoleta.volume = 0.5; 
 
 function goSlide(idx) {
+  if(currentSlide === idx) return;
+  const home = document.getElementById("page-home");
+
+  if (home.classList.contains("active")) {
+    somRoleta.currentTime = 0;
+    somRoleta.play().catch(() => {});
+  }
   const slides = document.querySelectorAll('.slide');
   const dots = document.querySelectorAll('.dot');
 

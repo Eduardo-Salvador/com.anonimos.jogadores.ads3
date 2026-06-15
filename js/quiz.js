@@ -2,6 +2,18 @@
 
 let respostas = [];
 let perguntaAtual = 0;
+const quizPerguntas = [
+  "Você sente perda de controle ao jogar?",
+  "Você já tentou parar e não conseguiu?",
+  "Você já gastou mais do que podia?",
+  "Você já mentiu sobre o quanto joga?",
+  "O jogo já prejudicou sua vida financeira?",
+  "Você já sentiu ansiedade por não jogar?",
+  "Você já pediu dinheiro emprestado para jogar?",
+  "Você já tentou recuperar perdas?",
+  "Você já sentiu culpa após jogar?",
+  "Você acha difícil ficar sem jogar?"
+];
 
 function getResultadoTexto(sim) {
   if (sim >= 9) {
@@ -39,8 +51,13 @@ function getResultadoIcon(sim) {
 function startAutoaval() {
   respostas = [];
   perguntaAtual = 0;
+
   const quiz = document.getElementById('autoaval-quiz');
-  quiz.style.display = 'flex';
+  const container = document.getElementById('quiz-container');
+
+  if (!quiz || !container) return;
+
+  quiz.style.display = 'block';
   renderQuiz();
 }
 
@@ -124,7 +141,10 @@ function enableButtons() {
   });
 }
 
-document.getElementById('start-autoaval-btn')?.addEventListener('click', (e) => {
+document.addEventListener('click', (e) => {
+  const btn = e.target.closest('#start-autoaval-btn');
+  if (!btn) return;
+
   e.preventDefault();
   startAutoaval();
 });

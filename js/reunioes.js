@@ -92,7 +92,8 @@ async function renderReunioes(endpoint = 'http://localhost:8081/reunioes?size=50
     reunioes.map(async (r) => {
       let distKm = null;
       if (posicaoUsuario) {
-        const coords = await geocodificar(r.endereco);
+        const enderecoCompleto = `${r.endereco}, ${r.nomeCidade}, ${r.uf}, Brasil`;
+        const coords = await geocodificar(enderecoCompleto);
         if (coords) {
           distKm = haversine(posicaoUsuario.lat, posicaoUsuario.lng, coords.lat, coords.lng);
         }
@@ -112,6 +113,13 @@ async function renderReunioes(endpoint = 'http://localhost:8081/reunioes?size=50
 
   reunioesCache = processadas; // salva para o modal
 
+  const contador = document.getElementById('reunioes-count');
+
+  if (contador) {
+    contador.textContent =
+      `${processadas.length} reuniões próximas de você`;
+  }
+
   // 5. Renderiza cards
   container.innerHTML = processadas.map((r, i) => {
     const { dia, mes, diasem, horario } = formatarData(r.dataHora);
@@ -128,7 +136,12 @@ async function renderReunioes(endpoint = 'http://localhost:8081/reunioes?size=50
         </div>
         <div class="reuniao-info">
           <h4>${r.titulo}</h4>
-          <div class="time">${horario} &nbsp; ${r.endereco}</div>
+          <div class="time">
+            ${horario}
+            &nbsp;
+            ${r.endereco}
+            - ${r.nomeCidade}/${r.uf}
+          </div>
           ${distLabel ? `<div class="dist-badge">${distLabel}</div>` : ''}
         </div>
         <div class="reuniao-action">
@@ -139,12 +152,12 @@ async function renderReunioes(endpoint = 'http://localhost:8081/reunioes?size=50
   }).join('');
 
   // 6. Clique nos cards
-  container.addEventListener('click', (e) => {
+  container.onclick = (e) => {
     const btn = e.target.closest('[data-action="detalhes"]');
     if (!btn) return;
     const idx = Number(btn.dataset.index);
     if (reunioesCache[idx]) openReuniaoModal(reunioesCache[idx]);
-  });
+  };
 }
 
 // ── Modal ──
@@ -257,3 +270,35 @@ document.querySelector('.filter-btns')?.addEventListener('click', async (e) => {
   }
 
 });
+
+document.getElementById('reunioes-search-input')?.addEventListener('input', filtrarReunioes);
+
+function filtrarReunioes() {
+
+  const termo = document
+    .getElementById('reunioes-search-input')
+    .value
+    .toLowerCase();
+
+  const cards = document.querySelectorAll('.reuniao-card');
+
+  let visiveis = 0;
+
+  cards.forEach(card => {
+
+    const texto = card.textContent.toLowerCase();
+
+    const mostrar = texto.includes(termo);
+
+    card.style.display = mostrar ? '' : 'none';
+
+    if (mostrar) visiveis++;
+  });
+
+  const contador = document.getElementById('reunioes-count');
+
+  if (contador) {
+    contador.textContent =
+      `${visiveis} reuniões próximas de você`;
+  }
+}
