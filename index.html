@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="css/map.css">
   <link rel="stylesheet" href="css/dashboard.css">
   <link rel="stylesheet" href="css/chatbot.css">
+  <link rel="stylesheet" href="css/videos.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
@@ -763,6 +764,20 @@
         <div class="videos-grid" id="videosGrid"></div>
       </div>
     </section>
+    <div id="videoModal" class="video-modal">
+      <div class="video-modal-content">
+
+        <span class="close-modal" onclick="closeModal()">✕</span>
+
+        <div class="video-frame" id="videoFrame"></div>
+
+        <div class="video-meta">
+          <h2 id="modalTitle"></h2>
+        </div>
+
+      </div>
+    </div>
+  </div>
   </div><!-- /page-videoteca -->
 
   <!-- ═══════════════════════════════════════════════════

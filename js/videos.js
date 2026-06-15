@@ -1,31 +1,69 @@
-'use strict';
+const videos = [
+  {
+    title: "Da Diversão ao Vício: A História de Rogérinho",
+    url: "https://www.youtube.com/watch?v=9V19WR9g0is"
+  },
+  {
+    title: "Lucas, a Linha da Aposta",
+    url: "https://www.youtube.com/watch?v=fgR6p-2KGUg"
+  },
+  {
+    title: "Meu Vício em Apostas: Um Relato Real",
+    url: "https://www.youtube.com/watch?v=eFJGg9-JsVM"
+  },
+  {
+    title: "Entendendo o Vício em Apostas",
+    url: "https://www.youtube.com/watch?v=pWIi7I-cajc"
+  }
+];
 
-let videosRendered = false;
+function getYouTubeID(url) {
+  return new URL(url).searchParams.get("v");
+}
 
 function renderVideos() {
-  if (videosRendered) return;
+  const grid = document.getElementById("videosGrid");
 
-  const grid = document.getElementById('videosGrid');
-  if (!grid) return;
+  grid.innerHTML = videos.map(v => {
+    const id = getYouTubeID(v.url);
 
-  grid.innerHTML = videosData.map(v => `
-    <div class="video-card" data-action="play-video">
-      <div class="video-thumbnail">
-        <img src="${v.thumb}" alt="${v.titulo}" loading="lazy" onerror="this.style.background='#334155';this.style.height='160px'">
-        <div class="video-play" aria-hidden="true"></div>
+    return `
+      <div class="video-card" onclick="openModal('${v.url}', '${v.title.replace(/'/g, "\\'")}')">
+        
+        <div class="thumb-wrapper">
+          <img src="https://img.youtube.com/vi/${id}/mqdefault.jpg">
+
+          <div class="play-overlay">▶</div>
+        </div>
+
+        <div class="video-info">
+          <h3 class="video-title">${v.title}</h3>
+          <p class="video-subtitle">YouTube • Educação</p>
+        </div>
+
       </div>
-      <div class="video-info">
-        <h4>${v.titulo}</h4>
-        <div class="video-meta">${v.canal} · ${v.views} visualizações</div>
-      </div>
-    </div>
-  `).join('');
-
-  grid.addEventListener('click', (e) => {
-    if (e.target.closest('[data-action="play-video"]')) {
-      toast('Vídeo em breve!');
-    }
-  });
-
-  videosRendered = true;
+    `;
+  }).join("");
 }
+
+function openModal(url, title) {
+  const id = getYouTubeID(url);
+
+  document.getElementById("videoModal").style.display = "flex";
+  document.getElementById("modalTitle").innerText = title;
+
+  document.getElementById("videoFrame").innerHTML = `
+    <iframe src="https://www.youtube.com/embed/${id}?autoplay=1"
+      frameborder="0"
+      allow="autoplay; encrypted-media"
+      allowfullscreen>
+    </iframe>
+  `;
+}
+
+function closeModal() {
+  document.getElementById("videoModal").style.display = "none";
+  document.getElementById("videoFrame").innerHTML = "";
+}
+
+renderVideos();
