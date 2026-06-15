@@ -207,7 +207,14 @@
     width: 230px;
     justify-content: center;
   }
+  .container-animacao {
+    top: 100px;
+    right: -10px;
+  }
 
+  .imagem-giratoria {
+    width: 180px;
+  }
 }
 
 /* ══════════════════════════════════════════
@@ -348,7 +355,14 @@
   .latest-news-sidebar {
     padding: 0.75rem;
   }
-  
+  .container-animacao {
+    top: 100px;
+    right: -5px;
+  }
+
+  .imagem-giratoria {
+    width: 100px;
+  }
 }
 
 
@@ -853,3 +867,4 @@
       gap: 1.5rem;
     }
 }
+
