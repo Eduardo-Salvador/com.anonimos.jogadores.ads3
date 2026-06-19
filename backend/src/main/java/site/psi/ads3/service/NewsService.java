@@ -61,17 +61,17 @@ public class NewsService {
         var url = String.format("https://newsapi.org/v2/everything?q=%s&language=pt&sortBy=publishedAt&pageSize=100&apiKey=%s", q, newsApiKey);
 
         var resp = restTemplate.getForEntity(url, String.class);
-            if (!resp.getStatusCode().is2xxSuccessful()) {
-                logger.warn("NewsAPI responded with status {}", resp.getStatusCode().value());
-                return;
-            }
+        if (!resp.getStatusCode().is2xxSuccessful()) {
+            logger.warn("NewsAPI responded with status {}", resp.getStatusCode().value());
+            return;
+        }
 
         try {
             JsonNode root = mapper.readTree(resp.getBody());
             JsonNode articles = root.path("articles");
             if (!articles.isArray()) return;
 
-            List<NewsArticle> created = new ArrayList<>();
+            List<NewsArticle> toSave = new ArrayList<>();
 
             List<String> articleUrls = new ArrayList<>();
             for (JsonNode a : articles) {
@@ -90,7 +90,7 @@ public class NewsService {
             for (JsonNode a : articles) {
                 String articleUrl = a.path("url").asText(null);
                 if (articleUrl == null || articleUrl.isBlank()) continue;
-                if (existingUrls.contains(articleUrl)) continue; // skip duplicates
+                if (existingUrls.contains(articleUrl)) continue;
 
                 NewsArticle na = new NewsArticle();
                 na.setUrl(articleUrl);
@@ -112,9 +112,10 @@ public class NewsService {
                 }
 
                 na.setInsertedAt(OffsetDateTime.now());
-
-                created.add(repo.save(na));
+                toSave.add(na);
             }
+
+            List<NewsArticle> created = repo.saveAll(toSave);
 
             if (!created.isEmpty()) {
                 logger.info("Saved {} new articles", created.size());

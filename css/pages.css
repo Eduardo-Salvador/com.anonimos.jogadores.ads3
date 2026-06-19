@@ -370,10 +370,11 @@
 }
 
 .reunioes-sidebar h1 {
-  font-size: 2.8rem;
+  font-size: 2.2rem;
   font-weight: 900;
   line-height: 1.1;
   margin-bottom: 28px;
+  color: var(--cor-padrao-ja);
 }
 
 .reunioes-sidebar ul {
@@ -402,6 +403,7 @@
   display: flex;
   gap: 0;
   border-bottom: 2px solid #e2e8f0;
+  margin-bottom: 4px;
 }
 
 .reunioes-tab {
@@ -425,10 +427,12 @@
 
 .reunioes-map {
   width: 100%;
-  height: 380px;
-  border-radius: 8px;
+  height: 420px;
+  border-radius: 16px;
   overflow: hidden;
-  margin: 20px 0;
+  margin: 24px 0;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.10);
+  border: 1.5px solid #e2e8f0;
 }
 
 .reunioes-map iframe {
@@ -442,10 +446,17 @@
   align-items: center;
   gap: 12px;
   border: 1.5px solid #e2e8f0;
-  border-radius: 8px;
-  padding: 12px 18px;
+  border-radius: 12px;
+  padding: 14px 20px;
   background: white;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.reunioes-search:focus-within {
+  border-color: var(--cor-padrao-ja);
+  box-shadow: 0 2px 12px rgba(116, 44, 36, 0.12);
 }
 
 .reunioes-search input {
@@ -454,25 +465,35 @@
   font-family: inherit;
   font-size: 0.95rem;
   width: 100%;
+  color: #334155;
+}
+
+.reunioes-search input::placeholder {
   color: #94a3b8;
 }
 
 .filter-btns {
   display: flex;
-  gap: 12px;
+  gap: 8px;
   margin-bottom: 20px;
 }
 
 .filter-btn {
-  padding: 10px 28px;
-  border-radius: 6px;
+  padding: 9px 24px;
+  border-radius: 100px;
   border: 1.5px solid #e2e8f0;
   background: white;
   font-family: inherit;
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: all 0.2s;
+  color: #475569;
+}
+
+.filter-btn:hover {
+  border-color: var(--cor-padrao-ja);
+  color: var(--cor-padrao-ja);
 }
 
 .filter-btn.active {
@@ -482,10 +503,10 @@
 }
 
 .reunioes-count {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 500;
   margin-bottom: 16px;
-  color: #475569;
+  color: #64748b;
 }
 
 #lista-reunioes {
@@ -503,14 +524,21 @@
 .reuniao-card {
   display: flex;
   border: 1px solid #e2e8f0;
-  border-radius: 8px;
+  border-radius: 12px;
   background: white;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   overflow: hidden;
+  transition: box-shadow 0.2s, transform 0.2s;
+  cursor: pointer;
+}
+
+.reuniao-card:hover {
+  box-shadow: 0 4px 16px rgba(116, 44, 36, 0.10);
+  transform: translateY(-1px);
 }
 
 .reuniao-date {
-  background: white;
+  background: #fdf8f8;
   padding: 16px;
   min-width: 80px;
   text-align: center;
@@ -521,7 +549,7 @@
   justify-content: center;
 }
 
-.reuniao-date .day    { font-size: 1.6rem; font-weight: 900; }
+.reuniao-date .day    { font-size: 1.6rem; font-weight: 900; color: var(--cor-padrao-ja); }
 .reuniao-date .month,
 .reuniao-date .weekday {
   font-size: 0.7rem;
@@ -531,7 +559,7 @@
 }
 
 .reuniao-info        { padding: 16px; flex: 1; }
-.reuniao-info h4     { font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
+.reuniao-info h4     { font-size: 1rem; font-weight: 700; margin-bottom: 4px; color: #1e293b; }
 .reuniao-info .time  { font-size: 0.85rem; color: #64748b; margin-bottom: 6px; }
 .reuniao-info .tipo  { font-size: 0.85rem; color: #475569; margin-bottom: 8px; }
 
@@ -561,17 +589,19 @@
   background: var(--cor-padrao-ja);
   color: white;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   font-family: inherit;
   font-size: 0.85rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background 0.2s, transform 0.15s;
 }
 
 .btn-detalhes:hover {
   background: var(--yellow-gold);
+  transform: scale(1.03);
 }
+
 
 /* ══════════════════════════════════════════
    MODAL: DETALHES DA REUNIÃO
