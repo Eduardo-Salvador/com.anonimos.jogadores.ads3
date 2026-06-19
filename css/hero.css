@@ -110,3 +110,91 @@
         transform:rotate(360deg);
     }
 }
+
+.roleta-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.8s ease;
+}
+
+.roleta-overlay.ativo {
+  display: flex;
+  animation: escurecer 0.8s ease forwards;
+}
+
+.roleta-overlay-mensagem {
+  color: #fff;
+  font-size: clamp(2rem, 8vw, 5rem);
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  text-align: center;
+  user-select: none;
+  opacity: 0;
+  transform: scale(0.7);
+  transition: opacity 1.2s ease 1.5s, transform 1.2s ease 1.5s;
+}
+
+.roleta-overlay.ativo .roleta-overlay-mensagem {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.roleta-overlay-fechar {
+  position: absolute;
+  top: 20px;
+  right: 28px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 2.5rem;
+  cursor: pointer;
+  line-height: 1;
+  opacity: 0;
+  transition: opacity 0.4s ease 1.2s;
+}
+
+.roleta-overlay.ativo .roleta-overlay-fechar {
+  opacity: 1;
+}
+
+@keyframes escurecer {
+  from { background: rgba(0, 0, 0, 0); }
+  to   { background: rgba(0, 0, 0, 0.92); }
+}
+
+.slider-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 20;
+  background: rgba(0, 0, 0, 0.35);
+  border: none;
+  color: #fff;
+  font-size: 3rem;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s;
+  line-height: 1;
+}
+
+.slider-arrow:hover {
+  background: rgba(0, 0, 0, 0.65);
+}
+
+.slider-prev {
+  left: 16px;
+}
+
+.slider-next {
+  right: 16px;
+}
