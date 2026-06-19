@@ -57,7 +57,7 @@ const routes = [
 ];
 
 function findRoute(text) {
-  text = text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+  text = text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
   for (const route of routes) {
     if (route.keywords.some(k => text.includes(k))) {
@@ -85,6 +85,8 @@ function goToPage(page) {
 }
 
 function sendMessage(text) {
+  if (!text.trim()) return; // ignora entradas vazias ou só com espaços
+
   addMessage("user", text);
 
   const name = getName();
@@ -101,13 +103,13 @@ function sendMessage(text) {
 
     // remove "oi", "olá", etc no começo
     cleanName = cleanName
-    .replace(/^(oi|olá|ola|eai|opa)[,\s]*/i, "")
-    .replace(/meu nome e/i, "")
-    .trim();
+      .replace(/^(oi|olá|ola|eai|opa)[,\s]*/i, "")
+      .replace(/meu nome e/i, "")
+      .trim();
 
     if (cleanName.length < 2 || cleanName.length > 20) {
-    addMessage("bot", "Pode me dizer seu nome corretamente?");
-    return;
+      addMessage("bot", "Pode me dizer seu nome corretamente?");
+      return;
     }
 
     setName(cleanName);
