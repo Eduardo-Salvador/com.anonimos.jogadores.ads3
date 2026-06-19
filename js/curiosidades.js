@@ -1,7 +1,3 @@
-// const input = document.querySelector("search-input");
-// const noticias = document.querySelectorAll(".news-item");
-
-
 // ======================================
 // CONFIGURAÇÃO DAS LABELS
 // ======================================
@@ -32,76 +28,6 @@ const LABELS = {
     classe: "label-historia-real"
   }
 };
-
-// ======================================
-// DADOS DOS CARDS
-// ======================================
-
-const cards = [
-  {
-    tipo: "estudo",
-    data: "9 de maio de 2024",
-    titulo: "Vício em apostas ativa os mesmos mecanismos de dependência química, diz estudo.",
-    descricao: "Pesquisa com neuroimagem mostra alterações significativos no cérebro.",
-    imagem: "./assets/images/curiosidades/card-brain.jpg"
-  },
-
-  {
-    tipo: "saudeMental",
-    data: "12 de maio de 2024",
-    titulo: "A relação entre apostas, ansiedade e depressão.",
-    descricao: "Especialistas alertam para os impactos emocionais do jogo compulsivo.",
-    imagem: "./assets/images/curiosidades/card-depression.jpg"
-  },
-
-  {
-    tipo: "leis",
-    data: "18 de maio de 2024",
-    titulo: "Câmara dos deputados discute regulamentação das apostas esportivas.",
-    descricao: "Texto prevê tributação e medidas de proteção ao consumidor.",
-    imagem: "./assets/images/curiosidades/card-parliament.jpg"
-  },
-
-  {
-    tipo: "noticias",
-    data: "18 de maio de 2024",
-    titulo: "Endividamento por aposta cresce mais de 300% em três anos",
-    descricao: "Levantamento mostra aumento expressivo de famílias endividadas.",
-    imagem: "./assets/images/curiosidades/card-economy.jpg"
-  },
-
-  {
-    tipo: "historiaReal",
-    data: "18 de maio de 2024",
-    titulo: "Perdi tudo, menos a vontade de mudar",
-    descricao: "Relato de um membro sobre como encontrou apoio nos Jogadores Anônimos.",
-    imagem: "./assets/images/curiosidades/card-depressed-person.jpg"
-  },
-
-  {
-    tipo: "estudo",
-    data: "18 de maio de 2024",
-    titulo: "Efeito das apostas online no desempenho escolar",
-    descricao: "Estudo aponta queda no rendimento de estudantes envolvidos com apostas.",
-    imagem: "./assets/images/curiosidades/card-college.jpg"
-  },
-
-  {
-    tipo: "saudeMental",
-    data: "18 de maio de 2024",
-    titulo: "Terapia cognitivo-comportamental ajuda no tratamento do vício",
-    descricao: "Abordagem tem mostrado bons resultados na recuperação de jogadores.",
-    imagem: "./assets/images/curiosidades/card-cognitive-therapy.jpg"
-  },
-
-  {
-    tipo: "noticias",
-    data: "18 de maio de 2024",
-    titulo: "Patrocínio de bets no esporte preocupa especialistas",
-    descricao: "Associações médicas pedem restrições à publicidade durante eventos esportivos.",
-    imagem: "./assets/images/curiosidades/card-bets.jpg"
-  }
-];
 
 function criarLabelCard(tipo) {
 
@@ -176,72 +102,64 @@ function criarCard(cardData) {
   return card;
 }
 
-// function renderizarCards() {
-
-//   const feed = document.getElementById(
-//     "curiosidades-feed"
-//   );
-
-//   feed.innerHTML = "";
-
-//   cards.forEach(cardData => {
-
-//     const card = criarCard(cardData);
-
-//     feed.appendChild(card);
-
-//   });
-
-// }
-
-function renderizarCards(tipo = "todas") {
-
-  const feed = document.getElementById(
-    "curiosidades-feed"
-  );
-
-  feed.innerHTML = "";
-
-  const cardsFiltrados = tipo === "todas"
-    ? cards
-    : cards.filter(card => card.tipo === tipo);
-
-  cardsFiltrados.forEach(cardData => {
-
-    const card = criarCard(cardData);
-
-    feed.appendChild(card);
-
-  });
-
+async function fetchNewsFromBackend(query = '') {
+  try {
+    const qs = new URLSearchParams({ query: query || '', page: '0', size: '100' });
+    const res = await fetch('http://localhost:8081' + `/api/news?${qs.toString()}`);
+    if (!res.ok) return null;
+    const json = await res.json();
+    return json;
+  } catch (err) {
+    console.error('Error fetching news from backend', err);
+    return null;
+  }
 }
 
-// function configurarFiltros() {
+async function renderNewsFeed({ query = '' } = {}) {
+  const feed = document.getElementById('curiosidades-feed');
+  feed.innerHTML = '';
 
-//   const botoes = document.querySelectorAll(
-//     ".btn-curiosidades-feed"
-//   );
+  // mostrar loading
+  const loading = document.createElement('p');
+  loading.className = 'empty';
+  loading.textContent = 'Carregando notícias...';
+  feed.appendChild(loading);
 
-//   botoes.forEach(botao => {
+  const pageResp = await fetchNewsFromBackend(query);
 
-//     botao.addEventListener("click", (event) => {
+  feed.innerHTML = '';
 
-//       // Remove o ativo de todos
-//       botoes.forEach(btn => {
-//         btn.classList.remove("feed-active-button");
-//       });
+  if (!pageResp || !Array.isArray(pageResp) || pageResp.length === 0) {
+    const msg = document.createElement('p');
+    msg.className = 'empty';
+    msg.textContent = 'Nenhuma notícia encontrada.';
+    feed.appendChild(msg);
+    return;
+  }
 
-//       // Adiciona no clicado
-//       event.currentTarget.classList.add(
-//         "feed-active-button"
-//       );
 
-//     });
+  const items = pageResp.map(a => ({
+    tipo: 'noticias',
+    data: a.publishedAt ? new Date(a.publishedAt).toLocaleDateString('pt-BR', { year: 'numeric', month: 'long', day: 'numeric'}) : '',
+    titulo: a.title || '',
+    descricao: a.description || '',
+    imagem: a.imageUrl || './assets/images/curiosidades/card-economy.jpg',
+    url: a.url
+  }));
 
-//   });
-
-// }
-
+  items.forEach(cardData => {
+    const card = criarCard(cardData);
+    if (cardData.url) {
+      const a = card.querySelector('.card-link');
+      if (a) {
+        a.href = cardData.url;
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+      }
+    }
+    feed.appendChild(card);
+  });
+}
 
 function configurarFiltros() {
 
@@ -264,41 +182,20 @@ function configurarFiltros() {
         "feed-active-button"
       );
 
-      const categoria =
-        botaoClicado.id;
+      const categoria = botaoClicado.id;
+      // Map button id to a search query for the backend
+      const queryMap = {
+        todas: '',
+        noticias: 'apostas',
+        estudos: 'estudo',
+        leis: 'leis',
+        saude: 'saude mental',
+        historias: 'historia real',
+        recuperacao: 'recuperacao'
+      };
 
-      switch (categoria) {
-
-        case "todas":
-          renderizarCards("todas");
-          break;
-
-        case "noticias":
-          renderizarCards("noticias");
-          break;
-
-        case "estudos":
-          renderizarCards("estudo");
-          break;
-
-        case "leis":
-          renderizarCards("leis");
-          break;
-
-        case "saude":
-          renderizarCards("saudeMental");
-          break;
-
-        case "historias":
-          renderizarCards("historiaReal");
-          break;
-
-        case "recuperacao":
-          // quando criar os cards desse tipo
-          renderizarCards("recuperacao");
-          break;
-      }
-
+      const q = queryMap[categoria] ?? '';
+      renderNewsFeed({ query: q });
     });
 
   });
@@ -306,9 +203,21 @@ function configurarFiltros() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-
-  renderizarCards();
+    renderNewsFeed({ query: '' });
 
   configurarFiltros();
+
+  // Setup search input if exists
+  const input = document.querySelector('#curiosidades-search') || document.querySelector('.search-input');
+  if (input) {
+    let t;
+    input.addEventListener('input', (e) => {
+      clearTimeout(t);
+      t = setTimeout(() => {
+        const q = e.target.value.trim();
+        renderNewsFeed({ query: q });
+      }, 400);
+    });
+  }
 
 });
