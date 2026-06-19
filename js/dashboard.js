@@ -71,12 +71,16 @@ let dashSheetTimer = null;
 function initDashboard() {
   // ── Seção local ──
   const saved = localStorage.getItem('autoaval_resultado');
-  const dadosLocais = saved ? JSON.parse(saved).respostas : [];
+  const dadosLocais = saved ? (JSON.parse(saved).respostas || []) : [];
+  const helpCta = document.getElementById('dash-help-cta');
+
   if (!dadosLocais.length) {
     mostrarEstadoVazio();
+    if (helpCta) helpCta.style.display = 'none';
   } else {
     esconderEstadoVazio();
     renderLocal(dadosLocais);
+    if (helpCta) helpCta.style.display = 'block';
   }
 
   // ── Seção Sheets ──

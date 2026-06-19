@@ -99,7 +99,7 @@ function renderQuiz() {
           ${getResultadoTexto(sim)}
         </p>
         <div style="display:flex;gap:16px;justify-content:center;margin-top:8px;flex-wrap:wrap;">
-          <a class="btn btn-red"    href="#" data-page="quem-somos" style="padding:16px 40px;white-space:nowrap;">Primeiro passo</a>
+          <a class="btn btn-red"    href="#" data-page="dashboard" style="padding:16px 40px;white-space:nowrap;">Analisar Resultado</a>
           <a class="btn btn-yellow" href="#" data-page="reunioes"   style="padding:16px 40px;white-space:nowrap;">Encontrar um grupo</a>
         </div>
       </div>
