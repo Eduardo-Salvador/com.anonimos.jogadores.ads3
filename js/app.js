@@ -270,6 +270,20 @@ document.querySelector('.slider-dots')
     startSlider();
   });
 
+document.querySelector('.slider-prev')?.addEventListener('click', () => {
+  const total = getSlides().length;
+    stopSlider();
+    goSlide((currentSlide - 1 + total) % total);
+    startSlider();
+});
+
+document.querySelector('.slider-next')?.addEventListener('click', () => {
+  const total = getSlides().length;
+    stopSlider();
+    goSlide((currentSlide + 1) % total);
+    startSlider();
+});
+
 document.addEventListener('DOMContentLoaded', () => {
 
   // Fechar modais
