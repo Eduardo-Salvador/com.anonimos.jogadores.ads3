@@ -44,8 +44,7 @@ public class FeedbackService {
     }
 
     private Feedback findFeedbackById(Long id) {
-        return feedbackRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Category not found"));
+        return feedbackRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Feedback não encontrado"));
     }
 
     public Page<FeedbackResponse> getAprovados(Pageable pageable) {

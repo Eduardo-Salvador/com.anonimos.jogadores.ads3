@@ -49,7 +49,7 @@ public class ReuniaoService {
     }
 
     private Reuniao findReuniaoById(Long id) {
-        return reuniaoRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Category not found"));
+        return reuniaoRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Reunião não encontrada"));
     }
 
      public List<Reuniao> listarHoje() {

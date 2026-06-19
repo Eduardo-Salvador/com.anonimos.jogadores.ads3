@@ -1,4 +1,5 @@
 package site.psi.ads3.controller;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,7 +19,7 @@ public class FeedbackController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public FeedbackResponse criarFeedback(@RequestBody FeedbackRequest request) {
+    public FeedbackResponse criarFeedback(@RequestBody @Valid FeedbackRequest request) {
         return feedbackService.criarFeedback(request);
     }
 
