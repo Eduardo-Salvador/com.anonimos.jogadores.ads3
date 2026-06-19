@@ -76,6 +76,11 @@
             alt="Roleta girando">
         </div>
 
+        <div class="roleta-overlay" id="roletaOverlay">
+          <button class="roleta-overlay-fechar" id="roletaFechar" aria-label="Fechar">&#x2715;</button>
+          <span class="roleta-overlay-mensagem">VOCÊ PERDEU</span>
+        </div>
+
       <div class="slide active" id="slide-0">
         <div class="slide-bg" style="background-color: #1a2a4a;"></div>
         <div style="position:absolute;inset:0;background:linear-gradient(135deg,#0f1f3d 0%,#1a3a6b 50%,#2d5a8e 100%);">
@@ -220,6 +225,10 @@
           </div>
         </div>
       </div>
+
+      <button class="slider-arrow slider-prev" aria-label="Slide anterior">&#8249;</button>
+      <button class="slider-arrow slider-next" aria-label="Próximo slide">&#8250;</button>
+
       <div class="slider-dots" role="tablist" aria-label="Slides">
         <button class="dot active" data-slide="0" aria-label="Slide 1" role="tab" aria-selected="true"></button>
         <button class="dot" data-slide="1" aria-label="Slide 2" role="tab" aria-selected="false"></button>
@@ -1539,6 +1548,29 @@
   <script src="js/curiosidades.js"></script>
   <script src="js/dashboard.js"></script>
   <script src="js/chatbot.js"></script>
+  <script src="js/chatbot.js"></script>
+  <script>
+    const imgRoleta = document.querySelector('.imagem-giratoria');
+    const overlay   = document.getElementById('roletaOverlay');
+    const btnFechar = document.getElementById('roletaFechar');
+    const somDerrota = new Audio('assets/images/som/cash.mp3');
+
+    imgRoleta.style.cursor = 'pointer';
+    imgRoleta.style.pointerEvents = 'auto';
+
+    imgRoleta.addEventListener('click', () => {
+      overlay.classList.add('ativo');
+      somDerrota.currentTime = 0;
+      somDerrota.play();
+    });
+
+    btnFechar.addEventListener('click', () => {
+      overlay.classList.remove('ativo');
+      somDerrota.pause();
+      somDerrota.currentTime = 0;
+    });
+  </script>
+</body>
 </body>
 
 </html>
